@@ -1,0 +1,201 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["title"] = "Contact Us";
+    Layout = "_layout";
+}
+<style>
+    .container {
+        padding: 40px 0 50px;
+    }
+
+    .swiper-container {
+        display: none;
+    }
+
+    .myNav {
+        padding: 15px;
+        position: sticky;
+        background: black;
+    }
+
+    .recruitment {
+        background: url(../img/recruitment.jpeg);
+        background-size: 100% 100%;
+        height: 50vh;
+        background-attachment: fixed;
+    }
+
+    .recruitment-title {
+        position: relative;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+        .recruitment-title h1 {
+            font-size: 70px;
+            filter: drop-shadow(2px 0px 1px #fff);
+            position: relative;
+            top: 50%;
+            transform: translate(0,-50%);
+        }
+
+    .recruitment-hightlight {
+        position: relative;
+        height: 40vh;
+        justify-content: center;
+        align-items: center;
+        letter-spacing: 1px;
+        text-align: center;
+        background: #f5f5f7;
+    }
+
+        .recruitment-hightlight h2 {
+            position: relative;
+            top: 50%;
+            transform: translate(0,-50%);
+            font-weight: 400;
+        }
+
+    .recruitment-required {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .recruitment-required p {
+            font-weight: 300;
+            padding: 10px 0 15px;
+        }
+
+        .recruitment-required ul {
+            position: relative;
+            padding: 10px;
+            margin-left: 50px;
+        }
+
+    .training {
+        background: url(../img/guard3.jpg);
+        background-size: 100% 100%;
+        height: 50vh;
+        background-attachment: fixed;
+    }
+
+    .training-title {
+        position: relative;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+        .training-title h1 {
+            font-size: 70px;
+            filter: drop-shadow(2px 0px 1px #fff);
+            position: relative;
+            top: 50%;
+            transform: translate(0,-50%);
+        }
+</style>
+@* Recruitment *@
+<div style="padding:10px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../Home/Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Recruitment & Tranning </li>
+        </ol>
+    </nav>
+    <div class="recruitment">
+        <div class="recruitment-title">
+            <h1> Our Recruitment</h1>
+        </div>
+    </div>
+</div>
+<div class="recruitment-content">
+    <div class="recruitment-hightlight">
+        <h2>
+            WE LAY GREAT EMPHASIS & STRESS OVER RECRUITMENT AS WE UNDERSTAND THAT IT IS THE QUALITY OF GOOD CANDIDATES WHO MAKE EXCELLENT GUARDS TO SATISFY OUR CLIENTS.
+        </h2>
+    </div>
+    <div class="container">
+        <div class="recruitment-required">
+            <p>
+                To qualify with Star Security Services, each candidate must qualify in personality conversa tion, profile, written test, personal interview & medical test by a registered doctor. The selection process takes into account the fulfilment of all given conditions and criteria which are as follows:
+            </p>
+            <ul>
+
+                <li>Must be at least 175 cm tall however candidates from Nepal are given some relaxation.</li>
+                <li>
+                    Should be minimum high school diploma or its equivalent, university degree holders are given preference.
+                </li>
+                <li>Security experience of minimum 1 years.</li>
+                <li>Age between 21 to 45 years.</li>
+                <li>Body must be well proportioned & fit.</li>
+                <li>
+                    Robust health
+                </li>
+            </ul>
+            <p>
+                All security personnel are required to maintain a presentable appearance, high morals and good manners in addition to physical fitness so that they are ever ready to perform the tasks they are entrusted with.
+
+                We take great pride in intimating that due to our strict selection procedures & the quality of guards who are selected from various countries, our passing percentage in NSI & PSBD examinations are 100%.
+            </p>
+            <a href="../Contact/index" class="myBtn"> Contact Us </a>
+        </div>
+    </div>
+</div>
+
+@*Tranning*@
+<div style="padding:10px;">
+    <div class="training">
+        <div class="training-title">
+            <h1> Our Training</h1>
+        </div>
+    </div>
+</div>
+<div class="tranning-content">
+    <div class="container">
+        <div class="recruitment-required">
+            <div style="display: flex;justify-content: center;align-items: center;">
+                <p>
+                    Star Security Services provides induction training through its PSBD qualified trained instructors, before the new recruits enter the actual work field. It has set up a dedicated Training Institute in Mussafah area. The successful candidates are sent to National Security Institute (NSI) for a period of five days for training. The guards who qualify NSI are sent for the PSBD examination to obtain police license.
+
+                    The security guards are put on duty only after successful completion of Basic Training & obtaining PSBD license from Abu Dhabi Police Star Security Services has a fair mix of nationalities in its workforce which includes people from Asian, African and Arab countries. This blend of nationalities meets the needs of multiple option traders with respect to communication and networking channels.
+                </p>
+                <img src="../img/guard1.jpg" width="500" height="300" />
+            </div>
+            <div style="padding:15px 0 10px">
+                <h2 style="color:#3b5998;">SOME OF THE AREAS COVERED DURING INDUCTION TRAINING ARE : </h2>
+                <ul>
+                    <li>Vision and company's objectives</li>
+                    <li>Personal conduct</li>
+                    <li>Uniform</li>
+                    <li>Public Relation</li>
+                    <li>Etiquette regarding communication and conversation</li>
+                    <li>
+                        Discipline
+                    </li>
+                    <li>Communication skills and duties</li>
+                    <li>Essential principles of security</li>
+                    <li>Writing of reports</li>
+                    <li>Preparation of documents</li>
+                    <li>Delivery/Receipt of duty and task sheets</li>
+                    <li>Preventive measures/countermeasures</li>
+                    <li>Firefighting Drill</li>
+                </ul>
+                <p>Keeping in tune with the PSBD rules & regulations we send all our guards for refresher training every year which improves the quality of our guards. The company's top management maintains a very close liaison with CEO-NSI & Director-PSBD.</p>
+            </div>
+
+            <a href="../Contact/index" class="myBtn"> Contact Us </a>
+        </div>
+    </div>
+</div>

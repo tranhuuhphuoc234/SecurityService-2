@@ -4,45 +4,203 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SecurityService</title>
+    @*boostrap icon*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    @*swiper*@
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css"/>
 </head>
+
+
 <body>
+
+    <style>
+
+    </style>
+    <div class="banner">
+        <div class="banner-content">
+            <span><i class="bi bi-shield-check" style="font-size:14px;"></i> Your safety is our responsibility</span>
+            <span><i class="bi bi-shield-check" style="font-size:14px;"></i> Your safety is our responsibility</span>
+            <span><i class="bi bi-shield-check" style="font-size:14px;"></i> Your safety is our responsibility</span>
+            <span><i class="bi bi-shield-check" style="font-size:14px;"></i> Your safety is our responsibility</span>
+            <span><i class="bi bi-shield-check" style="font-size:14px;"></i> Your safety is our responsibility</span>
+        </div>
+
+
+    </div>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SecurityService</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <!-- navigation bar-->
+        <div class="myNav" id="myNav">
+            <nav>
+                <div class="myNav-header">
+                    <ul>
+                        <li class="star-logo">
+                            <a href="../Home/Index">
+                                <img src="../img/logoResize.png" style="width:30px;" />
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+
+                    </ul>
+                    <div class="ham-menu" id="ham-menu">
+                        <input class="menu-btn" type="checkbox" id="menu-btn" name="menu-btn" />
+                        <label class="menu-icon" for="menu-btn"><span class="nav-icon" id="nav-icon"></span></label>
+                    </div>
+                    <div class="search-around" id="search-around"></div>
+                </div>
+
+                <ul class="myNav-list" id="myNav-list">
+                    <li>
+                        <a href="../Home/Index" class="logo myNav-item">
+                            <img src="../img/logo.png" style="width:150px;" />
+                        </a>
+                    </li>
+                    <li><a href="../Home/Index" class="myNav-item">Home</a> </li>
+                    <li><a href="../About/Index" class="myNav-item">About Us</a></li>
+                    <li>
+                        <div class="dropdown">
+                            <a href="#" class="myNav-item">Our Bussiness <i class="bi bi-caret-down" style="font-size:16px;"></i> </a>
+                            <div class="dropdown-content">
+                                <a href="../MannedGuarding/Index">Manned guarding</a>
+                                <a href="../CashService/Index">Cash Services</a>
+                                <a href="../ElectronicSecurity/Index">Electronic security systems</a>
+                                <a href="../Recruitment/index">Recruitment and training</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#" id="search"><i class="bi bi-search"></i></a> </li>
+                    <li><a href="../Contact/Index" class="myNav-item">Contact us</a> </li>
+                    <li><a href="../Login/Index" class="myNav-item"><i class="bi bi-person-circle"></i></a> </li>
+                </ul>
+                <div class="search-form">
+                    <input type="text" placeholder="Search.." />
+                    <a class="close"><i class="bi bi-x" style="font-size:30px;color:white;"></i></a>
+                </div>
+                <div class="search-dropdown">
+                    <label style="border-bottom:1px solid"> Quick Links</label>
+                    <ul style="margin-left:30px;">
+                        <li><a href="../MannedGuarding/Index"> Manned guarding </a></li>
+                        <li><a href="../CashService/Index"> Cash Services </a></li>
+                        <li><a href="../ElectronicSecurity/Index"> Electronic security systems </a></li>
+                        <li><a href="../Recruitment/Index"> Recruitment and training </a></li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
+        <div class="search-around" id="searchAround"></div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <!-- Slider main container -->
+    <div class="swiper-container swiper-container1">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide swiper-slide1">
+                <div class="swiper-background">
+                    <div class="swiper-title">
+                        <h1> Your safety is our responsibility </h1>
+                        <p style="font-size:25px"> We are pleased to serve the safety of you and your family.</p>
+                        <a href="../about/index" class="myBtn"> Explore more  <i class="bi bi-arrow-right"></i></a>
+                    </div>                   
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide1">
+                <div class="swiper-background">
+                    <div class="swiper-title">
+                        <h1> Your safety is our responsibility </h1>
+                        <p style="font-size:25px"> We are pleased to serve the safety of you and your family.</p>
+                        <a href="../about/index" class="myBtn"> Explore more  <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide1">
+                <div class="swiper-background">
+                    <div class="swiper-title">
+                        <h1> Your safety is our responsibility </h1>
+                        <p style="font-size:25px"> We are pleased to serve the safety of you and your family.</p>
+                        <a href="../about/index" class="myBtn"> Explore more <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination swiper-pagination1"></div>
+
+        <!-- If we need navigation buttons -->
+        @*<div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>*@
+
+        <!-- If we need scrollbar -->
+        @*<div class="swiper-scrollbar"></div>*@
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - SecurityService - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <section class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-content fade">
+                <div class="footer-content-top">
+                    <div class="col-content">
+                        <label> About Star Security</label>
+                        <ul>
+                            <li><a href="#"> 1 </a></li>
+                            <li><a href="#"> 1 </a></li>
+                            <li><a href="#"> 1 </a></li>
+                            <li><a href="#"> 1 </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-content">
+                        <label> Our Network</label>
+                        <ul>
+                            <li><a href="#"> North region </a></li>
+                            <li><a href="#"> South region </a></li>
+                            <li><a href="#"> West region </a></li>
+                            <li><a href="#"> east region </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-content">
+                        <label> Quick Links</label>
+                        <ul>
+                            <li><a href="../MannedGuarding/Index"> Manned guarding </a></li>
+                            <li><a href="../CashService/Index"> Cash Services </a></li>
+                            <li><a href="../ElectronicSecurity/Index"> Electronic security systems </a></li>
+                            <li><a href="../Recruitment/Index"> Recruitment and training </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-content">
+                        <label> Find Us </label>
+                        <ul>
+                            <li><a href="#"> <i class="bi bi-facebook" style="color: #3b5998;"></i> Facebook </a></li>
+                            <li><a href="#"> <i class="bi bi-twitter" style="color: #1DA1F2;"></i> Twitter </a></li>
+                            <li><a href="#"> <i class="bi bi-instagram" style="color: #E1306C"></i> Instagram </a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="footer-legal-copyright">
+                        Copyright © 2021 Star Security Service . All rights reserved.
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-    </footer>
+    </section>
+    <script></script>
+
+    @*swiper*@
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    @*jquery*@
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
+

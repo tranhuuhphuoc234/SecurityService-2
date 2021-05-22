@@ -1,0 +1,271 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Contact Us";
+    Layout = "_Layout";
+}
+<style>
+    .container {
+        padding: 40px 0 50px;
+    }
+
+    .swiper-container {
+        display: none;
+    }
+
+    .myNav {
+        padding: 15px;
+        position: sticky;
+        background: black;
+    }
+    .contact {
+        background: url(../img/Contact.jpeg);
+        height: 50vh;
+        background-size: 100% 100%;
+    }
+
+    .contact-title {
+        position: relative;
+        top: 50%;
+        justify-content: center;
+        transform: translate(0%, -50%);
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+        .contact-title h1 {
+            font-size: 70px;
+            filter: drop-shadow(2px 0px 1px #fff);
+        }
+
+    .contact-content {
+        display: flex;
+        position: relative;
+        height: 70vh;
+        z-index: 1000;
+        margin: 50px 0 50px;
+    }
+
+    .contact-header {
+        width: 350px;
+        top: 40px;
+        position: absolute;
+        height: calc(100% - 80px);
+        display: flex;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        background: #5c5d5f;
+        background: linear-gradient(to right, rgba(92,93,95,0.8), rgba(92,93,95,1));
+        z-index: 1;
+        border-radius: 20px;
+        padding: 40px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .contact-header h1 {
+            color: #fff;
+            font-size: 50px;
+            letter-spacing: 2px;
+            filter: drop-shadow(0px 1px 1px #ddd);
+            padding: 10px 0 10px;
+        }
+
+        .contact-header ul {
+            position: relative;
+            list-style: none;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0 10px;
+        }
+
+            .contact-header ul li a {
+                color: #ddd;
+                text-decoration: none;
+                opacity: 0.8;
+                transition: 0.2s;
+            }
+
+                .contact-header ul li a:hover {
+                    color: #fff;
+                    opacity: 1;
+                }
+
+    .contact-body {
+        position: absolute;
+        padding: 70px 50px;
+        padding-left: 250px;
+        margin-left: 150px;
+        width: calc(100% - 150px);
+        height: 100%;
+        background: linear-gradient(0,0,0,0.5);
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .mapsite {
+        position: relative;
+        height: 50vh;
+        width: 100%;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .media {
+        padding: 50px 0 0;
+    }
+
+        .media ul {
+            display: flex;
+            padding: 20px 0 20px;
+        }
+
+        .media li a {
+            background: #fff;
+            border-radius: 50%;
+            opacity: 1 !important;
+            padding: 18px;
+            margin: 10px;
+        }
+
+            .media li a:hover {
+                padding: 25px !important;
+                transform: rotate3d(60deg) !important;
+                animation: explosion .5s linear infinite;
+            }
+
+    .formBox {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .inputBox {
+        position: relative;
+        margin: 0 0 30px 0;
+    }
+
+        .inputBox.w50 {
+            width: 47%;
+        }
+
+        .inputBox.w100 {
+            width: 100%!important ;
+        }
+
+    .formBox .inputBox input,
+    .formBox .inputBox textarea {
+        width: 100% !important;
+        padding: 5px 0;
+        font-size: 18px;
+        font-weight: 400;
+        color: #333;
+        border: none;
+        border-bottom: 1px solid #777;
+        outline: none;
+    }
+
+    .formBox .inputBox textarea {
+        min-height: 150px;
+        width:100%;
+        outline:none;
+    }
+
+    .contact-body .formBox .inputBox span {
+        position: absolute;
+        left: 0;
+        padding: 5px 0;
+        font-weight:300;
+        transition:0.2s;
+    }
+
+    .formBox input:focus ~ span,
+    .formBox input:valid ~ span,
+    .formBox textarea:focus ~ span,
+    .formBox textarea:valid ~ span {
+        font-size:12px;
+        letter-spacing:1px;
+        transform: translateY(-20px);
+        color:#777;
+    }
+
+
+    .about-title h1 {
+        font-size: 50px;
+        letter-spacing: 2px;
+        color: white;
+        font-weight: 300;
+        text-align: center;
+        text-transform: uppercase;
+        filter: drop-shadow(1px 2px 2px #fff);
+    }
+</style>
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../Home/Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+        </ol>
+    </nav>
+    <div class="contact">
+        <div class="contact-title">
+            <h1> Contact Us</h1>
+        </div>
+    </div>
+    <div id="contact-content " class="contact-content ">
+        <div class="contact-header">
+            <h1> Contact Info </h1>
+            <ul>
+                <li><a href="#mapsite"><i class="bi bi-geo-alt" style="color:black"></i> 22 Phan Liem <br />Phuong Da Kao, D.1, Ho Chi Minh city </a></li>
+                <li><a href="#"><i class="bi bi-phone" style="color:black"></i> 0901023456</a></li>
+                <li><a href="#"><i class="bi bi-inbox" style="color:black"></i> yoursafety@starsecurity.com </a></li>
+            </ul>
+            <div class="media ">
+                <ul>
+                    <li><a href="#"> <i class="bi bi-facebook" style="color: #3b5998;"></i></a></li>
+                    <li><a href="#"> <i class="bi bi-twitter" style="color: #1DA1F2;"></i></a></li>
+                    <li><a href="#"> <i class="bi bi-instagram" style="color: #E1306C"></i></a></li>
+                    <li><a href="#"> <i class="bi bi-linkedin" style="color: #2867B2"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="contact-body">
+            <h2 style="font-size:40px; color:##3e69dd; filter:drop-shadow(0px 1px 1px #3e69dd)" >Send Us</h2>
+            <div class="formBox">
+                <div class="inputBox w50">
+                    <input  type="text" name="" required />
+                    <span> First Name</span>
+                </div>
+                <div class="inputBox w50 ">
+                    <input  type="text" name="" required />
+                    <span> Last Name</span>
+                </div>
+                <div class="inputBox w50">
+                    <input  type="tel" name="" required />
+                    <span>Phone No.</span>
+                </div>
+                <div class="inputBox w50">
+                    <input  type="email" name="" required />
+                    <span> Email </span>
+                </div>
+                <div class="inputBox w100">
+                    <textarea  required></textarea>
+                    <span> Message </span>
+                </div>
+                <div class="inputBox w100">
+                    <input class="myBtn" type="submit" />
+                </div>
+               
+
+            </div>
+ 
+        </div>
+    </div>
+    <div id="mapsite" class="mapsite">
+        <iframe class="mapsite" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2836021521402!2d106.69295791517486!3d10.789577392312616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528cb4b06988b%3A0xed698da3b386547a!2zMjIgUGhhbiBMacOqbSwgxJBhIEthbywgUXXhuq1uIDEsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1621302201935!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</div>

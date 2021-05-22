@@ -1,0 +1,117 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Login Page";
+    Layout = "_Layout";
+}
+<style>
+    .container {
+        padding: 40px 0 50px;
+    }
+
+    .swiper-container {
+        display: none;
+    }
+
+    .myNav {
+        padding: 15px;
+        position: sticky;
+        background: black;
+    }
+
+    .login {
+        background: url(../img/guard4.jpg);
+        height: 50vh;
+        background-size: 100% 100%;
+    }
+
+    .login-title {
+        position: relative;
+        top: 50%;
+        justify-content: center;
+        transform: translate(0%, -50%);
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+        .login-title h1 {
+            font-size: 70px;
+            filter: drop-shadow(2px 0px 1px #fff);
+        }
+
+    .login-form {
+        position: relative;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        background: #e9ecef;
+        height:30vh;
+        border-radius:20px;
+    }
+        .login-form .inputBox {
+            position: relative;
+            padding:20px 0 20px;
+            margin: 0px 250px 0;
+        }
+
+    .login-form .inputBox input{
+        width: 100%;
+        padding: 5px 0;
+        font-size: 18px;
+        font-weight: 400;
+        color: #333;
+        border: none;
+        border-bottom: 1px solid #777;
+        outline: none;
+        background-color:transparent;
+    }
+    .login-form .inputBox label {
+        position: absolute;
+        left: 0;
+        padding: 5px 0;
+        font-weight: 300;
+        transition: 0.2s;
+    }
+
+    .login-form input:focus ~ label,
+    .login-form input:valid ~ label {
+        font-size: 12px;
+        letter-spacing: 1px;
+        transform: translateY(-10px);
+        color: #777;
+    }
+    
+</style>
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../Home/Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+        </ol>
+    </nav>
+    <div class="login">
+        <div class="login-title">
+            <h1> Log In</h1>
+        </div>
+    </div>
+    <nav aria-label="breadcrumb" style="padding-top: 1em;">
+        <div class="breadcrumb" style="justify-content: center; align-content: center;">
+            <span style="padding-right:10px;"><i class="bi bi-exclamation-triangle"></i></span>
+            <lable> Login is only for employees, no obligation to enter </lable>
+        </div>
+    </nav>
+    <div class="login-form">
+        <div class="inputBox">
+            <input type="text" name="" required />
+            <label> Account </label>
+        </div>
+        <div class="inputBox">
+            <input type="password" name="" required />
+            <label> Password </label>
+        </div>
+        <input style="margin:0 250px 0 ; width:50%;" class="myBtn" type="submit" name="Log In" />
+    </div>
+</div>

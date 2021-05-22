@@ -1,0 +1,257 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Manned Guarding";
+    Layout = "_Layout";
+}
+<style>
+    .container {
+        padding: 40px 0 50px;
+    }
+
+    .swiper-container1 {
+        display: none;
+    }
+
+    .myNav {
+        padding: 15px;
+        position: sticky;
+        background: black;
+    }
+
+    .mannegduarding {
+        background: url(../img/mannedguard1.jpeg);
+        height: 50vh;
+        background-size: 100% 100%;
+    }
+
+    .mannedguarding-title-background {
+        position: relative;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+    .mannedguardingg-title {
+        position: relative;
+        top: 50%;
+        justify-content: center;
+        transform: translate(0%, -50%);
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+        .mannedguardingg-title h1 {
+            font-size: 70px;
+            filter: drop-shadow(2px 0px 1px #fff);
+        }
+    .mannegduarding-2 {
+        background: url(../img/mannedguard2.jpg);
+        height: 50vh;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .mannedguarding-title-background-2 {
+        position: relative;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+    .mannedguardingg-title-2 {
+        position: relative;
+        top: 50%;
+        justify-content: center;
+        transform: translate(0%, -50%);
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+        .mannedguardingg-title-2 h1 {
+            font-size: 70px;
+            filter: drop-shadow(2px 0px 1px #fff);
+        }
+    .swiper-container3 {
+        width: 100%;
+       
+    }
+
+    .swiper-slide3 {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .emp-content {
+        position: relative;
+        overflow: hidden;
+        bottom: -180px;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        background: rgba(255,255,255,1);
+        padding: 20px;
+        border-radius: 10px;
+        transition:0.3s;
+    }
+    .emp-detail:hover .emp-content{
+        bottom:180px;
+    }
+</style>
+<div style="padding:10px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../Home/Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Our Services</li>
+            <li class="breadcrumb-item active" aria-current="page"> Manned Guarding </li>
+        </ol>
+    </nav>
+    <div class="mannegduarding">
+        <div class="mannedguarding-title-background">
+            <div class="mannedguardingg-title">
+                <h1> Manned Guarding </h1>
+                <h5>
+                    Also known as security guards, security officers, security personnel.
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="mannegduarding-content">
+        <p>
+            <span style="color:blue;">Manned guarding is a highly effective way of eliminating criminal damage and theft</span>, making it one of the most proactive security measures that you can take against crime. It is a security service that involves placing security guards at your premises; this could be out of hours security only, or 24/7 security.
+        </p>
+        <p>
+            The manned guarding security service that Star Security Solutions offers is much more than a security presence at your premises. Our security guards are all trained to Security Industry Authority (SIA) standards and are fitted with body cameras for audible and CCTV footage, ensuring you have a professional security officer managing your property.
+        </p>
+        <h5>
+            Protect Your Business And Safety With Manned Guarding
+        </h5>
+        <p>
+            Manned guarding decreases the opportunity for theft and vandalism, can reduce your insurance costs and our security guards can raise the alarm should an arson attack, or similar, take place at your premises out of hours. It is a brilliant proactive solution to your security strategy, ensuring your assets are protected and your insurance cover is not compromised. We aim to prevent damage, disorder or theft and strive to protect individuals against assault or injury.
+        </p>
+        <h5>
+            What We Provides :
+        </h5>
+        <p>
+             guarding, fire squad, dog squad, bodyguards etc. for industries, banks, retail outlets, residential colonies, hotels and institutions
+        </p>
+        <a href="../Contact/Index" class="myBtn"> Contact Us </a>
+        <h3 style="padding:15px 0 10px"> If you need help ? Please call <i class="bi bi-telephone"></i>: 0901023456  </h3>
+
+    </div>
+</div>
+<!-- Swiper -->
+<div class="swiper-container swiper-container3">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide swiper-slide3">
+            <div class="emp-detail">
+                <div class="img-emp">
+                    <img src="../img/man2.png" />
+                </div>
+                <div class="emp-content">
+                    <h3> Nguyen Quoc Trung </h3>
+                    <h5> Leader bodyguards </h5>
+                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide3">
+            <div class="emp-detail">
+                <div class="img-emp">
+                    <img src="../img/man3.jpg" />
+                </div>
+                <div class="emp-content">
+                    <h3> Nguyen Quoc Trung </h3>
+                    <h5> Leader bodyguards </h5>
+                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide3">
+            <div class="emp-detail">
+                <div class="img-emp">
+                    <img src="../img/man4.png" />
+                </div>
+                <div class="emp-content">
+                    <h3> Nguyen Quoc Trung </h3>
+                    <h5> Leader bodyguards </h5>
+                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide3">
+            <div class="emp-detail">
+                <div class="img-emp">
+                    <img src="../img/man2.png" />
+                </div>
+                <div class="emp-content">
+                    <h3> Nguyen Quoc Trung </h3>
+                    <h5> Leader bodyguards </h5>
+                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide3">
+            <div class="emp-detail">
+                <div class="img-emp">
+                    <img src="../img/man3.jpg" />
+                </div>
+                <div class="emp-content">
+                    <h3> Nguyen Quoc Trung </h3>
+                    <h5> Leader bodyguards </h5>
+                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide3">
+            <div class="emp-detail">
+                <div class="img-emp">
+                    <img src="../img/man4.png" />
+                </div>
+                <div class="emp-content">
+                    <h3> Nguyen Quoc Trung </h3>
+                    <h5> Leader bodyguards </h5>
+                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+<div style="padding:20px 0 20px ; background-color: #f5f5f7;">
+    <div class="mannegduarding-2">
+        <div class="mannedguarding-title-background-2">
+            <div class="mannedguardingg-title-2">
+                <h1> Our Clients  </h1>
+            </div>
+        </div>
+    </div>
+</div>
+    

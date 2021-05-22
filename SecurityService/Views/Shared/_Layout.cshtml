@@ -10,14 +10,13 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/css/Phat.css"/>
 </head>
 
 
 <body>
 
     <style>
-
     </style>
     <div class="banner">
         <div class="banner-content">
@@ -101,7 +100,7 @@
                         <h1> Your safety is our responsibility </h1>
                         <p style="font-size:25px"> We are pleased to serve the safety of you and your family.</p>
                         <a href="../about/index" class="myBtn"> Explore more  <i class="bi bi-arrow-right"></i></a>
-                    </div>                   
+                    </div>
                 </div>
             </div>
             <div class="swiper-slide swiper-slide1">
@@ -125,13 +124,6 @@
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination swiper-pagination1"></div>
-
-        <!-- If we need navigation buttons -->
-        @*<div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>*@
-
-        <!-- If we need scrollbar -->
-        @*<div class="swiper-scrollbar"></div>*@
     </div>
 
 
@@ -139,9 +131,101 @@
         @RenderBody()
     </main>
 
+    @*Testimonial*@
+    <!-- Swiper -->
+<div class="swiper-container swiper-container2">
+    <div class="header-testmonial">
+        <h1> OUR TESTIMONIALS </h1>
+        <h5> HEAR WHAT OUR CUSTOMERS SAY </h5>
+    </div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide swiper-slide2">
+            <div class="testmonialBox">
+                <div class="detail">
+                    <div class="image-testmonial">
+                        <img src="../img/man.png" />
+                    </div>
+                    <h3> Nguyen Quoc Trung </h3>
+                    <p> King Of BackEnd</p>
+                </div>
+                <div class="testmonialBox-content">
+                    <i class="bi bi-chat-quote"></i>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus
+                        felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide2">
+            <div class="testmonialBox">
+                <div class="detail">
+                    <div class="image-testmonial">
+                        <img src="../img/man.png" />
+                    </div>
+                    <h3> Ha Dang Khoa  </h3>
+                    <p> King Of Database</p>
+                </div>
+                <div class="testmonialBox-content">
+                    <i class="bi bi-chat-quote"></i>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus
+                        felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper-slide swiper-slide2">
+            <div class="testmonialBox">
+                <div class="detail">
+                    <div class="image-testmonial">
+                        <img src="../img/man.png" />
+                    </div>
+                    <h3> Tran Huu Phuoc </h3>
+                    <p> King Of Full-Stack</p>
+                </div>
+                <div class="testmonialBox-content">
+                    <i class="bi bi-chat-quote"></i>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus
+                        felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide2">
+            <div class="testmonialBox">
+                <div class="detail">
+                    <div class="image-testmonial">
+                        <img src="../img/man.png" />
+                    </div>
+                    <h3> Ly Hung Phat </h3>
+                    <p> King Of UI </p>
+                </div>
+                <div class="testmonialBox-content">
+                    <i class="bi bi-chat-quote"></i>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus
+                        felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-pagination swiper-pagination2">
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
     <section class="footer" id="footer">
         <div class="footer-container">
             <div class="footer-content fade">
+                <div class="footer-content-contact">
+                    <h3> If you need help ? Please call <i class="bi bi-telephone"></i>: 0901023456  </h3>
+                    <a style="margin-left:30px;" href="../Contact/Index" class="myBtn"> Contact Us </a>
+                </div>
                 <div class="footer-content-top">
                     <div class="col-content">
                         <label> About Star Security</label>

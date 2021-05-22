@@ -26,7 +26,6 @@ var mySwiper = new Swiper(".swiper-container2", {
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
-    mousewheel: true,
     coverflowEffect: {
         rotate: 50,
         stretch: 0,
@@ -41,6 +40,10 @@ var mySwiper = new Swiper(".swiper-container2", {
     pagination: {
         el: '.swiper-pagination2',
         clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
     },
     
 });

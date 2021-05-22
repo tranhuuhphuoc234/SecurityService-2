@@ -121,6 +121,24 @@
     .emp-detail:hover .emp-content{
         bottom:180px;
     }
+    .client-detail ul{
+        position:relative;
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        column-gap:20px;
+    }
+    .client-detail li{
+        width:200px;
+        height:150px;
+        list-style:none;
+    }
+    .client-detail li img{
+        width:100%;
+        position:relative;
+        top:50%;
+        transform:translate(0,-50%);
+       
+    }
 </style>
 <div style="padding:10px;">
     <nav aria-label="breadcrumb">
@@ -252,6 +270,20 @@
                 <h1> Our Clients  </h1>
             </div>
         </div>
+    </div>
+</div>
+<div class="container">
+    <div class="client-detail">
+        <ul>
+            <li><img src="../img/client1.png" /></li>
+            <li><img src="../img/client2.png" /></li>
+            <li><img src="../img/client3.png" /></li>
+            <li><img src="../img/client4.png" /></li>
+            <li><img src="../img/client5.png" /></li>
+            <li><img src="../img/client6.png" /></li>
+            <li><img src="../img/client7.png" /></li>
+            <li><img src="../img/client8.png" /></li>
+        </ul>
     </div>
 </div>
     

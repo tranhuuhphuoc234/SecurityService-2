@@ -1,0 +1,667 @@
+﻿
+@{
+    ViewData["Title"] = "All_Infor";
+    Layout = "~/Areas/Admin/Views/_Layout_Admin.cshtml";
+}
+@*content_employee*@
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<div class="container" id="content_employee">
+    <div class="manage_form"><h1>Manage Employee</h1></div>
+    <div class="content_form">
+        <div class="my_col_left">
+            <div class="my_text_box">
+                <div class="my_label">Name</div>
+                <input type="text" name="name" id="input_name" />
+                <span id="error_name"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Age</div>
+                <input type="number" name="age" id="input_age" />
+                <span id="error_age"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Weight</div>
+                <input type="number" name="weight" id="input_weight" />
+                <span id="error_weight"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Height</div>
+                <input type="number" name="height" id="input_height" />
+                <span id="error_height"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Phone</div>
+                <input type="text" name="phone" id="input_phone" />
+                <span id="error_phone"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Email</div>
+                <input type="email" name="email" id="input_email" />
+                <span id="error_email"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Address</div>
+                <input type="text" name="address" id="input_address" />
+                <span id="error_address"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Department</div>
+                <select id="input_department">
+                    <option value="none">Choose Department</option>
+                </select>
+                <span id="error_department"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Role</div>
+                <select id="input_role">
+                    <option value="none">Choose Role</option>
+                </select>
+                <span id="error_role"></span>
+            </div>
+        </div>
+        <div class="my_col_right">
+            <div class="my_text_box">
+                <div class="my_label">Grade</div>
+                <select id="input_grade">
+                    <option value="none">Choose Grade</option>
+                </select>
+                <span id="error_grade"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Achivement</div>
+                <input type="text" name="achivement" id="input_achivement" />
+                <span id="error_achivement"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Speciality</div>
+                <select id="input_speciality">
+                    <option value="none">Choose Speciality</option>
+                </select>
+                <span id="error_speciality"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Price</div>
+                <input type="number" name="price" id="input_price" />
+                <span id="error_price"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">About Me</div>
+                <input type="text" name="about_me" id="input_aboutme" />
+                <span id="error_aboutme"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Username</div>
+                <input type="text" name="username" id="input_username" />
+                <span id="error_username"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Password</div>
+                <input type="password" name="password" id="input_password" />
+                <span id="error_password"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Confirm Password</div>
+                <input type="password" name="cf_password" id="input_confirm" />
+                <span id="error_confirm"></span>
+            </div>
+            <div class="my_text_box">
+                <label>Status</label>
+                <input type="checkbox" name="status" id="employee_status" />
+            </div>
+            <div class="my_text_box">
+                <button type="button" onclick="add_employee();" class="btn_save" style="">Save</button>
+                <button type="button" class="btn_edit">Edit</button>
+                <button type="button" onclick="click_view_employee();" class="btn_view">View</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*View_Employee*@
+<div class="container" id="view_table_employee" style="display:none;">
+    <div class="content_search">
+        <div style="height:30%;"></div>
+        <div style="height:70%;">
+            <select style="width:20%">
+                <option value="Department" id="Choose_View_Employee">Choose search method</option>
+                <option value="">Name</option>
+                <option value="">Email</option>
+                <option value="">Phone</option>
+                <option value="">Username</option>
+            </select>
+            <input type="text" name="search_employee" id="search_employee" style="width:20%; margin-right:2%;" />
+            <button type="button" class="btn_search">Search</button>
+        </div>
+    </div>
+    <div class="content_table_view" style="height: 500px;">
+        <div class="title_employee">
+            <div class="title_table_employee">Name</div>
+            <div class="title_table_employee">Age</div>
+            <div class="title_table_employee">Weight</div>
+            <div class="title_table_employee">Height</div>
+            <div class="title_table_employee">Phone</div>
+            <div class="title_table_employee">Email</div>
+            <div class="title_table_employee">Address</div>
+            <div class="title_table_employee">Deparment</div>
+            <div class="title_table_employee">Role</div>
+            <div class="title_table_employee">Grade</div>
+            <div class="title_table_employee">Achivement</div>
+            <div class="title_table_employee">Speciality</div>
+            <div class="title_table_employee">Price</div>
+            <div class="title_table_employee">About Me</div>
+            <div class="title_table_employee">Username</div>
+            <div class="title_table_employee">Status</div>
+            <div class="title_table_employee" style="width:280px;">Active</div>
+        </div>
+        <div class="content_table_employee">
+            <table id="my_table">
+                <tbody id="table_employee">
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>
+                            <div class="div_icon">
+                                <span><i class="fa fa-trash"></i></span>
+                            </div>
+                            <div class="div_icon">
+                                <span><i class="fa fa-edit"></i></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>
+                            <div class="div_icon">
+                                <span><i class="fa fa-trash"></i></span>
+                            </div>
+                            <div class="div_icon">
+                                <span><i class="fa fa-edit"></i></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@*content_feedback*@
+<div class="container" id="content_feedback" style="display:none;">
+    <div class="manage_form"><h1>Manage Feedback</h1></div>
+    <div class="content_form">
+        <div class="my_search">
+            <div class="aa" style="height:30%">
+            </div>
+            <div style="height:70%">
+                <input style="width:20%; margin-right:10px;" type="text" name="search_feedback" placeholder="Name Client" id="search_feedback" />
+                <button type="button" class="btn_search" id="btn_search_feedback">Search</button>
+            </div>
+        </div>
+        <div class="table_feedback">
+            <div class="title_table">
+                <div class="title_table_feedback">Name Client</div>
+                <div class="title_table_feedback">Subject</div>
+                <div class="title_table_feedback">Detail</div>
+                <div class="title_table_feedback">Status</div>
+                <div class="title_table_feedback">Active</div>
+            </div>
+            <div class="content_table">
+                <table id="my_table" style="width:100%;">
+                    <tbody id="table_feedback">
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>
+                                <div class="div_icon">
+                                    <a><i class="fa fa-trash"></i></a>
+                                </div>
+                                <div class="div_icon">
+                                    <a><i class="fa fa-edit"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-trash"></i></span>
+                                </div>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-edit"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-trash"></i></span>
+                                </div>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-edit"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*content_about_us*@
+<div class="container" id="content_about_us" style="display:none;">
+    <div class="my_col_left_aboutus">
+        <div class="my_text_box">
+            <div class="my_label">History</div>
+            <textarea id="my_description"></textarea>
+        </div>
+        <div class="my_text_box">
+            <div class="my_label">Chairman Profile</div>
+            <textarea id="my_description2"></textarea>
+        </div>
+        <div class="my_text_box">
+            <div class="my_label">Board Of Directors</div>
+            <textarea id="my_description3"></textarea>
+        </div>
+        <div class="div_btn">
+            <button type="button" class="btn_save">Save</button>
+            <button type="button" class="btn_edit">Edit</button>
+            <button onclick="view_about_us();" class="btn_view">View</button>
+        </div>
+    </div>
+    <div class="my_col_right_aboutus">
+        <div style="position:absolute;top:32%;right:10%;"><span style="font-size:50px;">How</span></div>
+        <div style="position:absolute;top:40%;right:17%;"><span style="font-size:25px;">To</span></div>
+        <div style="position:absolute;top:43%;right:9%;"><span style="font-size:100px; border-bottom:5px solid;">Survive</span></div>
+    </div>
+</div>
+@*view_table_about_us*@
+<div class="container" id="view_table_about_us" style="display:none;">
+    <div class="content_search">
+        <div style="height:30%;"></div>
+        <div style="height:70%;">
+            <input type="text" name="search_employee" id="search_view_about_us" placeholder="Chairman Profile" style="width:20%; margin-right:2%;" />
+            <button type="button" class="btn_search">Search</button>
+        </div>
+    </div>
+    <div class="content_table_view">
+        <div class="table_region">
+            <div class="title_table">
+                <div class="title_table_about_us">History</div>
+                <div class="title_table_about_us">Chairman Profile</div>
+                <div class="title_table_about_us">Board Of Directors</div>
+                <div class="title_table_about_us">Active</div>
+            </div>
+            <div class="content_table">
+                <table id="my_table" style="width:100%;">
+                    <tbody id="">
+                        <tr>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-trash"></i></span>
+                                </div>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-edit"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*content_region*@
+<div class="container" id="content_region" style="display:none;">
+    <div class="my_col_left_region">
+        <div class="my_text_box">
+            <div class="my_label">Name Region</div>
+            <input type="text" name="name_region" id="name_region" />
+        </div>
+        <div class="my_text_box">
+            <label class="my_label">Status</label>
+            <input type="checkbox" name="status_region" id="status_region" />
+        </div>
+        <div class="div_btn">
+            <button type="button" class="btn_save" onclick="btn_save_region();" id="btn_save_region">Save</button>
+        </div>
+    </div>
+    <div class="my_col_right_region">
+        <div class="general_search">
+            <div style="height:33%;"></div>
+            <div style="height:67%;">
+                <input type="text" style="width:30%;margin-right:10px;" placeholder="Name Region" id="search_region" />
+                <button class="btn_search" type="button">Search</button>
+            </div>
+        </div>
+        <div class="general_table">
+            <div class="table_region" style=" height: 570px;">
+                <div class="title_table">
+                    <div class="title_table_region">Name Region</div>
+                    <div class="title_table_region">Status</div>
+                    <div class="title_table_region">Active</div>
+                </div>
+                <div class="content_table">
+                    <table id="my_table" class="content_table_region">
+                        <tbody id="table_region">
+                            <tr id="content_tr">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="div_icon">
+                                        <span><i class="fa fa-trash" onclick="delete_row(this)" data-row="1"></i></span>
+                                    </div>
+                                    <div class="div_icon">
+                                        <span><i class="fa fa-edit"></i></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*content_department*@
+<div class="container" id="content_department" style="display:none;">
+    <div class="my_col_left_region">
+        <div class="my_text_box">
+            <div class="my_label">Name Department</div>
+            <input type="text" name="name_department" id="name_department" />
+        </div>
+        <div class="my_text_box">
+            <div class="my_label">Name Region</div>
+            <select id="combobox_department">
+                <option value="Department" id="Choose_id_Region">Choose Region</option>
+                <option value="Department">Choose di</option>
+                <option value="Department">Choose khikhi</option>
+            </select>
+        </div>
+        <div class="my_text_box">
+            <label class="my_label">Status</label>
+            <input type="checkbox" name="status_department" id="status_department" />
+        </div>
+        <div class="div_btn">
+            <button class="btn_save" onclick="add_department();" type="button">Save</button>
+        </div>
+    </div>
+    <div class="my_col_right_region">
+        <div class="general_search">
+            <div style="height:33%;"></div>
+            <div style="height:67%;">
+                <select style="width:30%">
+                    <option value="Department" id="Choose_Department_search">Choose search method</option>
+                    <option value="Department">Name Department</option>
+                    <option value="Department">Name Region</option>
+                </select>
+                <input type="text" style="width:30%; margin-right:10px;" id="search_department" />
+                <button type="button" class="btn_search">Search</button>
+            </div>
+        </div>
+        <div class="general_table">
+            <div class="title_table">
+                <div class="title_table_department">Name Department</div>
+                <div class="title_table_department">Name Region</div>
+                <div class="title_table_department">Status</div>
+                <div class="title_table_department">Active</div>
+            </div>
+            <div class="content_table">
+                <table id="my_table">
+                    <tbody id="table_department">
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-trash"></i></span>
+                                </div>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-edit"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*content_achivement*@
+<div class="container" id="content_achivement" style="display:none;">
+    <div class="my_col_left_region">
+        <div class="my_text_box">
+            <div class="my_label">Name Achivement</div>
+            <input type="text" name="name_achivement" id="name_achivement" />
+        </div>
+        <div class="my_text_box">
+            <label class="my_label">Status</label>
+            <input type="checkbox" name="status_achivement" id="status_achivement" />
+        </div>
+        <div class="div_btn">
+            <button type="button" class="btn_save">Save</button>
+        </div>
+    </div>
+    <div class="my_col_right_region">
+        <div class="general_search">
+            <div style="height:33%;"></div>
+            <div style="height:67%;">
+                <input type="text" style="width:30%; margin-right:10px;" placeholder="Name Achivement" id="search_achivement" />
+                <button type="button" class="btn_search">Search</button>
+            </div>
+        </div>
+        <div class="general_table">
+            <div class="title_table">
+                <div class="title_table_achivement">Name Achivement</div>
+                <div class="title_table_achivement">Status</div>
+                <div class="title_table_achivement">Active</div>
+            </div>
+            <div class="content_table">
+                <table id="my_table">
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-trash"></i></span>
+                                </div>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-edit"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*content_service*@
+<div class="container" id="content_service" style="display:none;">
+    <div class="my_col_left_region">
+        <div class="my_text_box">
+            <div class="my_label">Name Service</div>
+            <input type="text" name="name_service" id="name_service" />
+        </div>
+        <div class="my_text_box">
+            <div class="my_label">Price</div>
+            <input type="text" name="price_service" id="price_service" />
+        </div>
+        <div class="my_text_box">
+            <label class="my_label">Status</label>
+            <input type="checkbox" name="status_service" id="status_service" />
+        </div>
+        <div class="div_btn">
+            <button type="button" class="btn_save">Save</button>
+        </div>
+    </div>
+    <div class="my_col_right_region">
+        <div class="general_search">
+            <div style="height:33%;"></div>
+            <div style="height:67%;">
+                <input type="text" style="width:30%; margin-right:10px;" placeholder="Name Service" id="search_service" />
+                <button type="button" class="btn_search">Search</button>
+            </div>
+        </div>
+        <div class="general_table">
+            <div class="title_table">
+                <div class="title_table_service">Name Service</div>
+                <div class="title_table_service">Price</div>
+                <div class="title_table_service">Status</div>
+                <div class="title_table_service">Active</div>
+            </div>
+            <div class="content_table">
+                <table id="my_table" style="width:100%;">
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-trash"></i></span>
+                                </div>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-edit"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*content_trainning*@
+<div class="container" id="content_trainning" style="display:none;">
+    <div class="my_col_left_region">
+        <div class="my_text_box">
+            <div class="my_label">Name Trainning</div>
+            <input type="text" name="name_trainning" id="name_trainning" />
+        </div>
+        <div class="my_text_box">
+            <div class="my_label">Detail</div>
+            <textarea id="detail_trainning" name="detail_trainning"></textarea>
+        </div>
+        <div class="my_text_box">
+            <div class="my_label">Duration</div>
+            <select>
+                <option value="" id="Choose_Duration">Choose_Duration</option>
+                <option value="">1 Month</option>
+                <option value="">2 Month</option>
+                <option value="">3 Month</option>
+            </select>
+        </div>
+        <div class="my_text_box">
+            <div class="my_label">Trainer</div>
+            <input type="text" name="trainer_trainning" id="trainer_trainning" />
+        </div>
+        <div class="div_btn">
+            <button type="button" class="btn_save">Save</button>
+        </div>
+    </div>
+    <div class="my_col_right_region">
+        <div class="general_search">
+            <div style="height:33%;"></div>
+            <div style="height:67%;">
+                <select style="width:30%">
+                    <option value="Department" id="Choose_Trainning">Choose search method</option>
+                    <option value="Department">Name Trainning</option>
+                    <option value="Department">Duration</option>
+                    <option value="Department">Trainer</option>
+                </select>
+                <input type="text" style="width:30%; margin-right:10px;" id="search_trainning" />
+                <button type="button" class="btn_search">Search</button>
+            </div>
+        </div>
+        <div class="general_table">
+            <div class="title_table">
+                <div class="title_table_trainning">Name Trainning</div>
+                <div class="title_table_trainning">Detail</div>
+                <div class="title_table_trainning">Duration</div>
+                <div class="title_table_trainning">Trainer</div>
+                <div class="title_table_trainning">Active</div>
+            </div>
+            <div class="content_table">
+                <table id="my_table">
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-trash"></i></span>
+                                </div>
+                                <div class="div_icon">
+                                    <span><i class="fa fa-edit"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*content_chart_employee*@
+<div class="container" id="content_chart_employee" style="display:none;">
+    <div class="content_chart" id="content_chart_employees"></div>
+</div>
+@*content_traffic*@
+<!--<div class="container">
+
+</div>-->

@@ -35,6 +35,7 @@ namespace SecurityService
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
             app.UseStaticFiles();
 
@@ -44,9 +45,14 @@ namespace SecurityService
 
             app.UseEndpoints(endpoints =>
             {
+                /*User*/
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                /*Admin*/
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

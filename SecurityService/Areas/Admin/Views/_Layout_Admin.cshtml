@@ -1,0 +1,1052 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/Admin_css.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" rel="stylesheet" />
+</head>
+<body>
+    <div class="container_admin">
+        @*Menu_admin*@
+        <div class="col_left">
+            <div class="logo_my_team">
+                <div class="image_my_team">
+                    <img class="my_logo" src="~/img/logoResize.png" alt="Alternate Text" />
+                    <h3 style="color:#ffffff;margin-top:3px;">TPPK_SERVICE</h3>
+                </div>
+            </div>
+            <div class="btn_menu">
+                <ul class="btn_menu_admin">
+                    <li id="li_employee" onclick="click_content_employee();">Empolyee</li>
+                    <li id="li_feedback" onclick="click_content_feedback();">Feedback</li>
+                    <li id="li_about_us" onclick="click_content_about_us();">About Us</li>
+                    <li id="li_region" onclick="click_content_Region();">Region</li>
+                    <li id="li_department" onclick="click_content_Department();">Department</li>
+                    <li id="li_achivement" onclick="click_content_achivement();">Achivement</li>
+                    <li id="li_service" onclick="click_content_service();">Service</li>
+                    <li id="li_trainning" onclick="click_content_trainning();">Trainning</li>
+                    <li id="li_chart" onclick="click_content_chart_employee();">Chart Employee</li>
+                    @*<li id="li_traffic" onclick="click_content_traffic();">Traffic</li>*@
+                </ul>
+            </div>
+        </div>
+        @*Content_admin*@
+        <div class="col_right">
+            <div class="content_col_right">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @*script*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/js/canvasjs.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("content_chart_employees", {
+                width: 1500,
+                height: 710,
+                title: {
+                    text: "My Chart Employee Soil"
+                },
+                data: [
+                    {
+                        // Change type to "doughnut", "line", "splineArea", etc.
+                        type: "line",
+                        dataPoints: [
+                            { label: "security", y: 10 },
+                            { label: "electrical repairs", y: 15 },
+                            { label: "repair water", y: 25 },
+                            { label: "Dog", y: 30 },
+                            { label: "bodyguard", y: 28 },
+                            { label: "bodyguard", y: 47 },
+                            { label: "bodyguard", y: 34 }
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+        }
+    </script>
+    <script>
+        CKEDITOR.replace("my_description", {
+            height: 80,
+            width: 600,
+        });
+        CKEDITOR.replace("my_description2", {
+            height: 80,
+            width: 600,
+        });
+        CKEDITOR.replace("my_description3", {
+            height: 80,
+            width: 600,
+        });
+        CKEDITOR.replace("detail_trainning", {
+            height: 200,
+            width: 375,
+        });
+    </script>
+    @RenderSection("script_admin", required: false)
+</body>
+</html>
+<script>
+    var count_error = 0;
+    var empty_username = true;
+    function clear_form_feedback() {
+    $('#search_feedback').val("");
+    }
+    function clear_form_view_about_us() {
+    $('#search_view_about_us').val("");
+    }
+    function clear_form_view_employee() {
+        document.getElementById('Choose_View_Employee').selected = "true";
+        $('#search_employee').val("");
+    }
+    function clear_form_employee() {
+        var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "username", "password", "status", "confirm"];
+        for (var i = 0; i < listProperty.length; i++) {
+            var name = '#input_' + listProperty[i];
+            $(name).val("");
+        }
+        $('#employee_status').prop("checked", false);
+    }
+    function clear_form_about_us() {
+        $('#my_description').val("");
+        $('#my_description2').val("");
+        $('#my_description3').val("");
+    }
+    function clear_form_region() {
+        $('#name_region').val("");
+        $('#search_region').val("");
+        $('#status_region').prop("checked", false);
+
+    }
+    function clear_form_department() {
+        $('#name_department').val("");
+        $('#search_department').val("");
+        $('#combobox_department').val("none");
+        $('#status_department').prop("checked", false);
+    }
+    function clear_form_achivement() {
+        $('#name_achivement').val("");
+        $('#search_achivement').val("");
+        $('#name_service').prop("checked", false);
+
+    }
+    function clear_form_service() {
+        $('#name_service').val("");
+        $('#search_service').val("");
+        $('#price_service').val("");
+        $('#status_service').prop("checked", false);
+    }
+    function clear_form_trainning() {
+        $('#name_trainning').val("");
+        document.getElementById('Choose_Duration').selected = "true";
+        $('#trainer_trainning').val("");
+        $('#search_trainning').val("");
+        document.getElementById('Choose_Trainning').selected = "true";
+    }
+    function click_content_employee() {
+        $("#li_employee").css('background-color', '#ffffff');
+        $("#li_employee").css('color', '#000000');
+        $("#li_feedback").css('background-color', '#000000');
+        $("#li_feedback").css('color', '#ffffff');
+        $("#li_about_us").css('background-color', '#000000');
+        $("#li_about_us").css('color', '#ffffff');
+        $("#li_region").css('background-color', '#000000');
+        $("#li_region").css('color', '#ffffff');
+        $("#li_department").css('background-color', '#000000');
+        $("#li_department").css('color', '#ffffff');
+        $("#li_achivement").css('background-color', '#000000');
+        $("#li_achivement").css('color', '#ffffff');
+        $("#li_service").css('background-color', '#000000');
+        $("#li_service").css('color', '#ffffff');
+        $("#li_trainning").css('background-color', '#000000');
+        $("#li_trainning").css('color', '#ffffff');
+        $("#li_chart").css('background-color', '#000000');
+        $("#li_chart").css('color', '#ffffff');
+        $('#content_employee').css('display', 'block');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#content_about_us').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+    }
+    function click_view_employee() {
+        $('#view_table_employee').css('display', 'block');
+        $('#content_employee').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#content_about_us').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+
+    }
+    function click_content_feedback() {
+        $("#li_employee").css('background-color', '#000000');
+        $("#li_employee").css('color', '#ffffff');
+        $("#li_feedback").css('background-color', '#ffffff');
+        $("#li_feedback").css('color', '#000000');
+        $("#li_about_us").css('background-color', '#000000');
+        $("#li_about_us").css('color', '#ffffff');
+        $("#li_region").css('background-color', '#000000');
+        $("#li_region").css('color', '#ffffff');
+        $("#li_department").css('background-color', '#000000');
+        $("#li_department").css('color', '#ffffff');
+        $("#li_achivement").css('background-color', '#000000');
+        $("#li_achivement").css('color', '#ffffff');
+        $("#li_service").css('background-color', '#000000');
+        $("#li_service").css('color', '#ffffff');
+        $("#li_trainning").css('background-color', '#000000');
+        $("#li_trainning").css('color', '#ffffff');
+        $("#li_chart").css('background-color', '#000000');
+        $("#li_chart").css('color', '#ffffff');
+        $('#content_feedback').css('display', 'block');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_about_us').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+
+    }
+    function click_content_about_us() {
+        $("#li_employee").css('background-color', '#000000');
+        $("#li_employee").css('color', '#ffffff');
+        $("#li_feedback").css('background-color', '#000000');
+        $("#li_feedback").css('color', '#ffffff');
+        $("#li_about_us").css('background-color', '#ffffff');
+        $("#li_about_us").css('color', '#000000');
+        $("#li_region").css('background-color', '#000000');
+        $("#li_region").css('color', '#ffffff');
+        $("#li_department").css('background-color', '#000000');
+        $("#li_department").css('color', '#ffffff');
+        $("#li_achivement").css('background-color', '#000000');
+        $("#li_achivement").css('color', '#ffffff');
+        $("#li_service").css('background-color', '#000000');
+        $("#li_service").css('color', '#ffffff');
+        $("#li_trainning").css('background-color', '#000000');
+        $("#li_trainning").css('color', '#ffffff');
+        $("#li_chart").css('background-color', '#000000');
+        $("#li_chart").css('color', '#ffffff');
+        $('#content_about_us').css('display', 'block');
+        $('#content_feedback').css('display', 'none');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_region();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+
+    }
+    function click_content_Region() {
+        $("#li_employee").css('background-color', '#000000');
+        $("#li_employee").css('color', '#ffffff');
+        $("#li_feedback").css('background-color', '#000000');
+        $("#li_feedback").css('color', '#ffffff');
+        $("#li_about_us").css('background-color', '#000000');
+        $("#li_about_us").css('color', '#ffffff');
+        $("#li_region").css('background-color', '#ffffff');
+        $("#li_region").css('color', '#000000');
+        $("#li_department").css('background-color', '#000000');
+        $("#li_department").css('color', '#ffffff');
+        $("#li_achivement").css('background-color', '#000000');
+        $("#li_achivement").css('color', '#ffffff');
+        $("#li_service").css('background-color', '#000000');
+        $("#li_service").css('color', '#ffffff');
+        $("#li_trainning").css('background-color', '#000000');
+        $("#li_trainning").css('color', '#ffffff');
+        $("#li_chart").css('background-color', '#000000');
+        $("#li_chart").css('color', '#ffffff');
+        $('#content_about_us').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_region').css('display', 'block');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+
+    }
+    function click_content_Department() {
+        $("#li_employee").css('background-color', '#000000');
+        $("#li_employee").css('color', '#ffffff');
+        $("#li_feedback").css('background-color', '#000000');
+        $("#li_feedback").css('color', '#ffffff');
+        $("#li_about_us").css('background-color', '#000000');
+        $("#li_about_us").css('color', '#ffffff');
+        $("#li_region").css('background-color', '#000000');
+        $("#li_region").css('color', '#ffffff');
+        $("#li_department").css('background-color', '#ffffff');
+        $("#li_department").css('color', '#000000');
+        $("#li_achivement").css('background-color', '#000000');
+        $("#li_achivement").css('color', '#ffffff');
+        $("#li_service").css('background-color', '#000000');
+        $("#li_service").css('color', '#ffffff');
+        $("#li_trainning").css('background-color', '#000000');
+        $("#li_trainning").css('color', '#ffffff');
+        $("#li_chart").css('background-color', '#000000');
+        $("#li_chart").css('color', '#ffffff');
+        $('#content_about_us').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'block');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_view_about_us();
+
+    }
+    function click_content_service() {
+        $("#li_employee").css('background-color', '#000000');
+        $("#li_employee").css('color', '#ffffff');
+        $("#li_feedback").css('background-color', '#000000');
+        $("#li_feedback").css('color', '#ffffff');
+        $("#li_about_us").css('background-color', '#000000');
+        $("#li_about_us").css('color', '#ffffff');
+        $("#li_region").css('background-color', '#000000');
+        $("#li_region").css('color', '#ffffff');
+        $("#li_department").css('background-color', '#000000');
+        $("#li_department").css('color', '#ffffff');
+        $("#li_achivement").css('background-color', '#000000');
+        $("#li_achivement").css('color', '#ffffff');
+        $("#li_service").css('background-color', '#ffffff');
+        $("#li_service").css('color', '#000000');
+        $("#li_trainning").css('background-color', '#000000');
+        $("#li_trainning").css('color', '#ffffff');
+        $("#li_chart").css('background-color', '#000000');
+        $("#li_chart").css('color', '#ffffff');
+        $('#content_about_us').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'block');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+
+    }
+    function click_content_achivement() {
+        $("#li_employee").css('background-color', '#000000');
+        $("#li_employee").css('color', '#ffffff');
+        $("#li_feedback").css('background-color', '#000000');
+        $("#li_feedback").css('color', '#ffffff');
+        $("#li_about_us").css('background-color', '#000000');
+        $("#li_about_us").css('color', '#ffffff');
+        $("#li_region").css('background-color', '#000000');
+        $("#li_region").css('color', '#ffffff');
+        $("#li_department").css('background-color', '#000000');
+        $("#li_department").css('color', '#ffffff');
+        $("#li_achivement").css('background-color', '#ffffff');
+        $("#li_achivement").css('color', '#000000');
+        $("#li_service").css('background-color', '#000000');
+        $("#li_service").css('color', '#ffffff');
+        $("#li_trainning").css('background-color', '#000000');
+        $("#li_trainning").css('color', '#ffffff');
+        $("#li_chart").css('background-color', '#000000');
+        $("#li_chart").css('color', '#ffffff');
+        $('#content_about_us').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'block');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_department();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_view_about_us();
+
+    }
+    function click_content_trainning() {
+        $("#li_employee").css('background-color', '#000000');
+        $("#li_employee").css('color', '#ffffff');
+        $("#li_feedback").css('background-color', '#000000');
+        $("#li_feedback").css('color', '#ffffff');
+        $("#li_about_us").css('background-color', '#000000');
+        $("#li_about_us").css('color', '#ffffff');
+        $("#li_region").css('background-color', '#000000');
+        $("#li_region").css('color', '#ffffff');
+        $("#li_department").css('background-color', '#000000');
+        $("#li_department").css('color', '#ffffff');
+        $("#li_achivement").css('background-color', '#000000');
+        $("#li_achivement").css('color', '#ffffff');
+        $("#li_service").css('background-color', '#000000');
+        $("#li_service").css('color', '#ffffff');
+        $("#li_trainning").css('background-color', '#ffffff');
+        $("#li_trainning").css('color', '#000000');
+        $("#li_chart").css('background-color', '#000000');
+        $("#li_chart").css('color', '#ffffff');
+        $('#content_about_us').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'block');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+
+    }
+    function view_about_us() {
+        $('#content_about_us').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'block');
+        $('#content_chart_employee').css('display', 'none');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+
+    }
+    function click_content_chart_employee() {
+        $("#li_employee").css('background-color', '#000000');
+        $("#li_employee").css('color', '#ffffff');
+        $("#li_feedback").css('background-color', '#000000');
+        $("#li_feedback").css('color', '#ffffff');
+        $("#li_about_us").css('background-color', '#000000');
+        $("#li_about_us").css('color', '#ffffff');
+        $("#li_region").css('background-color', '#000000');
+        $("#li_region").css('color', '#ffffff');
+        $("#li_department").css('background-color', '#000000');
+        $("#li_department").css('color', '#ffffff');
+        $("#li_achivement").css('background-color', '#000000');
+        $("#li_achivement").css('color', '#ffffff');
+        $("#li_service").css('background-color', '#000000');
+        $("#li_service").css('color', '#ffffff');
+        $("#li_trainning").css('background-color', '#000000');
+        $("#li_trainning").css('color', '#ffffff');
+        $("#li_chart").css('background-color', '#ffffff');
+        $("#li_chart").css('color', '#000000');
+        $('#content_about_us').css('display', 'none');
+        $('#content_feedback').css('display', 'none');
+        $('#view_table_employee').css('display', 'none');
+        $('#content_employee').css('display', 'none');
+        $('#content_region').css('display', 'none');
+        $('#content_department').css('display', 'none');
+        $('#content_service').css('display', 'none');
+        $('#content_achivement').css('display', 'none');
+        $('#content_trainning').css('display', 'none');
+        $('#view_table_about_us').css('display', 'none');
+        $('#content_chart_employee').css('display', 'block');
+        $('#content_chart_employee').css('width', '99%');
+        clear_form_about_us();
+        clear_form_region();
+        clear_form_department();
+        clear_form_achivement();
+        clear_form_service();
+        clear_form_trainning();
+        clear_form_employee();
+        clear_form_view_employee();
+        clear_form_feedback();
+        clear_form_view_about_us();
+    }
+    function clear_table_region() {
+        $('#table_region').html("");
+    }
+    @*Function delete*@
+    function detele_region(obj) {
+        var row = $(obj).attr("data-row");
+        var id = $(obj).attr('data-id');
+        $.ajax({
+            url: "http://localhost:44383/api/regions/" + id,
+            type: "DELETE",
+            contentType: "application/json",
+            success: function (data) {
+                alert('Delete Success');
+                $('#region_row_' + row).remove();
+            },
+            error: function () {
+                alert('Delete Fail');
+            }
+        })
+    }
+    function detele_feedback(obj) {
+        var row = $(obj).attr("data-row");
+        var id = $(obj).attr('data-id');
+        $.ajax({
+            url: "http://localhost:44383/api/feedbacks/" + id,
+            type: "DELETE",
+            contentType: "application/json",
+            success: function (data) {
+                alert('Delete Success');
+                $('#feedback_row_' + row).remove();
+            },
+            error: function () {
+                alert('Delete Fail');
+            }
+        })
+    }
+    function detele_department(obj) {
+        var row = $(obj).attr("data-row");
+        var id = $(obj).attr('data-id');
+        alert(id);
+        $.ajax({
+            url: "http://localhost:44383/api/departments/" + id,
+            type: "DELETE",
+            contentType: "application/json",
+            success: function (data) {
+                alert('Delete Success');
+                $('#department_row_' + row).remove();
+            },
+            error: function () {
+                alert('Delete Fail');
+            }
+        })
+    }
+    @*Function add*@
+    function add_employee() {
+        @*checkEmpty_employee();*@
+        if (count_error == 0) {
+            var name = $('#input_name').val();
+            var aaa = check_username(name);
+            setTimeout(function () {
+                alert(aaa);
+            }, 3000)
+            var age = $('#input_age').val();
+            var weight = $('#input_weight').val();
+            var height = $('#input_height').val();
+            var address = $('#input_address').val();
+            var phone = $('#input_phone').val();
+            var email = $('#input_email').val();
+            var department = $('#input_department').val();
+            var role = $('#input_role').val();
+            var grade = $('#input_grade').val();
+            var achivement = $('#input_achivement').val();
+            var speciality = $('#input_speciality').val();
+            var price = $('#input_price').val();
+            var aboutme = $('#input_aboutme').val();
+            var usrname = $('#input_username').val();
+            var pwd = $('#input_password').val();
+            var confirm = $('#input_confirm').val();
+            if (pwd == confirm) {
+                var employee_status = $('#employee_status').prop('checked');
+                var emp = new Object();
+                var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "usrname", "pwd", "status"];
+                var listData = [name, age, weight, height, address, phone, email, department, role, grade, achivement, speciality, price, aboutme, usrname, pwd, employee_status];
+                for (var i = 0; i < listData.length; i++) {
+                    emp[listProperty[i]] = listData[i];
+                }
+                var q = JSON.stringify(emp);
+                $.ajax({
+                    type: 'Post',
+                    url: 'http://localhost:44383/api/employees',
+                    data: q,
+                    contentType: "application/json; charset=utf8",
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("Success");
+                        load_data_employee();
+                        clear_form_employee();
+                    },
+                    error: function (data) {
+                        alert("Error");
+                    }
+                });
+            } else {
+                var error_cf = "<span id='error_confirm' style='color: red; font-size: 13px'>Confirm incorrect!!</span>";
+                $('#error_confirm').replaceWith(error_cf);
+                setTimeout(function () {
+                    $('#error_confirm').replaceWith("<span id='error_confirm'></span>");
+                }, 2000)
+            }
+        } else {
+            alert("Please enter full information");
+            count_error = 0;
+        }
+
+    }
+</script>
+
+<script type="text/javascript">
+    function btn_save_region() {
+        var infor_region = new Object();
+        var name_region = $("#name_region").val();
+        var status = $("#status_region").prop("checked");
+        infor_region.name = name_region;
+        if (status == true) {
+            infor_region.status = true;
+        } else {
+            infor_region.status = false;
+        }
+        var q = JSON.stringify(infor_region);
+        $.ajax({
+            type: 'Post',
+            url: 'http://localhost:44383/api/regions',
+            data:q,
+            contentType: "application/json; charset=utf8",
+            dataType: 'json',
+            success: function (data) {
+                alert("Success");
+                load_data_region();
+                clear_form_region();
+            },
+            error: function (data) {
+                alert("Error");
+                clear_form_region();
+            }
+        });
+    }
+    function add_department() {
+        var infor_department = new Object();
+        var name_department = $('#name_department').val();
+        var region = $("#combobox_department").val();
+        var status = $("#status_department").prop("checked");
+        if (name_department != "" && region != "none") {
+            region = region;
+            infor_department.name = name_department;
+            infor_department.region = region;
+            infor_department.status = status;
+
+            var q = JSON.stringify(infor_department);
+            $.ajax({
+                type: 'Post',
+                url: 'http://localhost:44383/api/departments',
+                data: q,
+                contentType: "application/json; charset=utf8",
+                dataType: 'json',
+                success: function (data) {
+                    alert("Success");
+                    load_data_departments();
+                    clear_form_department();
+                },
+                error: function (data) {
+                    alert("Error");
+                    clear_form_department();
+                }
+            });
+        } else {
+            alert("Please enter full information");
+        }
+
+    }
+    $(document).ready(function () {
+        load_data_feedbacks();
+        load_data_region();
+        load_data_departments();
+        load_data_employee();
+
+        load_cb("department");
+        load_cb("grade");
+        load_cb("role");
+        load_cb("speciality");
+
+    });
+
+
+
+  @*try data*@
+  function load_data_region () {
+        $.ajax({
+            type: 'Get',
+            url: 'http://localhost:44383/api/regions',
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                @* alert(JSON.stringify(data));*@
+                var rows = "<tbody id='table_region'>";
+                var row = 0;
+                $.each(data, function (index, value) {
+                    rows += "<tr id='region_row_" + row + "'>"
+                        + "<td class=''>" + value.name + "</td>"
+                        + "<td class=''>" + value.status + "</td>"
+                        + "<td>"
+                        + "<div class='div_icon'>"
+                        + "<span><i class='fa fa-trash' onclick='detele_region(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
+                        + "</div>"
+                        + "<div class='div_icon'>"
+                        + "<span><i class='fa fa-edit'></i></span>"
+                        + "</div>"
+                    "</td>"
+                        + "</tr>";
+                    row++
+                });
+                rows += "</tbody>";
+                $('#table_region').replaceWith(rows);
+                load_data_departments();
+            },
+            error: function (data) {
+                alert("Error");
+            }
+        })
+    };
+    function load_data_feedbacks() {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/feedbacks',
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                var rows = "<tbody id='table_feedback'>";
+                var row = 0;
+                $.each(data, function (index, value) {
+                    rows += "<tr id='feedback_row_" + row + "'>"
+                        + "<td class=''>" + value.name + "</td>"
+                        + "<td class=''>" + value.subject + "</td>"
+                        + "<td class=''>" + value.detail + "</td>"
+                        + "<td class=''>" + value.status + "</td>"
+                        + "<td>"
+                        + "<div class='div_icon'>"
+                        + "<span><i class='fa fa-trash' onclick='detele_feedback(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
+                        + "</div>"
+                        + "<div class='div_icon'>"
+                        + "<span><i class='fa fa-edit'></i></span>"
+                        + "</div>"
+                    "</td>"
+                        + "</tr>";
+                    row++
+                });
+                rows += "</tbody>";
+                $('#table_feedback').replaceWith(rows);
+            },
+        })
+    }
+    function load_data_departments() {
+        $.ajax({
+            type: 'Get',
+            url: 'http://localhost:44383/api/regions',
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                @* alert(JSON.stringify(data));*@
+                var rows = "<select id='combobox_department'><option value='none'>Choose Region</option>";
+
+                $.each(data, function (index, value) {
+                    rows += "<option value='" + value.id + "'>" + value.name + "</option>";
+                });
+                rows += "</select>";
+                $('#combobox_department').replaceWith(rows);
+            },
+            error: function (data) {
+                alert("Error");
+            }
+        })
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/departments',
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                var rows = "<tbody id='table_department'>";
+                var row = 0;
+                $.each(data, function (index, value) {
+                    var status = "";
+                    value.status == true ? status += "Available" : status += "Unvailable";
+                    rows += "<tr id='department_row_" + row + "'>"
+                        + "<td class=''>" + value.name + "</td>"
+                        + "<td class=''>" + value.region + "</td>"
+                        + "<td class=''>" + status + "</td>"
+                        + "<td>"
+                        + "<div class='div_icon'>"
+                        + "<span><i class='fa fa-trash' onclick='detele_department(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
+                        + "</div>"
+                        + "<div class='div_icon'>"
+                        + "<span><i class='fa fa-edit'></i></span>"
+                        + "</div>"
+                    "</td>"
+                        + "</tr>";
+                    row++
+                });
+                rows += "</tbody>";
+                $('#table_department').replaceWith(rows);
+            },
+        })
+    }
+    function load_data_employee() {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/employees',
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                var rows = "<tbody id='table_employee'>";
+                var row = 0;
+                $.each(data, function (index, value) {
+                    var status = "";
+                    value.status == true ? status += "Available" : status += "Unvailable";
+                    rows += "<tr id='employee_row_" + row + "'>"
+                        + "<td class=''>" + value.name + "</td>"
+                        + "<td class=''>" + value.age + "</td>"
+                        + "<td class=''>" + value.weight + "</td>"
+                        + "<td class=''>" + value.height + "</td>"
+                        + "<td class=''>" + value.phone + "</td>"
+                        + "<td class=''>" + value.email + "</td>"
+                        + "<td class=''>" + value.address + "</td>"
+                        + "<td class=''>" + value.department + "</td>"
+                        + "<td class=''>" + value.role + "</td>"
+                        + "<td class=''>" + value.grade + "</td>"
+                        + "<td class=''>" + value.achivement + "</td>"
+                        + "<td class=''>" + value.speciality + "</td>"
+                        + "<td class=''>" + value.price + "</td>"
+                        + "<td class=''>" + value.aboutme + "</td>"
+                        + "<td class=''>" + value.usrname + "</td>"
+                        + "<td class=''>" + value.status + "</td>"
+                        + "<td>"
+                        + "<div class='div_icon'>"
+                        + "<span><i class='fa fa-trash' onclick='detele_employee(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
+                        + "</div>"
+                        + "<div class='div_icon'>"
+                        + "<span><i class='fa fa-edit'></i></span>"
+                        + "</div>"
+                    "</td>"
+                        + "</tr>";
+                    row++
+                });
+                rows += "</tbody>";
+                $('#table_employee').replaceWith(rows);
+            },
+        })
+    }
+    function load_cb(name) {
+        if (name == "speciality") {
+            var url = 'http://localhost:44383/api/specialities';
+            $.ajax({
+                type: 'get',
+                url: url,
+                dataType: 'json',
+                contentType: "application/json; charset=utf8",
+                success: function (data) {
+                    var rows = "<select id='input_" + name + "'><option value=''>Choose " + name + "</option>"
+                    $.each(data, function (index, value) {
+                        rows += "<option value='" + value.id + "'>" + value.name + "</option>"
+                    });
+                    rows += "</select>";
+                    var input = '#input_' + name;
+                    $(input).replaceWith(rows);
+                }
+            })
+        } else {
+            var url = 'http://localhost:44383/api/' + name + 's';
+            $.ajax({
+                type: 'get',
+                url: url,
+                dataType: 'json',
+                contentType: "application/json; charset=utf8",
+                success: function (data) {
+                    var rows = "<select id='input_" + name + "'><option value=''>Choose " + name + "</option>"
+                    $.each(data, function (index, value) {
+                        rows += "<option value='" + value.id + "'>" + value.name + "</option>"
+                    });
+                    rows += "</select>";
+                    var input = '#input_' + name;
+                    $(input).replaceWith(rows);
+                }
+            })
+        }
+
+    }
+    function checkEmpty_employee() {
+        var list = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality","price", "aboutme", "username", "password", "confirm"];
+        for (var i = 0; i < list.length; i++) {
+            var error = "<span style='color: red;' id='error_" + list[i] + "'> *</span>";
+            var correct = "<span id='error_" + list[i] + "'></span>";
+            var name_input = '#input_' + list[i];
+            if ($(name_input).val() == "" || $(name_input).val() == "none") {
+                var content = "#error_" + list[i];
+                $(content).replaceWith(error);
+                count_error += 1;
+            } else {
+                var content = "#error_" + list[i];
+                $(content).replaceWith(correct);
+            }
+        }
+
+    }
+
+    function check_username(username) {
+        var count = 0;
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/employees',
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                $.each(data, function (index, value) {
+                    if (value.usrname == username) {
+                        check_username == false;
+                        count++;
+                    }
+                });
+            }
+        })
+        return count;
+    }
+    function count_error() {
+
+
+    }
+    @*Function check*@
+    $('#input_age').keyup(function () {
+        var error = "<span style='color: red; font-size: 12px;' id='error_age'>age must be less than 45 </span>";
+        var error18 = "<span style='color: red; font-size: 12px;' id='error_age'>age must be more than 18 </span>";
+        var correct = "<span style='color: red; ' id='error_age'></span>";
+        $('#error_age').replaceWith(correct);
+        var age = parseInt($('#input_age').val());
+        if (age < 18) {
+            $('#error_age').replaceWith(error18);
+            setTimeout(function () {
+                if (parseInt($('#input_age').val()) < 18) {
+                    $('#input_age').val("");
+                }
+            }, 2000)
+        }
+        if (age > 45) {
+            $('#error_age').replaceWith(error);
+            setTimeout(function () {
+                if (parseInt($('#input_age').val()) > 45) {
+                    $('#input_age').val("");
+                }
+            },2000)
+        }
+    })
+    $('#input_username').keyup(function () {
+        var count = 0;
+        var username = $('#input_username').val();
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/employees',
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                $.each(data, function (index, value) {
+                    if (value.usrname == username) {
+                        count++;
+                    }
+                });
+                if (count > 0) {
+                    $('#error_username').replaceWith("<span id='error_username' style='color: red; font-size: 13px;'>Username already exits</span>");
+                } else {
+                    $('#error_username').replaceWith("<span id='error_username' style='color: red; font-size: 13px;'></span>");
+                }
+            }
+        })
+    })
+</script>
+
+

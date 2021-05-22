@@ -45,5 +45,9 @@ namespace WebAPIAdmin.Models
         public string aboutme { get; set; }
 
         public bool status { get; set; }
+
+        public string usrname { get; set; }
+
+        public string password { get; set; }
     }
 }

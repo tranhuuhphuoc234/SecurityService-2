@@ -27,7 +27,7 @@ namespace WebAPIAdmin.Controllers
         {
             var s = (from d in _context.departments
                      join r in _context.regions on d.region equals r.id
-                     select new departmentView { name=d.name , region=r.name, status=d.status }).ToListAsync();
+                     select new departmentView {id = d.id, name=d.name , region=r.name, status=d.status }).ToListAsync();
             return await s;
         }
 

@@ -23,9 +23,21 @@ namespace WebAPIAdmin.Controllers
 
         // GET: api/feedbacks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<feedback>>> Getfeedbacks()
+        public async Task<ActionResult<List<Models.View.feedbackView>>> Getfeedbacks()
         {
-            return await _context.feedbacks.ToListAsync();
+            var q = (from fb in _context.feedbacks
+                     join cl in _context.clients
+                     on fb.client equals cl.id
+                     select new Models.View.feedbackView
+                     {
+                         id = fb.id,
+                         subject = fb.subject,
+                         client = fb.client,
+                         detail = fb.detail,
+                         status = fb.status,
+                         name = cl.name
+                     }).ToList();
+            return q;
         }
 
         // GET: api/feedbacks/5

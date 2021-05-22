@@ -21,16 +21,32 @@ namespace WebAPIUser.Controllers
             _context = context;
         }
 
-        // POST: api/orderdetails
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<orderdetail>> PostOrder(orderdetail orderdetail)
+        // GET: api/regions
+        [HttpGet("region")]
+        public async Task<ActionResult<IEnumerable<region>>> GetRegion()
         {
-            _context.orderdetails.Add(orderdetail);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetOrder", new { id = orderdetail.id }, orderdetail);
+            return await _context.regions.ToListAsync();
         }
+        // GET: api/roles
+        [HttpGet("role")]
+        public async Task<ActionResult<IEnumerable<role>>> GetRole()
+        {
+            return await _context.roles.ToListAsync();
+        }
+        // GET: api/grade
+        [HttpGet("grade")]
+        public async Task<ActionResult<IEnumerable<grade>>> GetGrade()
+        {
+            return await _context.grades.ToListAsync();
+        }
+        // GET: api/speciality
+        [HttpGet("speciality")]
+        public async Task<ActionResult<IEnumerable<speciality>>> GetSpeciality()
+        {
+            return await _context.specialities.ToListAsync();
+        }
+
+
 
 
     }

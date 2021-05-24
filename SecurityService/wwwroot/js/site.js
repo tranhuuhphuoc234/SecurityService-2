@@ -9,7 +9,7 @@ var swiper = new Swiper('.swiper-container1', {
     spaceBetween: 5,
     effect: 'fade',
     centeredSlides: true,
-    
+
     autoplay: {
         delay: 3000,
         disableOnInteraction: false,
@@ -18,7 +18,7 @@ var swiper = new Swiper('.swiper-container1', {
         el: '.swiper-pagination1',
         clickable: true,
     },
-    
+
 });
 
 var mySwiper = new Swiper(".swiper-container2", {
@@ -45,25 +45,37 @@ var mySwiper = new Swiper(".swiper-container2", {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
     },
-    
+
 });
 
 var swiper3 = new Swiper('.swiper-container3', {
     slidesPerView: 3,
     autoplay: {
-        delay: 300000,
+        delay: 3000,
         disableOnInteraction: false,
     },
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
     },
-    
-   
+    // Responsive breakpoints
+    breakpoints: {
+        // when window width is <= 480px
+        480: {
+            slidesPerView: 1,
+        },
+        // when window width is <= 640px
+        768: {
+            slidesPerView: 2,
+
+        },
+
+        1024: {
+            slidesPerView: 3,
+        },
+    }
+
 });
-
-
-
 
 
 // search function
@@ -81,9 +93,9 @@ $(document).ready(function () {
         myNav.style.backgroundColor = "rgba(0,0,0,1)";
         searchAround.style.display = "block";
         document.body.style.overflow = "hidden";
-        
-        
-        
+
+
+
     })
     $('.close').click(function () {
         $('.myNav-item').removeClass('hide-item');
@@ -94,7 +106,7 @@ $(document).ready(function () {
         myNav.style.removeProperty("background-color");
         searchAround.style.display = "none";
         document.body.style.removeProperty("overflow");
-        
+
     })
 })
 
@@ -104,12 +116,12 @@ $(document).ready(function () {
 window.onscroll = function () { myFunction() };
 
 var header = document.getElementById("myNav");
+
 var sticky = header.offsetTop;
 
 function myFunction() {
     if (window.pageYOffset > sticky) {
         header.classList.add("sticky");
-      
     } else {
         header.classList.remove("sticky");
 
@@ -141,21 +153,19 @@ $(document).ready(function () {
 
 // fade in when sroll down
 
-$(window).on("load",function() {
-  $(window).scroll(function() {
-    var windowBottom = $(this).scrollTop() + $(this).innerHeight();
-    $(".fade").each(function() {
-      /* Check the location of each desired element */
-      var objectBottom = $(this).offset().top + $(this).outerHeight();
-      
-      /* If the element is completely within bounds of the window, fade it in */
-        if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+$(window).on("load", function () {
+    $(window).scroll(function () {
+        var windowBottom = $(this).scrollTop() + $(this).innerHeight();
+        $(".fade").each(function () {
+            /* Check the location of each desired element */
+            var objectBottom = $(this).offset().top + $(this).outerHeight();
 
-        if ($(this).css("opacity")==0) {$(this).fadeTo(0.5,1);}
-        }
-       // else { //object goes out of view (scrolling up)
-      //  if ($(this).css("opacity")==1) {$(this).fadeTo(500,0);}
-      //}
-    });
-  }).scroll(); //invoke scroll-handler on page-load
+            /* If the element is completely within bounds of the window, fade it in */
+            if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+
+                if ($(this).css("opacity") == 0) { $(this).fadeTo(100, 1, "linear"); }
+            }
+        });
+    }).scroll(); //invoke scroll-handler on page-load
 });
+

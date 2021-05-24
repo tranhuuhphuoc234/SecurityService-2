@@ -1,0 +1,182 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["title"] = "Network";
+    Layout = "_layout";
+}
+<style>
+    .container {
+        padding: 40px 0 50px;
+    }
+
+    .swiper-container1 {
+        display: none;
+    }
+
+    .myNav {
+        padding: 15px;
+        position: sticky;
+        background: black;
+    }
+
+    .network {
+        background: url(../img/network.png);
+        height: 50vh;
+        background-size: 100% 100%;
+    }
+
+    .network-title-background {
+        position: relative;
+        height: 100%;
+        background: rgba(0,0,0,0.2);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+    .network-title {
+        position: relative;
+        top: 50%;
+        justify-content: center;
+        transform: translate(0%, -50%);
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+        .network-title h1 {
+            font-size: 70px;
+            filter: drop-shadow(2px 0px 1px #fff);
+        }
+
+
+    .region h2 {
+        padding: 10px;
+        background: #e9ecef;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px 1px #ddd;
+    }
+
+    .region-detail {
+        position: relative;
+        display: flex;
+        padding: 20px;
+        background: #e9ecef;
+        border-radius: 10px;
+    }
+
+    .contact-detail {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        padding: 25px;
+        background: #fff;
+        border-radius: 20px;
+    }
+
+        .contact-detail ul {
+            list-style: none;
+        }
+
+    .region-map {
+        position: relative;
+        width: 100%;
+        height: 50vh;
+        border-radius: 10px;
+        margin-left: 10px;
+    }
+</style>
+<div style="padding:10px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../Home/Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Our Services</li>
+            <li class="breadcrumb-item active" aria-current="page"> Cash Services </li>
+        </ol>
+    </nav>
+
+    <div class="network">
+        <div class="network-title-background">
+            <div class="network-title">
+                <h1> Our Network </h1>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        @*north reigon*@
+        <div class="region">
+            <h2><i class="bi bi-geo-alt"></i>  North Region</h2>
+        </div>
+        <div class="region-detail">
+            <div class="contact-detail">
+                <h3> Contact Info </h3>
+                <ul>
+                    <li><i class="bi bi-person-badge"></i> Nguyen Quoc Trung </li>
+                    <li><i class="bi bi-telephone"></i> 199898234</li>
+                    <li><i class="bi bi-geo"></i> 22 Phan Liêm, Đa Kao, Quận 1, Thành phố Hồ Chí Minh </li>
+                </ul>
+            </div>
+            <iframe class="region-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2836021521402!2d106.69295791517486!3d10.789577392312616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528cb4b06988b%3A0xed698da3b386547a!2zMjIgUGhhbiBMacOqbSwgxJBhIEthbywgUXXhuq1uIDEsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1621758011819!5m2!1svi!2s"  style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        @*West region*@
+
+        <div class="region" style="padding-top:40px;">
+            <h2><i class="bi bi-geo-alt"></i> West Region</h2>
+        </div>
+
+        <div class="region-detail">
+            <div class="contact-detail">
+                <h3> Contact Info </h3>
+                <ul>
+                    <li><i class="bi bi-person-badge"></i> Ha Dang Khoa </li>
+                    <li><i class="bi bi-telephone"></i> 199898234</li>
+                    <li><i class="bi bi-geo"></i>  285 Đội Cấn, Liễu Giai, Ba Đình, Hà Nội </li>
+                </ul>
+            </div>
+            <iframe class="region-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.9265584222176!2d105.81676191528805!3d21.035624385994662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab0d6e603741%3A0x208a848932ac2109!2sAptech%20Computer%20Education!5e0!3m2!1svi!2s!4v1621758205519!5m2!1svi!2s"  style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        @* East region*@
+
+        <div class="region" style="padding-top:40px;">
+            <h2><i class="bi bi-geo-alt"></i>  East Region</h2>
+        </div>
+        <div class="region-detail">
+            <div class="contact-detail">
+                <h3> Contact Info </h3>
+                <ul>
+                    <li><i class="bi bi-person-badge"></i> Tran Huu Phuoc </li>
+                    <li><i class="bi bi-telephone"></i> 199898234</li>
+                    <li><i class="bi bi-geo"></i> 102 Nguyễn Đình Chính, Phường 15, Phú Nhuận, Thành phố Hồ Chí Minh  </li>
+                </ul>
+            </div>
+            <iframe class="region-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2001372376253!2d106.67643911517489!3d10.795978192308233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175290e624afc3f%3A0x9b86bdb4da236d06!2zQVBURUNIIFNBSUdPTiAtIEjhu4YgVEjhu5BORyDEkMOATyBU4bqgTyBM4bqsUCBUUsOMTkggVknDik4gUVXhu5BDIFThur4gVOG6oEkgSENN!5e0!3m2!1svi!2s!4v1621758157913!5m2!1svi!2s"  style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        @*South region *@
+
+        <div class="region" style="padding-top:40px;">
+            <h2><i class="bi bi-geo-alt"></i>  South Region</h2>
+        </div>
+        <div class="region-detail">
+            <div class="contact-detail">
+                <h3> Contact Info </h3>
+                <ul>
+                    <li><i class="bi bi-person-badge"></i> Ly Hung Phat </li>
+                    <li><i class="bi bi-telephone"></i> 199898234</li>
+                    <li><i class="bi bi-geo"></i> 214 Nguyễn Đình Chiểu, Phường 6, Quận 3, Thành phố Hồ Chí Minh </li>
+                </ul>
+            </div>
+            <iframe class="region-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4263757203344!2d106.68802821517473!3d10.778619592320004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3a9d97282b%3A0x45e74ca0fc0300dc!2zQXB0ZWNoIENvbXB1dGVyIEVkdWNhdGlvbiAtIEjhu4cgdGjhu5FuZyDEkcOgbyB04bqhbyBM4bqtcCB0csOsbmggdmnDqm4gcXXhu5FjIHThur8gQXB0ZWNo!5e0!3m2!1svi!2s!4v1621758107373!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</div>

@@ -403,19 +403,19 @@ header .menu-btn {
     .swiper-slide1:nth-child(1) {
         background-image: url("../img/slider2.jpg");
         background-size: cover;
-        background-position: center;
+        background-position-x: center;
     }
 
     .swiper-slide1:nth-child(2) {
         background-image: url("../img/man1.jpeg");
         background-size: cover;
-        background-position: center;
+        background-position-x: center;
     }
 
     .swiper-slide1:nth-child(3) {
         background-image: url("../img/guard2.jpg");
         background-size: cover;
-        background-position: center;
+        background-position-x: center;
     }
 
 /*aaaaaaaaaaaaaaaaaaaabout ussssssssssssssssssssssssssssssss*/

@@ -22,7 +22,8 @@
 
     .recruitment {
         background: url(../img/recruitment.jpeg);
-        background-size: 100% 100%;
+        background-size: cover;
+        background-position: center;
         height: 50vh;
         background-attachment: fixed;
     }
@@ -82,7 +83,8 @@
 
     .training {
         background: url(../img/guard3.jpg);
-        background-size: 100% 100%;
+        background-size: cover;
+        background-position: center;
         height: 50vh;
         background-attachment: fixed;
     }
@@ -105,6 +107,13 @@
             top: 50%;
             transform: translate(0,-50%);
         }
+    .recruitment-required img {
+        float:right;
+        width: 400px;
+        height: 200px;
+        shape-outside: url(../img/guard1.jpg);
+        shape-margin: 25px;
+    }
 </style>
 @* Recruitment *@
 <div style="padding:10px;">
@@ -165,13 +174,14 @@
 <div class="tranning-content">
     <div class="container">
         <div class="recruitment-required fade">
-            <div style="display: flex;justify-content: center;align-items: center;">
+            <div>
+                <img src="../img/guard1.jpg" />
                 <p>
                     Star Security Services provides induction training through its PSBD qualified trained instructors, before the new recruits enter the actual work field. It has set up a dedicated Training Institute in Mussafah area. The successful candidates are sent to National Security Institute (NSI) for a period of five days for training. The guards who qualify NSI are sent for the PSBD examination to obtain police license.
 
                     The security guards are put on duty only after successful completion of Basic Training & obtaining PSBD license from Abu Dhabi Police Star Security Services has a fair mix of nationalities in its workforce which includes people from Asian, African and Arab countries. This blend of nationalities meets the needs of multiple option traders with respect to communication and networking channels.
                 </p>
-                <img src="../img/guard1.jpg" width="500" height="300" />
+
             </div>
             <div style="padding:15px 0 10px">
                 <h2 style="color:#3b5998;">SOME OF THE AREAS COVERED DURING INDUCTION TRAINING ARE : </h2>

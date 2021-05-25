@@ -847,6 +847,14 @@ header .menu-btn {
         display: flex !important;
         flex-direction: column !important;
     }
+    .region-detail {
+      
+        flex-direction: column!important ;
+    }
+    .region-map{
+        margin:0px!important ;
+        padding-top:10px!important ;
+    }
 }
 
 @media only screen and (max-width:1024px ) and (min-width:768px) {

@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["title"] = "Career";
+    Layout = "_layout";
+}
+<style>
+    .container {
+        padding: 40px 0 50px;
+    }
+
+    .swiper-container1 {
+        display: none;
+    }
+
+    .myNav {
+        padding: 15px;
+        position: sticky;
+        background: black;
+    }
+
+    .career {
+        background: url(../img/hiring.jpg);
+        height: 50vh;
+        background-size: cover;
+        background-position-x: center;
+    }
+
+    .inputBox-2 {
+        position: relative;
+        margin: 0 0 50px 0;
+    }
+
+        .inputBox-2.w50 {
+            width: 47%;
+        }
+
+        .inputBox-2.w100 {
+            width: 100% !important;
+        }
+
+        .inputBox-2 input,
+        .inputBox-2 select,
+        .inputBox-2 textarea {
+            width: 100% !important;
+            padding: 5px 0;
+            font-size: 18px;
+            font-weight: 400;
+            color: #333;
+            outline: none;
+        }
+
+        .inputBox-2 textarea {
+            min-height: 150px;
+            width: 100%;
+            outline: none;
+        }
+
+        .inputBox-2 label {
+            position: absolute;
+            left: 0;
+            padding: 5px 0;
+            font-weight: 300;
+            transition: 0.2s;
+        }
+
+        .inputBox-2 input:focus ~ label,
+        .inputBox-2 input:valid ~ label,
+        .inputBox-2 select:focus ~ label,
+        .inputBox-2 select:valid ~ label,
+        .inputBox-2 textarea:focus ~ lable,
+        .inputBox-2 textarea:valid ~ label {
+            font-size: 15px;
+            letter-spacing: 1px;
+            transform: translateY(-30px);
+        }
+</style>
+<div style="padding:10px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../Home/Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Quick Links</li>
+            <li class="breadcrumb-item active" aria-current="page"> Careers </li>
+        </ol>
+    </nav>
+    <div class="career"></div>
+</div>
+<div class="container">
+    <div class="apply-form">
+        <h1 style="padding-bottom:50px;"> Application Form</h1>
+        <div class="formBox">
+            <div class="inputBox-2 w50">
+                <input type="text" />
+                <label> First name <span style="color:red;"> &lowast; </span></label>
+            </div>
+            <div class="inputBox-2 w50">
+                <input type="text" />
+                <label> Last name <span style="color:red;"> &lowast; </span> </label>
+            </div>
+            <div class="inputBox-2 w50">
+                <select>
+                    <option> Male </option>
+                    <option> Female</option>
+                </select>
+                <label> Gender <span style="color:red;"> &lowast; </span> </label>
+            </div>
+
+            <div class="inputBox-2 w50">
+                <input type="tel" />
+                <label> Phone No. <span style="color:red;"> &lowast; </span></label>
+            </div>
+            <div class="inputBox-2 w50">
+                <input type="date" />
+                <label>  DOB <span style="color:red;"> &lowast; </span> </label>
+            </div>
+            <div class="inputBox-2 w50">
+                <input type="email" />
+                <label>  Email <span style="color:red;"> &lowast; </span> </label>
+            </div>
+            <div class="inputBox-2 w100">
+                <input type="text" />
+                <label> Position you are applying for  <span style="color:red;"> &lowast; </span> <span style="color:red;"> &lowast; </span> </label>
+            </div>
+            <div class="inputBox-2 w100">
+                <input type="file" />
+                <label> Resume file <span style="color:red;"> &lowast; </span> </label>
+            </div>
+            <div class="inputBox-2 w100">
+                <textarea></textarea>
+                <label> Address <span style="color:red;"> &lowast; </span> </label>
+            </div>
+        </div>
+        <a href="#" class="myBtn"> Apply Now <i class="bi bi-arrow-right-circle"></i> </a>
+    </div>
+</div>

@@ -539,6 +539,7 @@ header .menu-btn {
     justify-content: center;
     align-items: center
 }
+
     .contact-info li:hover {
         transform: translateY(-20px);
     }
@@ -927,6 +928,196 @@ header .menu-btn {
     }
 }
 /*ccccccccccccccccccccontact ussssssssssssssssssssssssss*/
+.contact {
+    background: url(../img/Contact.jpeg);
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.contact-title {
+    position: relative;
+    top: 50%;
+    justify-content: center;
+    transform: translate(0%, -50%);
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+    .contact-title h1 {
+        font-size: 70px;
+        filter: drop-shadow(2px 0px 1px #fff);
+    }
+
+.contact-content {
+    display: flex;
+    position: relative;
+    height: 70vh;
+    z-index: 1000;
+    margin: 50px 0 50px;
+}
+
+.contact-header {
+    width: 350px;
+    top: 40px;
+    position: absolute;
+    height: calc(100% - 80px);
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background: linear-gradient(to right, rgba(92,93,95,0.8), rgba(92,93,95,1));
+    z-index: 1;
+    border-radius: 20px;
+    padding: 40px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .contact-header h1 {
+        color: #fff;
+        font-size: 50px;
+        letter-spacing: 2px;
+        filter: drop-shadow(0px 1px 1px #ddd);
+        padding: 10px 0 10px;
+    }
+
+    .contact-header ul {
+        position: relative;
+        list-style: none;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0 10px;
+    }
+
+        .contact-header ul li a {
+            color: #ddd;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.2s;
+        }
+
+            .contact-header ul li a:hover {
+                color: #fff;
+                opacity: 1;
+            }
+
+.contact-body {
+    position: absolute;
+    padding: 70px 50px;
+    padding-left: 250px;
+    margin-left: 150px;
+    width: calc(100% - 150px);
+    height: 100%;
+    background: linear-gradient(0,0,0,0.5);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.mapsite {
+    position: relative;
+    height: 50vh;
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.media {
+    padding: 50px 0 0;
+}
+
+    .media ul {
+        display: flex;
+        padding: 20px 0 20px;
+    }
+
+    .media li a {
+        background: #fff;
+        border-radius: 50%;
+        opacity: 1 !important;
+        padding: 18px;
+        margin: 10px;
+    }
+
+        .media li a:hover {
+            padding: 25px !important;
+            transform: translateY(-20px) !important;
+            animation: explosion .5s linear infinite;
+        }
+
+.formBox {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.inputBox {
+    position: relative;
+    margin: 0 0 30px 0;
+}
+
+    .inputBox.w50 {
+        width: 47%;
+    }
+
+    .inputBox.w100 {
+        width: 100% !important;
+    }
+
+.formBox .inputBox input,
+.formBox .inputBox textarea {
+    width: 100% !important;
+    padding: 5px 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+    border: none;
+    border-bottom: 1px solid #777;
+    outline: none;
+}
+
+.formBox .inputBox textarea {
+    min-height: 150px;
+    width: 100%;
+    outline: none;
+}
+
+.formBox .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-weight: 300;
+    transition: 0.2s;
+}
+.formBox input:focus ~ span,
+.formBox input:valid ~ span,
+.formBox textarea:focus ~ span,
+.formBox textarea:valid ~ span {
+    font-size: 12px;
+    letter-spacing: 1px;
+    transform: translateY(-20px);
+    color: #777;
+}
+
+.about-title h1 {
+    font-size: 50px;
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    filter: drop-shadow(1px 2px 2px #fff);
+}
+
+.selectBox {
+    border: none;
+    border-bottom: 1px solid #333;
+    width: 100%;
+    height: 25px;
+    outline: none;
+}
+
 .myBtn {
     position: relative;
     cursor: pointer;
@@ -995,7 +1186,7 @@ header .menu-btn {
 
 @keyframes dance {
     0%,100% {
-        transform:translateY(-20px);
+        transform: translateY(-20px);
     }
 
     50% {

@@ -14,10 +14,13 @@ namespace WebAPIAdmin.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id",TypeName ="int")]
         public int id { get; set; }
-        
-        [Column("description",TypeName ="varchar")]
+
+        [Column("service", TypeName = "varchar")]
+        public string service { get; set; }
+
+        [Column("message",TypeName ="varchar")]
         [StringLength(3000)]
-        public string description { get; set; }
+        public string message { get; set; }
 
         [Column("client",TypeName ="int")]
         public int client { get; set; }

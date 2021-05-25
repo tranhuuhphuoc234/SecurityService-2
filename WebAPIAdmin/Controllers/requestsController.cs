@@ -23,9 +23,25 @@ namespace WebAPIAdmin.Controllers
 
         // GET: api/requests
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<request>>> Getrequests()
+        public async Task<ActionResult<List<Models.View.requestView>>> Getrequests()
         {
-            return await _context.requests.ToListAsync();
+            var q = (from re in _context.requests
+                     join cl in _context.clients
+                     on re.client equals cl.id
+                     select new Models.View.requestView
+                     {
+                         id = re.id,
+                         service = re.service,
+                         message = re.message,
+                         client = re.client,
+                         status = re.status,
+                         client_name = cl.name,
+                         client_address = cl.address,
+                         client_email = cl.email,
+                         client_phone = cl.phone,
+                         client_status = cl.status
+                     }).ToList();
+            return q;
         }
 
         // GET: api/requests/5

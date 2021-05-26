@@ -49,42 +49,43 @@
         align-content: center;
         text-align: center;
         background: #e9ecef;
-        height:30vh;
-        border-radius:20px;
+        height: 30vh;
+        border-radius: 20px;
     }
+
         .login-form .inputBox {
             position: relative;
-            padding:20px 0 20px;
+            padding: 20px 0 20px;
             margin: 0px 250px 0;
         }
 
-    .login-form .inputBox input{
-        width: 100%;
-        padding: 5px 0;
-        font-size: 18px;
-        font-weight: 400;
-        color: #333;
-        border: none;
-        border-bottom: 1px solid #777;
-        outline: none;
-        background-color:transparent;
-    }
-    .login-form .inputBox label {
-        position: absolute;
-        left: 0;
-        padding: 5px 0;
-        font-weight: 300;
-        transition: 0.2s;
-    }
+            .login-form .inputBox input {
+                width: 100%;
+                padding: 5px 0;
+                font-size: 18px;
+                font-weight: 400;
+                color: #333;
+                border: none;
+                border-bottom: 1px solid #777;
+                outline: none;
+                background-color: transparent;
+            }
 
-    .login-form input:focus ~ label,
-    .login-form input:valid ~ label {
-        font-size: 12px;
-        letter-spacing: 1px;
-        transform: translateY(-10px);
-        color: #777;
-    }
-    
+            .login-form .inputBox label {
+                position: absolute;
+                left: 0;
+                padding: 5px 0;
+                font-weight: 300;
+                transition: 0.2s;
+            }
+
+        .login-form input:focus ~ label,
+        .login-form input:valid ~ label {
+            font-size: 12px;
+            letter-spacing: 1px;
+            transform: translateY(-10px);
+            color: #777;
+        }
 </style>
 <div class="container">
     <nav aria-label="breadcrumb">
@@ -106,13 +107,37 @@
     </nav>
     <div class="login-form">
         <div class="inputBox">
-            <input type="text" name="" required />
+            <input type="text" id="username" name="" required />
             <label> Account </label>
         </div>
         <div class="inputBox">
-            <input type="password" name="" required />
+            <input type="password" id="password" name="" required />
             <label> Password </label>
         </div>
-        <input style="margin:0 250px 0 ; width:50%;" class="myBtn" type="submit" name="Log In" />
+        <input style="margin:0 250px 0 ; width:50%;" class="myBtn" type="button" value="Login" id="submit" name="Log In" />
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('#submit').click(function () {
+        var username = $('#username').val();
+        var pass = $('#password').val();
+        if (username != "" && pass != "") {
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:54396/api/employees/Login/' + username + "," + pass,
+                dataType: 'json',
+                contentType: 'application/json; charset=utf8',
+            }).done(function (data) {
+                if (data == true) {
+                    alert("login success");
+                } else {
+                    alert("username or password incorrect !!");
+                }
+            });
+        } else {
+            alert("Please enter full information");
+        }
+
+    })
+</script>

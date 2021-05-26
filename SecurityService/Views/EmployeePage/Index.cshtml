@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["title"] = "Employee Page";
+    Layout = "_layout";
+}
+<style>
+    .container {
+        padding: 40px 0 50px;
+    }
+
+    .swiper-container1 {
+        display: none;
+    }
+
+    .myNav {
+        padding: 15px;
+        position: sticky;
+        background: black;
+    }
+</style>
+<div class="container">
+    <div class="user_info">
+        <h2> User Profile </h2>
+        <div class="user_profile_content">
+            <div class="user_profile_avatar">
+                <img src="../img/IMG_1939.JPG" />
+            </div>
+            <div class="user_profile_header">
+                <h4> Nguyen Quoc Trung </h4><small style="padding:0px 10px 5px;"> hien role len day </small>
+            </div>
+            <p> hien introduce yourself (about me ) len day</p>
+        </div>
+    </div>
+    <div class="user_info">
+        <h2> User Information </h2>
+        <div class="user_info_content">
+            <div class="formBox">
+                <div class="formBox">
+                    <div class="inputBox-2 w50">
+                        <input type="text"  value="Quoc Trung " disabled />
+                        <label> First name </label>
+                    </div>
+                    <div class="inputBox-2 w50">
+                        <input type="text" value="Nguyen" disabled />
+                        <label> Last name  </label>
+                    </div>
+                    <div class="inputBox-2 w50">
+                        <input type="text"value="20" disabled />
+                        <label> Age  </label>
+                    </div>
+                    <div class="inputBox-2 w50">
+                        <input type="text" value="70kg" disabled />
+                        <label> Weight  </label>
+                    </div>
+                    <div class="inputBox-2 w50">
+                        <input type="text" value="1.8m" disabled />
+                        <label> Height  </label>
+                    </div>
+        
+                    <div class="inputBox-2 w50">
+                        <input type="tel" value="123456789" disabled/>
+                        <label> Phone No. </label>
+                    </div>
+                    <div class="inputBox-2 w50" >
+                        <input type="email" value="trungchicken@gmail.com" disabled />
+                        <label>  Email  </label>
+                    </div>
+                   
+                    <div class="inputBox-2 w100">
+                        <textarea disabled> asdsadsdasdsd </textarea>
+                        <label> Achivement </label>
+                    </div>
+                    <div class="inputBox-2 w100">
+                        <textarea disabled> 22 phan liem </textarea>
+                        <label> Address  </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

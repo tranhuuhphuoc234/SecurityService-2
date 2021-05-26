@@ -45,6 +45,9 @@ namespace WebAPIUser
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors("MyPolicy");
+            app.UseCors(
+       options => options.WithOrigins("http://localhost:38934").AllowAnyMethod()
+   );
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

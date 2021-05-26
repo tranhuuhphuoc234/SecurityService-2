@@ -53,6 +53,7 @@
             font-size: 70px;
             filter: drop-shadow(2px 0px 1px #fff);
         }
+
     .mannegduarding-2 {
         background: url(../img/mannedguard2.jpg);
         height: 50vh;
@@ -87,9 +88,9 @@
             font-size: 70px;
             filter: drop-shadow(2px 0px 1px #fff);
         }
+
     .swiper-container3 {
         width: 100%;
-       
     }
 
     .swiper-slide3 {
@@ -110,6 +111,7 @@
         -webkit-align-items: center;
         align-items: center;
     }
+
     .emp-content {
         position: relative;
         overflow: hidden;
@@ -118,29 +120,32 @@
         background: rgba(255,255,255,1);
         padding: 20px;
         border-radius: 10px;
-        transition:0.3s;
+        transition: 0.3s;
     }
-    .emp-detail:hover .emp-content{
-        bottom:180px;
+
+    .emp-detail:hover .emp-content {
+        bottom: 180px;
     }
-    .client-detail ul{
-        position:relative;
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-        column-gap:20px;
+
+    .client-detail ul {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+        column-gap: 20px;
     }
-    .client-detail li{
-        width:200px;
-        height:150px;
-        list-style:none;
+
+    .client-detail li {
+        width: 200px;
+        height: 150px;
+        list-style: none;
     }
-    .client-detail li img{
-        width:100%;
-        position:relative;
-        top:50%;
-        transform:translate(0,-50%);
-       
-    }
+
+        .client-detail li img {
+            width: 100%;
+            position: relative;
+            top: 50%;
+            transform: translate(0,-50%);
+        }
 </style>
 <div style="padding:10px;">
     <nav aria-label="breadcrumb">
@@ -179,7 +184,7 @@
             What We Provides :
         </h5>
         <p>
-             guarding, fire squad, dog squad, bodyguards etc. for industries, banks, retail outlets, residential colonies, hotels and institutions
+            guarding, fire squad, dog squad, bodyguards etc. for industries, banks, retail outlets, residential colonies, hotels and institutions
         </p>
         <a href="../Contact/Index" class="myBtn"> Contact Us </a>
         <h3 style="padding:15px 0 10px"> If you need help ? Please call <i class="bi bi-telephone"></i>: 0901023456  </h3>
@@ -188,79 +193,11 @@
 </div>
 <!-- Swiper -->
 <div class="swiper-container swiper-container3">
-    <div class="swiper-wrapper fade">
-        <div class="swiper-slide swiper-slide3">
-            <div class="emp-detail">
-                <div class="img-emp">
-                    <img src="../img/man2.png" />
-                </div>
-                <div class="emp-content">
-                    <h3> Nguyen Quoc Trung </h3>
-                    <h5> Leader bodyguards </h5>
-                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide swiper-slide3">
-            <div class="emp-detail">
-                <div class="img-emp">
-                    <img src="../img/man3.jpg" />
-                </div>
-                <div class="emp-content">
-                    <h3> Nguyen Quoc Trung </h3>
-                    <h5> Leader bodyguards </h5>
-                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide swiper-slide3">
-            <div class="emp-detail">
-                <div class="img-emp">
-                    <img src="../img/man4.png" />
-                </div>
-                <div class="emp-content">
-                    <h3> Nguyen Quoc Trung </h3>
-                    <h5> Leader bodyguards </h5>
-                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide swiper-slide3">
-            <div class="emp-detail">
-                <div class="img-emp">
-                    <img src="../img/man2.png" />
-                </div>
-                <div class="emp-content">
-                    <h3> Nguyen Quoc Trung </h3>
-                    <h5> Leader bodyguards </h5>
-                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide swiper-slide3">
-            <div class="emp-detail">
-                <div class="img-emp">
-                    <img src="../img/man3.jpg" />
-                </div>
-                <div class="emp-content">
-                    <h3> Nguyen Quoc Trung </h3>
-                    <h5> Leader bodyguards </h5>
-                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide swiper-slide3">
-            <div class="emp-detail">
-                <div class="img-emp">
-                    <img src="../img/man4.png" />
-                </div>
-                <div class="emp-content">
-                    <h3> Nguyen Quoc Trung </h3>
-                    <h5> Leader bodyguards </h5>
-                    <a href="../Contact/Index" class="myBtn"> Contact Us</a>
-                </div>
-            </div>
-        </div>
+    <div class="swiper-wrapper fade" id="showing">
+
+
+
+
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -288,4 +225,4 @@
         </ul>
     </div>
 </div>
-    
+

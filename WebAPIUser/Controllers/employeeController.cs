@@ -23,10 +23,10 @@ namespace WebAPIUser.Controllers
 
         // chua xong
         // GET: api/employees
-        [HttpGet]
+        [HttpGet("{skip}")]
         public async Task<ActionResult<IEnumerable<employeeView>>> Getemployees(int skip)
         {
-            skip = skip > 1 ? skip * 9 : 1;
+            skip = skip > 1 ? skip * 9 : 0;
             var re = (from e in _context.employees
                       join s in _context.specialities on e.speciality equals s.id
                       join d in _context.departments on e.department equals d.id
@@ -39,7 +39,7 @@ namespace WebAPIUser.Controllers
         }
 
         // GET: api/employees/5
-        [HttpGet("{id}")]
+        [HttpGet("find/{id}")]
         public async Task<ActionResult<IEnumerable<employeeView>>> Getemployee(int id)
         {
             var employee = await _context.employees.FindAsync(id);

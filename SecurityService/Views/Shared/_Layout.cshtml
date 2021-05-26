@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Phat.css"/>
-    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
 
@@ -281,12 +280,18 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/ShowAboutUs.js" asp-append-version="true"></script>
+    <script src="~/js/ShowEmployee.js" asp-append-version="true"></script>
+
+
+
 </body>
 </html>
 <script>
     $.ajax({
         type: 'get',
-        url: 'http://localhost:54396/api/about_us_employee',
+        //using publish host
+        url: 'http://localhost:8085/api/about_us_employee',
         dataType: 'json',
         contentType: "application/json; charset=utf8",
         success: function (data) {

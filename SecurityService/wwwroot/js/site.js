@@ -5,6 +5,8 @@
 // Write your JavaScript code.
 
 var swiper = new Swiper('.swiper-container1', {
+    observer: true,
+    observeParents: true,
     direction: 'vertical',
     spaceBetween: 5,
     effect: 'fade',
@@ -23,6 +25,8 @@ var swiper = new Swiper('.swiper-container1', {
 
 function dmm() {
     var mySwiper = new Swiper(".swiper-container2", {
+        observer: true,
+        observeParents: true,
         effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,
@@ -51,6 +55,8 @@ function dmm() {
 }
 
 var swiper3 = new Swiper('.swiper-container3', {
+    observer: true,
+    observeParents: true,
     slidesPerView: 3,
     autoplay: {
         delay: 3000,

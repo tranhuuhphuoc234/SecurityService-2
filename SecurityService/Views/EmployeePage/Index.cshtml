@@ -19,65 +19,259 @@
         position: sticky;
         background: black;
     }
+    /* Style tab links */
+    .tablink {
+        background-color: #555;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        outline: none !important;
+        width: 50%;
+    }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+
+    /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+        display: none;
+        padding: 100px 0px;
+        height: 100%;
+    }
+
+    .pagination {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+        border-radius: .25rem;
+        justify-content: center;
+        align-items: center;
+        padding-top: 50px;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 12px 20px;
+            font-size: 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .pagination li.active {
+            background-color: dodgerblue;
+            color: white;
+            border-radius: 50%;
+        }
+
+        .pagination li:hover:not(.active) {
+            background-color: #ddd;
+            border-radius: 50%;
+        }
+
+    .searchBox {
+        position: relative;
+        padding-bottom: 30px;
+        text-align: center;
+    }
+
+        .searchBox input {
+            padding: 10px;
+            padding-left:50px;
+            border: none;
+            font-size: 18px;
+            position: relative;
+            background: #f1f1f1;
+            outline: none;
+            width: 50%;
+            border-radius: 30px;
+            box-shadow: 1px 2px 3px #ddd;
+        }
+        .searchBox span {
+            position: relative;
+            z-index: 1;
+            left: 40px;
+            top: 0;
+            fill: currentcolor;
+        }
+
 </style>
+
 <div class="container">
-    <div class="user_info">
-        <h2> User Profile </h2>
-        <div class="user_profile_content">
-            <div class="user_profile_avatar">
-                <img src="../img/IMG_1939.JPG" />
+    <button class="tablink" onclick="openPage('Information', this)" id="defaultOpen"> Information </button>
+    <button class="tablink" onclick="openPage('Employee', this)"> Employee </button>
+    <div id="Information" class="tabcontent">
+        <div class="user_info">
+            <h2> User Profile </h2>
+            <div class="user_profile_content">
+                <div class="user_profile_avatar">
+                    <img src="../img/IMG_1939.JPG" />
+                </div>
+                <div class="user_profile_header">
+                    <h4> Nguyen Quoc Trung </h4><small style="padding:0px 10px 5px;"> hien role len day </small>
+                </div>
+                <p> hien introduce yourself (about me ) len day</p>
             </div>
-            <div class="user_profile_header">
-                <h4> Nguyen Quoc Trung </h4><small style="padding:0px 10px 5px;"> hien role len day </small>
-            </div>
-            <p> hien introduce yourself (about me ) len day</p>
         </div>
-    </div>
-    <div class="user_info">
-        <h2> User Information </h2>
-        <div class="user_info_content">
-            <div class="formBox">
+        <div class="user_info">
+            <h2> User Information </h2>
+            <div class="user_info_content">
                 <div class="formBox">
-                    <div class="inputBox-2 w50">
-                        <input type="text"  value="Quoc Trung " disabled />
-                        <label> First name </label>
-                    </div>
-                    <div class="inputBox-2 w50">
-                        <input type="text" value="Nguyen" disabled />
-                        <label> Last name  </label>
-                    </div>
-                    <div class="inputBox-2 w50">
-                        <input type="text"value="20" disabled />
-                        <label> Age  </label>
-                    </div>
-                    <div class="inputBox-2 w50">
-                        <input type="text" value="70kg" disabled />
-                        <label> Weight  </label>
-                    </div>
-                    <div class="inputBox-2 w50">
-                        <input type="text" value="1.8m" disabled />
-                        <label> Height  </label>
-                    </div>
-        
-                    <div class="inputBox-2 w50">
-                        <input type="tel" value="123456789" disabled/>
-                        <label> Phone No. </label>
-                    </div>
-                    <div class="inputBox-2 w50" >
-                        <input type="email" value="trungchicken@gmail.com" disabled />
-                        <label>  Email  </label>
-                    </div>
-                   
-                    <div class="inputBox-2 w100">
-                        <textarea disabled> asdsadsdasdsd </textarea>
-                        <label> Achivement </label>
-                    </div>
-                    <div class="inputBox-2 w100">
-                        <textarea disabled> 22 phan liem </textarea>
-                        <label> Address  </label>
+                    <div class="formBox">
+                        <div class="inputBox-2 w50">
+                            <input type="text" value="Quoc Trung " disabled />
+                            <label> First name </label>
+                        </div>
+                        <div class="inputBox-2 w50">
+                            <input type="text" value="Nguyen" disabled />
+                            <label> Last name  </label>
+                        </div>
+                        <div class="inputBox-2 w50">
+                            <input type="text" value="20" disabled />
+                            <label> Age  </label>
+                        </div>
+                        <div class="inputBox-2 w50">
+                            <input type="text" value="70kg" disabled />
+                            <label> Weight  </label>
+                        </div>
+                        <div class="inputBox-2 w50">
+                            <input type="text" value="1.8m" disabled />
+                            <label> Height  </label>
+                        </div>
+
+                        <div class="inputBox-2 w50">
+                            <input type="tel" value="123456789" disabled />
+                            <label> Phone No. </label>
+                        </div>
+                        <div class="inputBox-2 w50">
+                            <input type="email" value="trungchicken@gmail.com" disabled />
+                            <label>  Email  </label>
+                        </div>
+
+                        <div class="inputBox-2 w100">
+                            <textarea disabled> asdsadsdasdsd </textarea>
+                            <label> Achivement </label>
+                        </div>
+                        <div class="inputBox-2 w100">
+                            <textarea disabled> 22 phan liem </textarea>
+                            <label> Address  </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="Employee" class="tabcontent">
+        <div class="searchBox">
+            <div class="input"></div>
+            <span><i class="bi bi-search"></i></span>
+            <input type="text" placeholder="Search.." name="search">
+            <button class="myBtn" type="submit"><i class="bi bi-search"></i></button>
+        </div>
+
+        <div class="director-content">
+            <div class='card'>
+                <div class='imgText'>
+                    <div class='imgBx'>
+                        <img src='../img/IMG_1939.JPG' />
+                    </div>
+                    <h5> Nguyen Quoc Trung</h5>
+                    <p>  role  </p>
+                  
+                </div>
+     
+            </div>
+            <div class='card'>
+                <div class='imgText'>
+                    <div class='imgBx'>
+                        <img src='../img/IMG_1939.JPG' />
+                    </div>
+                    <h5> Nguyen Quoc Trung</h5>
+                    <p>  role  </p>
+                   
+                </div>
+                
+            </div>
+            <div class='card'>
+                <div class='imgText'>
+                    <div class='imgBx'>
+                        <img src='../img/IMG_1939.JPG' />
+                    </div>
+                    <h5> Nguyen Quoc Trung</h5>
+                    <p>  role  </p>
+                    
+                </div>
+               
+            </div>
+            <div class='card'>
+                <div class='imgText'>
+                    <div class='imgBx'>
+                        <img src='../img/IMG_1939.JPG' />
+                    </div>
+                    <h5> Nguyen Quoc Trung</h5>
+                    <p>  role  </p>
+                   
+                </div>
+               
+            </div>
+            <div class='card'>
+                <div class='imgText'>
+                    <div class='imgBx'>
+                        <img src='../img/IMG_1939.JPG' />
+                    </div>
+                    <h5> Nguyen Quoc Trung</h5>
+                    <p>  role  </p>
+                   
+                </div>
+               
+            </div>
+            <div class='card'>
+                <div class='imgText'>
+                    <div class='imgBx'>
+                        <img src='../img/IMG_1939.JPG' />
+                    </div>
+                    <h5> Nguyen Quoc Trung</h5>
+                    <p>  role  </p>
+                   >
+                </div>
+                
+            </div>
+        </div>
+        <ul class="pagination">
+            <li class="prev">
+                <a aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="active">
+                <a>1</a>
+            </li>
+            <li>
+                <a>2</a>
+            </li>
+            <li>
+                <a>3</a>
+            </li>
+            <li>
+                <a>4</a>
+            </li>
+            <li>
+                <a>5</a>
+            </li>
+            <li class="next">
+                <a aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
 </div>

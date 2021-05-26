@@ -94,10 +94,9 @@ li {
     text-align: center;
     transition: 0.3s;
     padding: 12px 0px 12px 0px;
-    height: 5%;
     color: #ffffff;
     font-family: 'Lato', sans-serif;
-    font-size: 20px;
+    font-size: 10px;
 }
 
 a {
@@ -123,10 +122,10 @@ h1 {
 }
 /*col_employee*/
 .my_col_left {
-    width: 35%;
+    width: 40%;
     height: 100%;
     float: left;
-    margin-left: 15%;
+    margin-left: 10%;
 }
 
 .my_col_right {
@@ -141,6 +140,7 @@ h1 {
     width: 60%;
     height: 100%;
     float: left;
+    overflow-y: scroll;
 }
 
 .my_col_right_aboutus {
@@ -183,6 +183,8 @@ input {
     font-size: 15px;
     margin-bottom: 5px;
     width: auto;
+    margin-left: 0px;
+    color: black;
 }
 
 /* btn Save */
@@ -252,6 +254,28 @@ select {
     margin-top: 2%;
 }
 
+.title_table_role {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_speciality {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_grade {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+
 .title_table_employee {
     float: left;
     width: 295px;
@@ -275,14 +299,14 @@ select {
 
 .title_table_service {
     float: left;
-    width: 25%;
+    width: 20%;
     text-align: center;
     margin-top: 2%;
 }
 
 .title_table_trainning {
     float: left;
-    width: 20%;
+    width: 16.6%;
     text-align: center;
     margin-top: 2%;
 }
@@ -329,13 +353,21 @@ select {
     color: #ffffff;
 }
 
-#my_table {
-    border-collapse: collapse;
+#my_table_region tr:nth-child(even) {
+    background-color: #444444;
+    color: #ffffff;
 }
+
+#my_table_trainning tr:nth-child(even) {
+    background-color: #444444;
+    color: #ffffff;
+}
+
 
 table {
     width: 100%;
     padding: 10px;
+    border-collapse: collapse;
 }
 
     table tr th {
@@ -347,12 +379,28 @@ table {
     }
 
     table tr td {
-        min-width: 100px;
+        width: 295px;
         text-align: center;
         padding-top: 10px;
         padding-bottom: 10px;
         border: 1px solid #ddd;
     }
+
+    table tr .td_hidden {
+        display: none;
+    }
+
+#my_table_region tbody tr td {
+    width: 33%;
+}
+
+#my_table_trainning tbody tr td {
+    width: 16.6%;
+}
+
+#my_table_service tbody tr td {
+    width: 20%;
+}
 
 /*my_search*/
 .content_search {
@@ -370,7 +418,13 @@ table {
     text-align: center;
 }
 
-.div_icon {
+.div_icon_delete {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+.div_icon_edit {
     width: 50%;
     float: left;
     text-align: center;
@@ -394,4 +448,104 @@ table {
 
 .canvasjs-chart-credit {
     display: none;
+}
+
+small {
+    font-style: initial;
+    color: red;
+    display: none;
+}
+
+label {
+    margin-left: 10px;
+    color: red;
+    font-size: 10px;
+}
+
+.div_ckeditor {
+    height: 40%;
+}
+
+#detail_trainning-error {
+    margin: 0px;
+}
+
+#description_service-error {
+    margin: 0px;
+}
+
+.label_search {
+    font-size: 20px;
+    color: black;
+    margin: 0;
+    margin-right: 10px;
+}
+
+/*ul_lient_management*/
+#ul_lient_management {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+    #ul_lient_management li {
+        float: left;
+        text-align: center;
+        transition: 0.3s;
+        color: #ffffff;
+        font-family: 'Lato', sans-serif;
+        font-size: 10px;
+    }
+
+#my_table_client #table_check_service tr td {
+    width: 20%;
+}
+
+#ul_lient_management li span {
+    display: block;
+    padding: 20px;
+    background-color: #dddddd;
+}
+
+.display_content_client {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.div_bottom {
+    width: 99%;
+    height: 88%;
+    border: 1px solid #dddddd;
+}
+
+.title_table_client {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.title_table_history {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.div_btn_client {
+    width: 33%;
+    float: left;
+    text-align: center;
+}
+
+.title_table_recruitment {
+    float: left;
+    width: 12.5%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+#my_table_recruitment #table_recruitment tr td {
+    width: 12.5%;
 }

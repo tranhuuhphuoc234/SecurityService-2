@@ -52,7 +52,7 @@
             <div class="chairman-title">
                 <h2><i class="bi bi-person"></i> Chairman's Profile</h2>
             </div>
-            <div class="chairman-content fade">
+            <div class="chairman-content">
                 <img class="chairman" src="../img/man.png" />
                 <h3>Mr. N.Q.Trung, Founder and Group Chairman</h3>
                 <p> Mr.Trung is a first generation entrepreneur and the Founder of Star Security Services  </p>
@@ -79,69 +79,40 @@
             <div class="director-title">
                 <h2> <i class="bi bi-people"></i> Board Of Directors </h2>
             </div>
-            <div class="director-content fade">
-                <div class="card">
-                    <div class="imgText">
-                        <div class="imgBx">
-                            <img src="../img/man.jpeg" />
-                        </div>
-                        <h5> Nguyen Quoc Trung</h5>
-                        <p> Founder </p>
-                    </div>
-                    <ul class="contact-info">
-                        <li><a href="#"><i class="bi bi-facebook" style="color:#3b5998"></i></a></li>
-                        <li><a href="#"><i class="bi bi-twitter" style="color: #1DA1F2;"></i></a></li>
-                        <li><a href="#"><i class="bi bi-instagram" style="color: #E1306C"></i></a></li>
-                        <li><a href="#"><i class="bi bi-linkedin" style="color:#2867B2"></i></a></li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="imgText">
-                        <div class="imgBx">
-                            <img src="../img/man.jpeg" />
-                        </div>
-                        <h5> Ha Dang Khoa </h5>
-                        <p> Founder </p>
-                    </div>
-                    <ul class="contact-info">
-                        <li><a href="#"><i class="bi bi-facebook" style="color:#3b5998"></i></a></li>
-                        <li><a href="#"><i class="bi bi-twitter" style="color: #1DA1F2;"></i></a></li>
-                        <li><a href="#"><i class="bi bi-instagram" style="color: #E1306C"></i></a></li>
-                        <li><a href="#"><i class="bi bi-linkedin" style="color:#2867B2"></i></a></li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="imgText">
-                        <div class="imgBx">
-                            <img src="../img/man.jpeg" />
-                        </div>
-                        <h5> Tran Huu Phuoc</h5>
-                        <p> Founder </p>
-                    </div>
-                    <ul class="contact-info">
-                        <li><a href="#"><i class="bi bi-facebook" style="color:#3b5998"></i></a></li>
-                        <li><a href="#"><i class="bi bi-twitter" style="color: #1DA1F2;"></i></a></li>
-                        <li><a href="#"><i class="bi bi-instagram" style="color: #E1306C"></i></a></li>
-                        <li><a href="#"><i class="bi bi-linkedin" style="color:#2867B2"></i></a></li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <div class="imgText">
-                        <div class="imgBx">
-                            <img src="../img/man.jpeg" />
-                        </div>
-                        <h5> Ly Hung Phat </h5>
-                        <p> Founder </p>
-                    </div>
-                    <ul class="contact-info">
-                        <li><a href="#"><i class="bi bi-facebook" style="color:#3b5998"></i></a></li>
-                        <li><a href="#"><i class="bi bi-twitter" style="color: #1DA1F2;"></i></a></li>
-                        <li><a href="#"><i class="bi bi-instagram" style="color: #E1306C"></i></a></li>
-                        <li><a href="#"><i class="bi bi-linkedin" style="color:#2867B2"></i></a></li>
-                    </ul>
-                </div>
+            <div class="director-content">
+                @*render director card*@
             </div>
 
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $.ajax({
+        type: 'get',
+        url: 'http://localhost:54396/api/about_us_employee',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf8',
+        success: function (data) {
+            $.each(data, function (index, value) {
+                var rows = "";
+                rows += "<div class='card'>"
+                +"<div class='imgText'>"
+                +"<div class='imgBx'>"
+                +"<img src='../img/"+value.img+"' />"
+                +"</div>"
+                +"<h5>"+value.name+"</h5>"
+                +"<p> Founder </p>"
+                +"</div>"
+                +"<ul class='contact-info'>"
+                +"<li><a href='#'><i class='bi bi-facebook' style='color:#3b5998'></i></a></li>"
+                +"<li><a href='#'><i class='bi bi-twitter' style='color: #1DA1F2;'></i></a></li>"
+                +"<li><a href='#'><i class='bi bi-instagram' style='color: #E1306C'></i></a></li>"
+                +"<li><a href='#'><i class='bi bi-linkedin' style='color:#2867B2'></i></a></li>"
+                +"</ul>"
+                +"</div>"
+                $('.director-content').append(rows);
+            });
+        }
+    })
+</script>

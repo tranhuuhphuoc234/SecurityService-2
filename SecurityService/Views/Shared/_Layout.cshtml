@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Phatcss.css"/>
+    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/Phat.css"/>
 </head>
 
@@ -73,6 +75,7 @@
                     <li><a href="../Login/Index" class="myNav-item"><i class="bi bi-person-circle"></i></a> </li>
                 </ul>
                 <div class="search-form">
+                    <span> <i class="bi bi-search"></i> </span>
                     <input type="text" placeholder="Search.." />
                     <a class="close"><i class="bi bi-x" style="font-size:30px;color:white;"></i></a>
                 </div>
@@ -138,80 +141,7 @@
             <h1> OUR TESTIMONIALS </h1>
             <h5> HEAR WHAT OUR CUSTOMERS SAY </h5>
         </div>
-        <div class="swiper-wrapper fade" id="slide">
-            @*<div class="swiper-slide swiper-slide2">
-                    <div class="testmonialBox">
-                        <div class="detail">
-                            <div class="image-testmonial">
-                                <img src="../img/man.png" />
-                            </div>
-                            <h3> Nguyen Quoc Trung </h3>
-                            <p> King Of BackEnd</p>
-                        </div>
-                        <div class="testmonialBox-content">
-                            <i class="bi bi-chat-quote"></i>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus
-                                felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide swiper-slide2">
-                    <div class="testmonialBox">
-                        <div class="detail">
-                            <div class="image-testmonial">
-                                <img src="../img/man.png" />
-                            </div>
-                            <h3> Ha Dang Khoa  </h3>
-                            <p> King Of Database</p>
-                        </div>
-                        <div class="testmonialBox-content">
-                            <i class="bi bi-chat-quote"></i>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus
-                                felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide swiper-slide2">
-                    <div class="testmonialBox">
-                        <div class="detail">
-                            <div class="image-testmonial">
-                                <img src="../img/man.png" />
-                            </div>
-                            <h3> Tran Huu Phuoc </h3>
-                            <p> King Of Full-Stack</p>
-                        </div>
-                        <div class="testmonialBox-content">
-                            <i class="bi bi-chat-quote"></i>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus
-                                felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide swiper-slide2">
-                    <div class="testmonialBox">
-                        <div class="detail">
-                            <div class="image-testmonial">
-                                <img src="../img/man.png" />
-                            </div>
-                            <h3> Ly Hung Phat </h3>
-                            <p> King Of UI </p>
-                        </div>
-                        <div class="testmonialBox-content">
-                            <i class="bi bi-chat-quote"></i>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum mattis velit, sit amet faucibus
-                                felis iaculis nec. Nulla laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-                            </p>
-                        </div>
-                    </div>
-                </div>*@
+        <div class="swiper-wrapper" id="slide">
         </div>
         <div class="swiper-pagination swiper-pagination2">
         </div>
@@ -301,7 +231,7 @@
                     + "<div class='testmonialBox'>"
                     + "<div class='detail'>"
                     + "<div class='image-testmonial'>"
-                    + "<img src='../img/IMG_1939.JPG'/>"
+                    + "<img src='../img/"+value.img+"'/>"
                     + "</div>"
                     + "<h3> " + value.name + " </h3>"
                     + "<p> " + value.role + "</p>"

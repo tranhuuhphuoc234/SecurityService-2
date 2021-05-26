@@ -91,7 +91,7 @@ var swiper3 = new Swiper('.swiper-container3', {
 $(document).ready(function () {
     var myNav = document.getElementById("myNav");
     var searchAround = document.getElementById("searchAround");
-
+    
     $('#search').click(function () {
         $('.myNav-item').addClass('hide-item');
         $('.search-form').addClass('active');
@@ -101,8 +101,6 @@ $(document).ready(function () {
         myNav.style.backgroundColor = "rgba(0,0,0,1)";
         searchAround.style.display = "block";
         document.body.style.overflow = "hidden";
-
-
 
     })
     $('.close').click(function () {
@@ -117,6 +115,26 @@ $(document).ready(function () {
 
     })
 })
+//pagination
+$(document).ready(function () {
+    var pageItem = $(".pagination li").not(".prev,.next");
+    var prev = $(".pagination li.prev");
+    var next = $(".pagination li.next");
+
+    pageItem.click(function () {
+        pageItem.removeClass("active");
+        $(this).not(".prev,.next").addClass("active");
+    });
+
+    next.click(function () {
+        $('li.active').removeClass('active').next().addClass('active');
+    });
+
+    prev.click(function () {
+        $('li.active').removeClass('active').prev().addClass('active');
+    });
+});
+
 
 
 // navigation sticky
@@ -159,21 +177,40 @@ $(document).ready(function () {
     })
 })
 
+// employee page
+
+function openPage(pageName, elmnt) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.style.backgroundColor = "#777";
+}
+//
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
 // fade in when sroll down
 
-$(window).on("load", function () {
+/*$(window).on("load", function () {
     $(window).scroll(function () {
         var windowBottom = $(this).scrollTop() + $(this).innerHeight();
         $(".fade").each(function () {
-            /* Check the location of each desired element */
+            *//* Check the location of each desired element *//*
             var objectBottom = $(this).offset().top + $(this).outerHeight();
 
-            /* If the element is completely within bounds of the window, fade it in */
+            *//* If the element is completely within bounds of the window, fade it in *//*
             if (objectBottom < windowBottom) { //object comes into view (scrolling down)
 
                 if ($(this).css("opacity") == 0) { $(this).fadeTo(100, 1, "linear"); }
             }
         });
     }).scroll(); //invoke scroll-handler on page-load
-});
+});*/
 

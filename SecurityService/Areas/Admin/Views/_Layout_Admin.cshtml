@@ -33,7 +33,7 @@
                     <li id="li_role" onclick="click_content_role();">Role</li>
                     <li id="li_speciality" onclick="click_content_speciality();">Speciality</li>
                     <li id="li_grade" onclick="click_content_grade();">Grade</li>
-                    <li id="li_image_employ" onclick="anhem();">Image_Employee</li>
+                    @*<li id="li_image_employ" onclick="anhem();">Image_Employee</li>*@
                 </ul>
             </div>
         </div>
@@ -227,6 +227,12 @@
         $("#li_trainning").css('color', '#ffffff');
         $("#li_chart").css('background-color', '#000000');
         $("#li_chart").css('color', '#ffffff');
+        $("#li_role").css('background-color', '#000000');
+        $("#li_role").css('color', '#ffffff');
+        $("#li_grade").css('background-color', '#000000');
+        $("#li_grade").css('color', '#ffffff');
+        $("#li_speciality").css('background-color', '#000000');
+        $("#li_speciality").css('color', '#ffffff');
         $('#content_employee').css('display', 'block');
         $('#view_table_employee').css('display', 'none');
         $('#content_feedback').css('display', 'none');
@@ -309,6 +315,12 @@
         $("#li_trainning").css('color', '#ffffff');
         $("#li_chart").css('background-color', '#000000');
         $("#li_chart").css('color', '#ffffff');
+        $("#li_role").css('background-color', '#000000');
+        $("#li_role").css('color', '#ffffff');
+        $("#li_grade").css('background-color', '#000000');
+        $("#li_grade").css('color', '#ffffff');
+        $("#li_speciality").css('background-color', '#000000');
+        $("#li_speciality").css('color', '#ffffff');
         $('#content_feedback').css('display', 'block');
         $('#view_table_employee').css('display', 'none');
         $('#content_employee').css('display', 'none');
@@ -359,6 +371,12 @@
         $("#li_trainning").css('color', '#ffffff');
         $("#li_chart").css('background-color', '#000000');
         $("#li_chart").css('color', '#ffffff');
+        $("#li_role").css('background-color', '#000000');
+        $("#li_role").css('color', '#ffffff');
+        $("#li_grade").css('background-color', '#000000');
+        $("#li_grade").css('color', '#ffffff');
+        $("#li_speciality").css('background-color', '#000000');
+        $("#li_speciality").css('color', '#ffffff');
         $('#content_about_us').css('display', 'block');
         $('#content_feedback').css('display', 'none');
         $('#view_table_employee').css('display', 'none');
@@ -408,6 +426,12 @@
         $("#li_trainning").css('color', '#ffffff');
         $("#li_chart").css('background-color', '#000000');
         $("#li_chart").css('color', '#ffffff');
+        $("#li_role").css('background-color', '#000000');
+        $("#li_role").css('color', '#ffffff');
+        $("#li_grade").css('background-color', '#000000');
+        $("#li_grade").css('color', '#ffffff');
+        $("#li_speciality").css('background-color', '#000000');
+        $("#li_speciality").css('color', '#ffffff');
         $('#content_about_us').css('display', 'none');
         $('#content_feedback').css('display', 'none');
         $('#view_table_employee').css('display', 'none');
@@ -456,6 +480,12 @@
         $("#li_trainning").css('color', '#ffffff');
         $("#li_chart").css('background-color', '#000000');
         $("#li_chart").css('color', '#ffffff');
+        $("#li_role").css('background-color', '#000000');
+        $("#li_role").css('color', '#ffffff');
+        $("#li_grade").css('background-color', '#000000');
+        $("#li_grade").css('color', '#ffffff');
+        $("#li_speciality").css('background-color', '#000000');
+        $("#li_speciality").css('color', '#ffffff');
         $('#content_about_us').css('display', 'none');
         $('#content_feedback').css('display', 'none');
         $('#view_table_employee').css('display', 'none');
@@ -505,6 +535,12 @@
         $("#li_trainning").css('color', '#ffffff');
         $("#li_chart").css('background-color', '#000000');
         $("#li_chart").css('color', '#ffffff');
+        $("#li_role").css('background-color', '#000000');
+        $("#li_role").css('color', '#ffffff');
+        $("#li_grade").css('background-color', '#000000');
+        $("#li_grade").css('color', '#ffffff');
+        $("#li_speciality").css('background-color', '#000000');
+        $("#li_speciality").css('color', '#ffffff');
         $('#content_about_us').css('display', 'none');
         $('#content_feedback').css('display', 'none');
         $('#view_table_employee').css('display', 'none');
@@ -538,6 +574,12 @@
         load_data_history();
         load_data_client();
         load_data_recruitment();
+        $('#display_content_Transaction_history').css('display', 'none');
+        $('#display_content_Comment').css('display', 'none');
+        $('#span_Transaction_History').css('background', '#dddddd');
+        $('#span_comment').css('background', '#dddddd');
+        $('#span_Check_service').css('background', 'black');
+        $('#display_content_Check_service').css('display', 'block');
         $("#li_employee").css('background-color', '#000000');
         $("#li_employee").css('color', '#ffffff');
         $("#li_feedback").css('background-color', '#000000');
@@ -1110,10 +1152,10 @@
                         + "<td class=''>" + value.name + "</td>"
                         + "<td class=''>" + value.status + "</td>"
                         + "<td>"
-                        + "<div class='div_icon'>"
+                        + "<div class='div_icon_delete'>"
                         + "<span><i class='fa fa-trash' onclick='detele_region(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
                         + "</div>"
-                        + "<div class='div_icon'>"
+                        + "<div class='div_icon_edit'>"
                         + "<span><i class='fa fa-edit'></i></span>"
                         + "</div>"
                     "</td>"
@@ -1145,10 +1187,10 @@
                         + "<td class=''>" + value.detail + "</td>"
                         + "<td class=''>" + value.status + "</td>"
                         + "<td>"
-                        + "<div class='div_icon'>"
+                        + "<div class='div_icon_delete'>"
                         + "<span><i class='fa fa-trash' onclick='detele_feedback(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
                         + "</div>"
-                        + "<div class='div_icon'>"
+                        + "<div class='div_icon_edit'>"
                         + "<span><i class='fa fa-edit'></i></span>"
                         + "</div>"
                     "</td>"
@@ -1196,10 +1238,10 @@
                         + "<td class=''>" + value.region + "</td>"
                         + "<td class=''>" + status + "</td>"
                         + "<td>"
-                        + "<div class='div_icon'>"
+                        + "<div class='div_icon_delete'>"
                         + "<span><i class='fa fa-trash' onclick='detele_department(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
                         + "</div>"
-                        + "<div class='div_icon'>"
+                        + "<div class='div_icon_edit'>"
                         + "<span><i class='fa fa-edit'></i></span>"
                         + "</div>"
                     "</td>"
@@ -1241,10 +1283,10 @@
                         + "<td class=''>" + value.usrname + "</td>"
                         + "<td class=''>" + value.status + "</td>"
                         + "<td>"
-                        + "<div class='div_icon'>"
+                        + "<div class='div_icon_delete'>"
                         + "<span><i class='fa fa-trash' onclick='detele_employee(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
                         + "</div>"
-                        + "<div class='div_icon'>"
+                        + "<div class='div_icon_edit'>"
                         + "<span><i class='fa fa-edit'></i></span>"
                         + "</div>"
                     "</td>"

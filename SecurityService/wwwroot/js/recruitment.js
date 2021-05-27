@@ -30,7 +30,6 @@
             })
             table_recruitment += "</tbody>";
             $('#table_recruitment').replaceWith(table_recruitment);
-            alert(table_recruitment);
         },
         erorr: function (data) {
             alert("Erorr");
@@ -40,7 +39,6 @@
 
 function click_remove_recruitment(a) {
     var id = $(a).attr('data_remove_recruitment');
-    alert(id);
     $.ajax({
         type: "Delete",
         url: 'http://localhost:44383/api/Recruitments/' + id,

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPIAdmin.Models;
 
 namespace WebAPIAdmin.Models.Context
 {
@@ -25,11 +26,14 @@ namespace WebAPIAdmin.Models.Context
         public DbSet<role> roles { get; set; }
         public DbSet<speciality> specialities { get; set; }
         public DbSet<trainning> trainnings { get; set; }
+        public DbSet<Recruitment> Recruitments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Data Source=115.73.214.162,1433;Initial Catalog=Security_Service;User ID=phuoc;Password=123321@");
         }
+
+        public DbSet<WebAPIAdmin.Models.Recruitment> Recruitment { get; set; }
     }
 }

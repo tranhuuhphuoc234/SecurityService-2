@@ -1,5 +1,4 @@
 ﻿
-
 $('#Check_service').click(function () {
     $('#span_Check_service').css('background', 'black');
     $('#span_Transaction_History').css('background', '#dddddd');
@@ -80,7 +79,7 @@ function load_data_history() {
                     + "<td>" + item.message + "</td>"
                     + "<td>"
                     + "<div class='div_icon_edit' style=width:100%;' >"
-                    + "<button type='button' class='btn_delete' onclick='click_remove_client(this);' style='margin-right:0px;' data_remove_client='" + item.id + "'>Remove</button>"
+                    + "<span  onclick='click_remove_client(this);' data_remove_client='" + item.id + "'><i class='fa fa-trash'></i></span>"
                     + "</div>"
                     + "</td>"
                     + "</tr>"
@@ -134,15 +133,11 @@ function send_client(a) {
     var email = $(a).attr('data_send_client');
     var name_client = $(a).attr('data_name_client');
     var name_service = $(a).attr('data_name_service');
-    alert(id);
-    alert(name_client);
-    alert(name_service);
     $.ajax({
         method: "Post",
         url: "Send_mail_client",
         data: { email: email, name_client: name_client, name_service: name_service },
         success: function (data) {
-            alert(data);
             $("#open" + id + "").css('display', 'block');
             $("#close" + id + "").css('display', 'none');
         },

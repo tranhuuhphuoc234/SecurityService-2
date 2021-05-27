@@ -12,23 +12,23 @@ namespace WebAPIAdmin.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class requestsController : ControllerBase
+    public class Check_requestController : ControllerBase
     {
         private readonly Security_ServiceContext _context;
 
-        public requestsController(Security_ServiceContext context)
+        public Check_requestController(Security_ServiceContext context)
         {
             _context = context;
         }
 
-        // GET: api/requests
+        // GET: api/Check_request
         [HttpGet]
-        public async Task<ActionResult<List<Models.View.requestView>>> Getrequests()
+        public async Task<ActionResult<List<Models.View.requestView>>> Check_fasle()
         {
             var q = (from re in _context.requests
                      join cl in _context.clients
                      on re.client equals cl.id
-                     where re.status == true
+                     where re.status == false
                      select new Models.View.requestView
                      {
                          id = re.id,
@@ -46,8 +46,8 @@ namespace WebAPIAdmin.Controllers
             return q;
         }
 
-        // GET: api/requests/5
-        [HttpGet("{id}")]
+        // GET: api/Check_request/5
+       /* [HttpGet("{id}")]
         public async Task<ActionResult<request>> Getrequest(int id)
         {
             var request = await _context.requests.FindAsync(id);
@@ -58,11 +58,11 @@ namespace WebAPIAdmin.Controllers
             }
 
             return request;
-        }
+        }*/
 
-        // PUT: api/requests/5
+        // PUT: api/Check_request/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        /*[HttpPut("{id}")]
         public async Task<IActionResult> Putrequest(int id, request request)
         {
             if (id != request.id)
@@ -89,11 +89,11 @@ namespace WebAPIAdmin.Controllers
             }
 
             return NoContent();
-        }
+        }*/
 
-        // POST: api/requests
+        // POST: api/Check_request
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        /*[HttpPost]
         public async Task<ActionResult<request>> Postrequest(request request)
         {
             _context.requests.Add(request);
@@ -102,7 +102,7 @@ namespace WebAPIAdmin.Controllers
             return CreatedAtAction("Getrequest", new { id = request.id }, request);
         }
 
-        // DELETE: api/requests/5
+        // DELETE: api/Check_request/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleterequest(int id)
         {
@@ -121,64 +121,6 @@ namespace WebAPIAdmin.Controllers
         private bool requestExists(int id)
         {
             return _context.requests.Any(e => e.id == id);
-        }
-        /// search by client id 
-        // GET: api/Search/name
-        [HttpGet("Search/{client}")]
-        public async Task<ActionResult<IEnumerable<request>>> Search(int client)
-        {
-            return await _context.requests.Where(a => a.client == client).ToListAsync();
-        }
-        //active  though id
-        [HttpPut("active/{id}")]
-        public async Task<IActionResult> Active(int id)
-        {
-
-            request b = _context.requests.FirstOrDefault(u => u.id == id && u.status == true);
-            if (b != null) b.status = false; else b = null;
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!requestExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-        ///disable  though id
-        [HttpPut("disable/{id}")]
-        public async Task<IActionResult> Disable(int id)
-        {
-
-            request b = _context.requests.FirstOrDefault(u => u.id == id && u.status == true);
-            if (b != null) b.status = false; else b = null;
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!requestExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+        }*/
     }
-
 }

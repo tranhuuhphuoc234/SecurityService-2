@@ -533,6 +533,10 @@ label {
     margin-top: 1%;
 }
 
+#my_table_history #table_history tr td {
+    width: 20%;
+}
+
 .div_btn_client {
     width: 33%;
     float: left;

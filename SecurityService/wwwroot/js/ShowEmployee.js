@@ -29,7 +29,6 @@ $(document).ready(function () {
                     },
                     async: false 
                 })
-                console.log(imagePath)
 
                 data = '<div class="swiper-slide swiper-slide3">'
                     + '<div class="emp-detail">'
@@ -44,6 +43,7 @@ $(document).ready(function () {
                     + '</div>'
                     + '</div>'
                 swiper.appendSlide(data)
+                swiper.update();
                 swiper.updateSlides()	
 
 

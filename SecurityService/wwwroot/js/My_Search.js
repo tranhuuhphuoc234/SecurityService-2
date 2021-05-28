@@ -42,4 +42,47 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
+
+    $("#search_employee").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_employee tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#search_feedback").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_feedback tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#search_region").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_region tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#search_department").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_department tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+
+    $("#search_history").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_history tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#search_recruitment").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_recruitment tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 }); 

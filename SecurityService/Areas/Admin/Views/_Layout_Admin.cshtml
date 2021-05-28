@@ -7,7 +7,6 @@
     <link href="~/css/Admin_css.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link href="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" rel="stylesheet" />
 </head>
 <body>
     <div class="container_admin">
@@ -125,7 +124,6 @@
     $('#search_view_about_us').val("");
     }
     function clear_form_view_employee() {
-        document.getElementById('Choose_View_Employee').selected = "true";
         $('#search_employee').val("");
     }
     function clear_form_employee() {
@@ -1328,23 +1326,23 @@
                     var status = "";
                     value.status == true ? status += "Available" : status += "Unvailable";
                     rows += "<tr id='employee_row_" + row + "'>"
-                        + "<td class=''>" + value.name + "</td>"
-                        + "<td class=''>" + value.age + "</td>"
-                        + "<td class=''>" + value.weight + "</td>"
-                        + "<td class=''>" + value.height + "</td>"
-                        + "<td class=''>" + value.phone + "</td>"
-                        + "<td class=''>" + value.email + "</td>"
-                        + "<td class=''>" + value.address + "</td>"
-                        + "<td class=''>" + value.department + "</td>"
-                        + "<td class=''>" + value.role + "</td>"
-                        + "<td class=''>" + value.grade + "</td>"
-                        + "<td class=''>" + value.achivement + "</td>"
-                        + "<td class=''>" + value.speciality + "</td>"
-                        + "<td class=''>" + value.price + "</td>"
-                        + "<td class=''>" + value.aboutme + "</td>"
-                        + "<td class=''>" + value.usrname + "</td>"
-                        + "<td class=''>" + value.status + "</td>"
-                        + "<td>"
+                        + "<td class='' style='width:200px'>" + value.name + "</td>"
+                        + "<td class='' style='width:70px'>" + value.age + "</td>"
+                        + "<td class='' style='width:70px'> " + value.weight + "</td>"
+                        + "<td class='' style='width:70px'> " + value.height + "</td>"
+                        + "<td class='' style='width:200px'> " + value.phone + "</td>"
+                        + "<td class='' style='width:250px'> " + value.email + "</td>"
+                        + "<td class='' style='width:200px'> " + value.address + "</td>"
+                        + "<td class='' style='width:100px'> " + value.department + "</td>"
+                        + "<td class='' style='width:100px'> " + value.role + "</td>"
+                        + "<td class='' style='width:100px'> " + value.grade + "</td>"
+                        + "<td class='' style='width:200px'> " + value.achivement + "</td>"
+                        + "<td class='' style='width:100px'> " + value.speciality + "</td>"
+                        + "<td class='' style='width:70px'> " + value.price + "</td>"
+                        + "<td class='' style='width:200px'> " + value.aboutme + "</td>"
+                        + "<td class='' style='width:100px'> " + value.usrname + "</td>"
+                        + "<td class='' style='width:70px'> " + value.status + "</td>"
+                        + "<td style='width:100px'>"
                         + "<div class='div_icon_delete'>"
                         + "<span><i class='fa fa-trash' onclick='detele_employee(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
                         + "</div>"

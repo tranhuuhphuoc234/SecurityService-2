@@ -242,7 +242,7 @@ select {
 
 .title_employee {
     height: 8%;
-    width: 425%;
+    width: 2200px;
     background-color: burlywood;
     font-weight: bolder;
 }
@@ -345,7 +345,7 @@ select {
 .content_table_employee {
     height: 92%;
     overflow-x: scroll;
-    width: 425%;
+    width: 2200px;
 }
 
 #my_table tr:nth-child(even) {

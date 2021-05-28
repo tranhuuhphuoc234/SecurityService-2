@@ -311,6 +311,12 @@ select {
     margin-top: 2%;
 }
 
+.title_table_orderdetail {
+    float: left;
+    text-align: center;
+    margin-top: 2%;
+}
+
 .title_table_about_us {
     float: left;
     width: 25%;
@@ -389,10 +395,6 @@ table {
     table tr .td_hidden {
         display: none;
     }
-
-#my_table_region tbody tr td {
-    width: 33%;
-}
 
 #my_table_trainning tbody tr td {
     width: 16.6%;
@@ -552,4 +554,8 @@ label {
 
 #my_table_recruitment #table_recruitment tr td {
     width: 12.5%;
+}
+
+#my_table_orderdetail #table_orderdetail tr td {
+    width: 14%;
 }

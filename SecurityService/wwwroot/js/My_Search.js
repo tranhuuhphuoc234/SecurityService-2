@@ -85,4 +85,11 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
+
+    $("#search_orderdetail").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_orderdetail tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 }); 

@@ -359,6 +359,7 @@
                 <li id="Check_service"><span id="span_Check_service">Check Service</span></li>
                 <li id="Transaction_history"><span id="span_Transaction_History">Transaction History</span></li>
                 <li id="Comment"><span id="span_comment">Recruitment</span></li>
+                <li id="Orders"><span id="span_orders">Orders</span></li>
             </ul>
         </div>
 
@@ -439,6 +440,95 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+
+        <div class="display_content_client" id="display_ordrers" style="background:#dddddd;">
+            <div style="height:5%;"></div>
+            <div style="height:95%;">
+                <div style="width:100%; height:100%;">
+                    <div style="width:35%;  height: 100%; float:left;">
+                        <div style="width:100%;">
+                            <div style="width:10%; float:left; color:#dddddd;">a</div>
+                            <div style="width:90%; float:left;">
+                                <div class="my_text_box" style="display:none;">
+                                    <div class="my_label">Id_client</div>
+                                    <input type="text" name="id_client" id="id_client" />
+                                </div>
+                                <div class="my_text_box" style="display:none;">
+                                    <div class="my_label">Id Request</div>
+                                    <input type="text" name="id_request" id="id_request" />
+                                </div>
+                                <form id="form_orders">
+                                    <div class="my_text_box">
+                                        <div class="my_label">Name Client</div>
+                                        <input type="text" name="name_client" id="name_client" readonly />
+                                    </div>
+                                    <div class="my_text_box">
+                                        <div class="my_label">Email Client</div>
+                                        <input type="text" name="email_client" id="email_client" readonly />
+                                    </div>
+                                    <div class="my_text_box">
+                                        <div class="my_label">Phone Client</div>
+                                        <input type="text" name="phone_client" id="phone_client" readonly />
+                                    </div>
+                                    <div class="my_text_box">
+                                        <div class="my_label">Name Service</div>
+                                        <select id="select_service">
+                                        </select>
+                                    </div>
+                                    <div class="my_text_box">
+                                        <div class="my_label">Name Speciality</div>
+                                        <select id="select_speciality">
+                                        </select>
+                                    </div>
+                                    <div class="my_text_box">
+                                        <div class="my_label">Name Employee</div>
+                                        <select id="select_employee">
+                                        </select>
+                                    </div>
+                                </form>
+                                <div class="my_text_box" style="margin-top:10px;">
+                                    <button type="button" onclick="save_orders();" class="btn_save" style="">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width:65%;height:100%; float:left;">
+                        <div style="width:100%;height:100%;">
+                            <div style="height:10%;width:100%;">
+                                <div style="width:20%; float:left; color:#dddddd;">a</div>
+                                <div style="width:60%; float:left; text-align:center;">
+                                    <h2>Transaction History</h2>
+                                </div>
+                                <div style="width:20%;float:left; color:#dddddd;">a</div>
+                            </div>
+                            <div style="height:10%;">
+                                <input type="text" style="margin-bottom:5px;width:30%" placeholder="Search" id="search_orderdetail" />
+                            </div>
+                            <div style="height:80%;">
+                                <div style="width:750px;height:100%">
+                                    <div class="title_table">
+                                        <div class="title_table_orderdetail" style="width:150px;">Name Client</div>
+                                        <div class="title_table_orderdetail" style="width: 150px;;">Phone Client</div>
+                                        <div class="title_table_orderdetail" style="width: 150px;;">Name Employee</div>
+                                        <div class="title_table_orderdetail" style="width: 100px;;">Date</div>
+                                        <div class="title_table_orderdetail" style="width: 100px;;">Total</div>
+                                        <div class="title_table_orderdetail" style="width: 100px;;">Action</div>
+                                    </div>
+                                    <div class="content_table" style="height:83%;width:750px;">
+                                        <table id="my_table_orderdetail">
+                                            <tbody id="table_orderdetail">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

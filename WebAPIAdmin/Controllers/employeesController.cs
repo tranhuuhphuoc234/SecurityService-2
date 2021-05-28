@@ -31,7 +31,7 @@ namespace WebAPIAdmin.Controllers
                      join d in _context.departments on e.department equals d.id
                      join g in _context.grades on e.grade equals g.id
                      join r in _context.roles on e.role equals r.id
-           
+                     where e.status==true
                      select new employeeView {id = e.id,name=e.name,age=e.age,weight=e.weight,height=e.height,email=e.email,phone=e.phone,address=e.address,grade=g.name,role=r.name,speciality=s.name,achivement=e.achivement,aboutme=e.aboutme,price=e.price,department=d.name,status=e.status, usrname = e.usrname }).ToListAsync();
             return await re;
         }

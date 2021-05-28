@@ -64,6 +64,19 @@ function accpet_recruitment(a) {
             JSON.stringify(data);
             $('#content_employee').css('display', 'block');
             $('#content_client_management').css('display', 'none');
+            $("#li_employee").css('background-color', '#ffffff');
+            $("#li_employee").css('color', '#000000');
+            $("#li_client_management").css('background-color', '#000000');
+            $("#li_client_management").css('color', '#ffffff');
+            $('#input_name').val(data.first_name)
+            $('#input_age').val(data.age)
+            $('#input_weight').val(data.weight)
+            $('#input_height').val(data.height)
+            $('#input_phone').val(data.phone)
+            $('#input_email').val(data.email)
+            $('#input_address').val(data.address)
+            $('#input_achivement').val(data.achivement)
+            $('#input_aboutme').val(data.introduce_yourself)
 
         }, error: function (data) {
             alert("Erorr");

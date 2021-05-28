@@ -31,11 +31,6 @@ namespace WebAPIUser.Models
         [StringLength(300)]
         public string address { get; set; }
 
-        [Column("employee",TypeName ="int")]
-        public int employee { get; set; }
-
-   
-
         [Column("status",TypeName ="bit")]
         public bool status { get; set; }
 

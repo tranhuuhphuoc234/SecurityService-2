@@ -84,7 +84,7 @@
 
         .searchBox input {
             padding: 10px;
-            padding-left:50px;
+            padding-left: 50px;
             border: none;
             font-size: 18px;
             position: relative;
@@ -94,6 +94,7 @@
             border-radius: 30px;
             box-shadow: 1px 2px 3px #ddd;
         }
+
         .searchBox span {
             position: relative;
             z-index: 1;
@@ -101,7 +102,6 @@
             top: 0;
             fill: currentcolor;
         }
-
 </style>
 
 <div class="container">
@@ -112,12 +112,12 @@
             <h2> User Profile </h2>
             <div class="user_profile_content">
                 <div class="user_profile_avatar">
-                    <img src="../img/IMG_1939.JPG" />
+                    <img src="../img/IMG_1939.JPG" id="avatar"/>
                 </div>
                 <div class="user_profile_header">
-                    <h4> Nguyen Quoc Trung </h4><small style="padding:0px 10px 5px;"> hien role len day </small>
+                    <h4 id="name"> Nguyen Quoc Trung </h4><small style="padding:0px 10px 5px;" id="role"> hien role len day </small>
                 </div>
-                <p> hien introduce yourself (about me ) len day</p>
+                <p id="about"> hien introduce yourself (about me ) len day</p>
             </div>
         </div>
         <div class="user_info">
@@ -125,42 +125,42 @@
             <div class="user_info_content">
                 <div class="formBox">
                     <div class="formBox">
+                        @*<div class="inputBox-2 w50">
+                                <input type="text" value="Quoc Trung " disabled />
+                                <label> First name </label>
+                            </div>
+                            <div class="inputBox-2 w50">
+                                <input type="text" value="Nguyen" disabled />
+                                <label> Last name  </label>
+                            </div>*@
                         <div class="inputBox-2 w50">
-                            <input type="text" value="Quoc Trung " disabled />
-                            <label> First name </label>
-                        </div>
-                        <div class="inputBox-2 w50">
-                            <input type="text" value="Nguyen" disabled />
-                            <label> Last name  </label>
-                        </div>
-                        <div class="inputBox-2 w50">
-                            <input type="text" value="20" disabled />
+                            <input type="text" value="20" id="age" disabled />
                             <label> Age  </label>
                         </div>
                         <div class="inputBox-2 w50">
-                            <input type="text" value="70kg" disabled />
+                            <input type="text" value="70kg" id="weight" disabled />
                             <label> Weight  </label>
                         </div>
                         <div class="inputBox-2 w50">
-                            <input type="text" value="1.8m" disabled />
+                            <input type="text" value="1.8m" id="height" disabled />
                             <label> Height  </label>
                         </div>
 
                         <div class="inputBox-2 w50">
-                            <input type="tel" value="123456789" disabled />
+                            <input type="tel" value="123456789" id="phone" disabled />
                             <label> Phone No. </label>
                         </div>
                         <div class="inputBox-2 w50">
-                            <input type="email" value="trungchicken@gmail.com" disabled />
+                            <input type="email" value="trungchicken@gmail.com" id="email" disabled />
                             <label>  Email  </label>
                         </div>
 
                         <div class="inputBox-2 w100">
-                            <textarea disabled> asdsadsdasdsd </textarea>
+                            <textarea disabled id="achivement"> asdsadsdasdsd </textarea>
                             <label> Achivement </label>
                         </div>
                         <div class="inputBox-2 w100">
-                            <textarea disabled> 22 phan liem </textarea>
+                            <textarea disabled id="address"> 22 phan liem </textarea>
                             <label> Address  </label>
                         </div>
                     </div>
@@ -177,17 +177,17 @@
             <button class="myBtn" type="submit"><i class="bi bi-search"></i></button>
         </div>
 
-        <div class="director-content">
-            <div class='card'>
+        <div class="director-content" id="listEmp">
+            @*<div class='card'>
                 <div class='imgText'>
                     <div class='imgBx'>
                         <img src='../img/IMG_1939.JPG' />
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                  
+
                 </div>
-     
+
             </div>
             <div class='card'>
                 <div class='imgText'>
@@ -196,9 +196,9 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                   
+
                 </div>
-                
+
             </div>
             <div class='card'>
                 <div class='imgText'>
@@ -207,9 +207,9 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                    
+
                 </div>
-               
+
             </div>
             <div class='card'>
                 <div class='imgText'>
@@ -218,9 +218,9 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                   
+
                 </div>
-               
+
             </div>
             <div class='card'>
                 <div class='imgText'>
@@ -229,9 +229,9 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                   
+
                 </div>
-               
+
             </div>
             <div class='card'>
                 <div class='imgText'>
@@ -240,22 +240,22 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                   >
+                    >
                 </div>
-                
-            </div>
+
+            </div>*@
         </div>
         <ul class="pagination">
-            <li class="prev">
+            @*<li class="prev">
                 <a aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             <li class="active">
-                <a>1</a>
+                <a onclick="Skip(2,1)">1</a>
             </li>
             <li>
-                <a>2</a>
+                <a onclick="Skip(2, 2)">2</a>
             </li>
             <li>
                 <a>3</a>
@@ -265,7 +265,7 @@
             </li>
             <li>
                 <a>5</a>
-            </li>
+            </li>*@
             <li class="next">
                 <a aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
@@ -273,5 +273,84 @@
             </li>
         </ul>
     </div>
-
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var username = sessionStorage.getItem('inforlogin');
+    if (username != "") {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/employees/getUsername/' + username,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (index, value) {
+                    var linkImg = '../img/EmployeeImg/' + value.image;
+                    $('#avatar').prop('src', linkImg);
+                    $('#name').html(value.name);
+                    $('#role').html(value.role);
+                    $('#about').html(value.aboutme);
+                    $('#weight').val(value.weight);
+                    $('#height').val(value.height);
+                    $('#email').val(value.email);
+                    $('#phone').val(value.phone);
+                    $('#achivement').val(value.achivement);
+                    $('#address').val(value.address);
+                });
+            }
+        })
+    }
+    PageNumber();
+    var TAKE = 3;
+    Skip(TAKE, 1);
+    function PageNumber() {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/employees/CountEmployee',
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                var countPage = data / TAKE;
+                countPage = Math.ceil(countPage);
+                for (var i = 1; i <= countPage; i++) {
+                    if (i == 1) {
+                        var rows = "<li>"
+                            + "<a onclick='Skip(" + TAKE + ", " + i + ")'>" + i + "</a>"
+                            + "</li>";
+                    } else {
+                        var rows = "<li>"
+                            + "<a onclick='Skip(" + TAKE + ", " + i + ")'>" + i + "</a>"
+                            + "</li>";
+                    }
+                    
+                    $('.pagination').append(rows);
+                }
+                
+            }
+        })
+    }
+    function Skip(row, page) {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/employees/getEmployeeSkip/' + row + "," + page,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                var rows = "<div class='director-content' id='listEmp'>";
+                $.each(data, function (index, value) {
+                    rows += "<div class='card'>"
+                        + "<div class='imgText'>"
+                        + "<div class='imgBx'>"
+                        + "<img src='../img/EmployeeImg/"+value.image+"' />"
+                        + "</div>"
+                        + "<h5>" + value.name + "</h5>"
+                        + "<p>" + value.role + "</p>"
+                        + "</div>"
+                        + "</div>";
+                });
+                rows += "</div>";
+                $('#listEmp').replaceWith(rows);
+            }
+        })
+    }
+</script>

@@ -25,6 +25,7 @@ namespace WebAPIUser.Models.Context
         public DbSet<role> roles { get; set; }
         public DbSet<speciality> specialities { get; set; }
         public DbSet<trainning> trainnings { get; set; }
+        public DbSet<Recruitment> Recruitment { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -61,6 +61,7 @@
     <script src="~/js/Service.js"></script>
     <script src="~/js/Speciality.js"></script>
     <script src="~/js/Trainning.js"></script>
+    <script src="~/js/phuoc.js"></script>
     <script type="text/javascript">
         window.onload = function () {
             var chart = new CanvasJS.Chart("content_chart_employees", {
@@ -115,6 +116,7 @@
 </html>
 <script>
     var count_error = 0;
+    var count = 0;
     var empty_username = true;
     function clear_form_feedback() {
     $('#search_feedback').val("");
@@ -127,7 +129,7 @@
         $('#search_employee').val("");
     }
     function clear_form_employee() {
-        var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "username", "password", "status", "confirm"];
+        var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "username", "password", "status", "confirm", "image"];
         for (var i = 0; i < listProperty.length; i++) {
             var name = '#input_' + listProperty[i];
             $(name).val("");
@@ -1016,65 +1018,106 @@
     }
     @*Function add*@
     function add_employee() {
-        @*checkEmpty_employee();*@
+        var img = $('#input_image').val();
+        img = img.substring(img.lastIndexOf("\\") + 1, img.length);
+        checkEmpty_employee();
         if (count_error == 0) {
             var name = $('#input_name').val();
-            var aaa = check_username(name);
-            setTimeout(function () {
-                alert(aaa);
-            }, 3000)
             var age = $('#input_age').val();
             var weight = $('#input_weight').val();
             var height = $('#input_height').val();
             var address = $('#input_address').val();
             var phone = $('#input_phone').val();
-            var email = $('#input_email').val();
-            var department = $('#input_department').val();
-            var role = $('#input_role').val();
-            var grade = $('#input_grade').val();
-            var achivement = $('#input_achivement').val();
-            var speciality = $('#input_speciality').val();
-            var price = $('#input_price').val();
-            var aboutme = $('#input_aboutme').val();
-            var usrname = $('#input_username').val();
-            var pwd = $('#input_password').val();
-            var confirm = $('#input_confirm').val();
-            if (pwd == confirm) {
-                var employee_status = $('#employee_status').prop('checked');
-                var emp = new Object();
-                var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "usrname", "pwd", "status"];
-                var listData = [name, age, weight, height, address, phone, email, department, role, grade, achivement, speciality, price, aboutme, usrname, pwd, employee_status];
-                for (var i = 0; i < listData.length; i++) {
-                    emp[listProperty[i]] = listData[i];
-                }
-                var q = JSON.stringify(emp);
-                $.ajax({
-                    type: 'Post',
-                    url: 'http://localhost:44383/api/employees',
-                    data: q,
-                    contentType: "application/json; charset=utf8",
-                    dataType: 'json',
-                    success: function (data) {
-                        alert("Success");
-                        load_data_employee();
-                        clear_form_employee();
-                    },
-                    error: function (data) {
-                        alert("Error");
+            if (phone.length == 10) {
+                var email = $('#input_email').val();
+                if (ValidateEmail(email) == true) {
+                    var department = $('#input_department').val();
+                    var role = $('#input_role').val();
+                    var grade = $('#input_grade').val();
+                    var achivement = $('#input_achivement').val();
+                    var speciality = $('#input_speciality').val();
+                    var price = $('#input_price').val();
+                    var aboutme = $('#input_aboutme').val();
+                    var usrname = $('#input_username').val();
+                    var pwd = $('#input_password').val();
+                    var confirm = $('#input_confirm').val();
+                    if (pwd == confirm) {
+                        var employee_status = $('#employee_status').prop('checked');
+                        var emp = new Object();
+                        var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "usrname", "pwd", "status"];
+                        var listData = [name, age, weight, height, address, phone, email, department, role, grade, achivement, speciality, price, aboutme, usrname, pwd, employee_status];
+                        for (var i = 0; i < listData.length; i++) {
+                            emp[listProperty[i]] = listData[i];
+                        }
+                        var q = JSON.stringify(emp);
+                        $.ajax({
+                            type: 'Post',
+                            url: 'http://localhost:44383/api/employees',
+                            data: q,
+                            contentType: "application/json; charset=utf8",
+                            dataType: 'json',
+                            success: function (data) {
+                                @*      UPLOAD IMG   *@
+                                var empid = data.id;
+                                var input = document.getElementById('input_image');
+                                var files = input.files;
+                                var formData = new FormData();
+
+                                for (var i = 0; i != files.length; i++) {
+                                    formData.append("files", files[i]);
+                                }
+
+                                $.ajax({
+                                    url: "UploadImageEmp",
+                                    data: formData,
+                                    processData: false,
+                                    contentType: false,
+                                    type: "POST",
+                                    success: function (data) {
+                                        UploadImgEmp(img, empid);
+                                        @*  ADD EMPLOYEE SUCCESS   *@
+                                        alert("Success");
+                                        load_data_employee();
+                                        clear_form_employee();
+                                    }
+                                })
+                            },
+                            error: function (data) {
+                                alert("Error");
+                            }
+                        });
+                    } else {
+                        var error_cf = "<span id='error_confirm' style='color: red; font-size: 13px'>Confirm incorrect!!</span>";
+                        $('#error_confirm').replaceWith(error_cf);
+                        setTimeout(function () {
+                            $('#error_confirm').replaceWith("<span id='error_confirm'></span>");
+                        }, 2000)
                     }
-                });
+                }
             } else {
-                var error_cf = "<span id='error_confirm' style='color: red; font-size: 13px'>Confirm incorrect!!</span>";
-                $('#error_confirm').replaceWith(error_cf);
-                setTimeout(function () {
-                    $('#error_confirm').replaceWith("<span id='error_confirm'></span>");
-                }, 2000)
+                $('#error_phone').replaceWith("<span id='error_phone' style='color:red; font-size: 13px;'>Phone is not a valid</span>");
             }
         } else {
             alert("Please enter full information");
             count_error = 0;
         }
 
+    }
+    function UploadImgEmp(img, idemp) {
+        var image = new Object();
+        image.path = img;
+        image.employee = idemp;
+        var q = JSON.stringify(image);
+        $.ajax({
+            type: 'post',
+            url: "http://localhost:44383/api/images",
+            data: q,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+
+            }
+        })
     }
 </script>
 
@@ -1356,7 +1399,7 @@
 
     }
     function checkEmpty_employee() {
-        var list = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality","price", "aboutme", "username", "password", "confirm"];
+        var list = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality","price", "aboutme", "username", "password", "confirm", "image"];
         for (var i = 0; i < list.length; i++) {
             var error = "<span style='color: red;' id='error_" + list[i] + "'> *</span>";
             var correct = "<span id='error_" + list[i] + "'></span>";
@@ -1390,10 +1433,6 @@
             }
         })
         return count;
-    }
-    function count_error() {
-
-
     }
     @*Function check*@
     $('#input_age').keyup(function () {
@@ -1434,13 +1473,48 @@
                     }
                 });
                 if (count > 0) {
-                    $('#error_username').replaceWith("<span id='error_username' style='color: red; font-size: 13px;'>Username already exits</span>");
+                    setTimeout(function () {
+                        $('#error_username').replaceWith("<span id='error_username' style='color: red; font-size: 13px;'>Username already exits</span>");
+                    }, 600)
                 } else {
                     $('#error_username').replaceWith("<span id='error_username' style='color: red; font-size: 13px;'></span>");
                 }
             }
         })
     })
+
+    $('#input_email').keyup(function () {
+        var count = 0;
+        var email = $('#input_email').val();
+        if (email == "") {
+            $('#error_email').replaceWith("<span id='error_email'></span>");
+        }
+        if (ValidateEmail(email) == true) {
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:44383/api/employees',
+                dataType: 'json',
+                contentType: "application/json; charset=utf8",
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        if (value.email == email) {
+                            count++;
+                        }
+                    });
+                    if (count > 0) {
+                        setTimeout(function () {
+                            $('#error_email').replaceWith("<span id='error_email' style='color: red; font-size: 13px;'>Email already exits</span>");
+                        }, 600)
+                    } else {
+                        $('#error_email').replaceWith("<span id='error_email' style='color: red; font-size: 13px;'></span>");
+                    }
+                }
+            })
+        }
+    })
+
+    $('#input_phone').keyup(function () {
+        var phone = $('#input_phone').val();
+        checkPhone(phone);
+    })
 </script>
-
-

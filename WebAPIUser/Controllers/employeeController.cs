@@ -55,8 +55,9 @@ namespace WebAPIUser.Controllers
                       join rg in _context.regions on d.region equals rg.id
                       join g in _context.grades on e.grade equals g.id
                       join r in _context.roles on e.role equals r.id
+                      join img in _context.images on e.id equals img.employee
 
-                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, aboutme = e.aboutme, price = e.price, region = rg.name, status = e.status }).Where(e => e.status == true && e.id == id).ToListAsync();
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, aboutme = e.aboutme, price = e.price, region = rg.name, status = e.status, image = img.path }).Where(e => e.status == true && e.id == id).ToListAsync();
             return await re;
         }
 
@@ -182,6 +183,81 @@ namespace WebAPIUser.Controllers
             return await re;
         }
 
+        //login
+        [HttpGet("Login/{username},{password}")]
+        public async Task<ActionResult<bool>> login(string username, string password)
+        {
+            var re = (from e in _context.employees
+                      join s in _context.specialities on e.speciality equals s.id
+                      join d in _context.departments on e.department equals d.id
+                      join g in _context.grades on e.grade equals g.id
+                      join r in _context.roles on e.role equals r.id
+                      where e.usrname == username && e.pwd == password
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, region = r.name, aboutme = e.aboutme, price = e.price, status = e.status }).Count();
+            if(re != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+        [HttpGet("getUsername/{username}")]
+        public async Task<ActionResult<IEnumerable<employeeView>>> getUsername(string username)
+        {
+            var re = (from e in _context.employees
+                      join s in _context.specialities on e.speciality equals s.id
+                      join d in _context.departments on e.department equals d.id
+                      join g in _context.grades on e.grade equals g.id
+                      join r in _context.roles on e.role equals r.id
+                      join img in _context.images on e.id equals img.employee
+                      where e.usrname == username
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, region = r.name, aboutme = e.aboutme, price = e.price, status = e.status, image = img.path }).ToListAsync();
+            return await re;
+        }
+
+        [HttpGet("getEmployeeSkip/{row},{page}")]
+        public async Task<ActionResult<IEnumerable<employeeView>>> getEmployeeSkip(int row, int page)
+        {
+            var re = (from e in _context.employees
+                      join s in _context.specialities on e.speciality equals s.id
+                      join d in _context.departments on e.department equals d.id
+                      join rg in _context.regions on d.region equals rg.id
+                      join g in _context.grades on e.grade equals g.id
+                      join r in _context.roles on e.role equals r.id
+                      join img in _context.images on e.id equals img.employee
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, region = r.name, aboutme = e.aboutme, price = e.price, status = e.status, image = img.path }).OrderBy(a => a.id).Skip((page - 1) * row).Take(row).ToListAsync();
+            return await re;
+        }
+
+        [HttpGet("getAllEmployees")]
+        public async Task<ActionResult<IEnumerable<employeeView>>> getAllEmployees()
+        {
+            var re = (from e in _context.employees
+                      join s in _context.specialities on e.speciality equals s.id
+                      join d in _context.departments on e.department equals d.id
+                      join rg in _context.regions on d.region equals rg.id
+                      join g in _context.grades on e.grade equals g.id
+                      join r in _context.roles on e.role equals r.id
+                      join img in _context.images on e.id  equals img.employee
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, region = r.name, aboutme = e.aboutme, price = e.price, status = e.status, image = img.path }).ToListAsync();
+            return await re;
+        }
+
+        [HttpGet("CountEmployee")]
+        public async Task<ActionResult<int>> CountEmployee()
+        {
+            var re = (from e in _context.employees
+                      join s in _context.specialities on e.speciality equals s.id
+                      join d in _context.departments on e.department equals d.id
+                      join rg in _context.regions on d.region equals rg.id
+                      join g in _context.grades on e.grade equals g.id
+                      join r in _context.roles on e.role equals r.id
+                      join img in _context.images on e.id equals img.employee
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, region = r.name, aboutme = e.aboutme, price = e.price, status = e.status, image = img.path }).Count();
+            return re;
+        }
     }
 }

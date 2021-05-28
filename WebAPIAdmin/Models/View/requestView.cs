@@ -10,7 +10,6 @@ namespace WebAPIAdmin.Models.View
         public int id { get; set; }
         public string service { get; set; }
         public string message { get; set; }
-        public int MyProperty { get; set; }
         public int client { get; set; }
         public bool status { get; set; }
         public string client_name{ get; set; }

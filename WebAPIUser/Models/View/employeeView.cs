@@ -41,5 +41,7 @@ namespace WebAPIUser.Models
         public string aboutme { get; set; }
 
         public bool status { get; set; }
+
+        public string image { get; set; }
     }
 }

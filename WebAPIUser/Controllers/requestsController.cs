@@ -25,6 +25,7 @@ namespace WebAPIUser.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<request>>> Getrequests()
         {
+
             return await _context.requests.ToListAsync();
         }
 

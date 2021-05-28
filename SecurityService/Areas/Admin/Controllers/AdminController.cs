@@ -1,16 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Microsoft.AspNetCore.Hosting;
 
 namespace SecurityService.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminController : Controller
     {
+        private IHostingEnvironment _env;
+
+        public AdminController(IHostingEnvironment env)
+        {
+            _env = env;
+        }
         public IActionResult Index()
         {
             return View();
@@ -53,6 +63,23 @@ namespace SecurityService.Areas.Admin.Controllers
                 smtp.Send(mess);
             }
             return Json("Success");
+        }
+        public async Task<JsonResult> UploadImageEmp()
+        {
+            var a = "";
+            var dir = _env.ContentRootPath;
+            foreach (var formfile in Request.Form.Files)
+            {
+                a = formfile.FileName;
+            }
+            using (var fileStream = new FileStream(Path.Combine(dir + "/wwwroot/img/EmployeeImg/", a), FileMode.Create, FileAccess.Write))
+            {
+                foreach (var formfile in Request.Form.Files)
+                {
+                    formfile.CopyTo(fileStream);
+                }
+            }
+            return Json("success");
         }
     }
 }

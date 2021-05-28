@@ -165,7 +165,7 @@ h1 {
 
 /*input*/
 .my_text_box {
-    padding: 15px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
     margin-left: 0%;
     margin-right: 0%;
 }
@@ -173,7 +173,7 @@ h1 {
 input {
     width: 65%;
     margin: 0px;
-    padding: 5px;
+    padding: 3px;
     font-size: 15px;
     border-radius: 2px 2px 2px 2px;
     border: 1px solid;

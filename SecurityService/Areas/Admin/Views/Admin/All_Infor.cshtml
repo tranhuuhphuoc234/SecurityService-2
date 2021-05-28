@@ -114,12 +114,17 @@
                 <span id="error_confirm"></span>
             </div>
             <div class="my_text_box">
-                <label style="margin-left: 0px; color: black;">Status</label>
-                <input type="checkbox" name="status" id="employee_status" />
+                <div class="my_label">Image</div>
+                <input type="file" name="image" id="input_image" />
+                <span id="error_image"></span>
+            </div>
+            <div class="my_text_box">
+                <label style="color: black; font-size:15px;">Status</label>
+                <input type="checkbox" name="status" id="employee_status" style="width: 15%;" />
             </div>
             <div class="my_text_box">
                 <button type="button" onclick="add_employee();" class="btn_save" style="">Save</button>
-                <button type="button" class="btn_edit">Edit</button>
+                <button type="button" class="btn_edit" id="btn_edit">Edit</button>
                 <button type="button" onclick="click_view_employee();" class="btn_view">View</button>
             </div>
         </div>
@@ -845,3 +850,6 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+</script>

@@ -44,50 +44,155 @@
         <h1 style="padding-bottom:50px;"> Application Form</h1>
         <div class="formBox">
             <div class="inputBox-2 w50">
-                <input type="text" />
+                <input type="text" id="firstname" />
                 <label> First name <span style="color:red;"> &lowast; </span></label>
             </div>
             <div class="inputBox-2 w50">
-                <input type="text" />
+                <input type="text" id="lastname" />
                 <label> Last name <span style="color:red;"> &lowast; </span> </label>
             </div>
             <div class="inputBox-2 w50">
-                <input type="text" />
+                <input type="text" id="age" />
                 <label> Age <span style="color:red;"> &lowast; </span> </label>
             </div>
             <div class="inputBox-2 w50">
-                <input type="text" />
+                <input type="text" id="weight" />
                 <label> Weight <span style="color:red;"> &lowast; </span> </label>
             </div>
             <div class="inputBox-2 w50">
-                <input type="text" />
+                <input type="text" id="height" />
                 <label> Height <span style="color:red;"> &lowast; </span> </label>
             </div>
             <div class="inputBox-2 w50">
-                <input type="text" />
-                <label> Salary requirements  <span style="color:red;"> &lowast; </span></label>
-            </div>
-            <div class="inputBox-2 w50">
-                <input type="tel" />
+                <input type="tel" id="phone" />
                 <label> Phone No. <span style="color:red;"> &lowast; </span></label>
             </div>
             <div class="inputBox-2 w50">
-                <input type="email" />
-                <label>  Email <span style="color:red;"> &lowast; </span> </label>
+                <input type="email" id="email" />
+                <label>  Email <span style="color:red;"> &lowast; </span> <span id='error_email' style='color: red; font-size: 13px;'></span></label>
             </div>
             <div class="inputBox-2 w50">
-                <textarea></textarea>
+                <input type="email" id="" style="opacity: 0;"/>
+                <label style="opacity: 0;"><span style="color:red;"> &lowast; </span> </label>
+            </div>
+            <div class="inputBox-2 w50">
+                <textarea id="introduce"></textarea>
                 <label> Introduce yourself <span style="color:red;"> &lowast; </span> </label>
             </div>
             <div class="inputBox-2 w50">
-                <textarea></textarea>
+                <textarea id="achivement"></textarea>
                 <label> Achivement </label>
             </div>
             <div class="inputBox-2 w100">
-                <textarea></textarea>
+                <textarea id="address"></textarea>
                 <label> Address <span style="color:red;"> &lowast; </span> </label>
             </div>
+            
         </div>
-        <a href="#" class="myBtn"> Apply Now <i class="bi bi-arrow-right-circle"></i> </a>
+        <div style="display: flex;">
+            <div class="inputBox-2 w50">
+                <input type="file" id="file" onchange="chooseCV(this);" />
+                <label>  File <span style="color:red;"> &lowast; </span> </label>
+            </div>
+            <div>
+                <img src="" alt="CV" Text" id="imageCV" style="max-width: 150px;margin-left: 50px; width: 100%;" />
+            </div>
+        </div>
+        <div class="myBtn" onclick="apply();" style="width: 35px;">
+            Apply Now
+            <i class="bi bi-arrow-right-circle"></i>
+        </div>
     </div>
 </div>
+<script src="~/js/phuocc.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function apply() {
+        var firstname = $('#firstname').val();
+        var lastname = $('#lastname').val();
+        var weight = $('#weight').val();
+        var age = $('#age').val();
+        var height = $('#height').val();
+        var email = $('#email').val();
+        var checkEmail = regexEmail(email);
+        if (checkEmail == false) {
+            alert("Email not a valid");
+        } else {
+            var address = $('#address').val();
+            var phone = $('#phone').val();
+            var cv = $('#file').val();
+            cv = cv.substring(cv.lastIndexOf("\\") + 1, cv.length);
+            var achivement = $('#achivement').val();
+            var introduce = $('#introduce').val();
+            var listData = [firstname, lastname, age, weight, height, phone, email, cv, address, achivement, introduce];
+            var listProperty = ["first_name", "last_name", "age", "weight", "height", "phone", "email", "address", "cv", "achivement", "introduce_yourself"];
+            var check = true;
+            for (var i = 0; i < listData.length; i++) {
+                if (listData[i] == "") {
+                    check = false;
+                }
+            }
+            if (check == true) {
+                var recruitment = new Object();
+                for (var j = 0; j < listData.length; j++) {
+                    recruitment[listProperty[j]] = listData[j];
+                }
+                recruitment.status = true;
+                var q = JSON.stringify(recruitment);
+                $.ajax({
+                    type: 'post',
+                    url: 'http://localhost:54396/api/Recruitments',
+                    data: q,
+                    contentType: 'application/json; charset=utf8',
+                    dataType: 'json',
+                    success: function (data) {
+                        uploadCV("file");
+                        alert("We will contact for you soon. Thanks for apply");
+                    }
+                })
+            } else {
+                alert("Please enter full information");
+            }
+        }
+        
+    }
+    function uploadCV(idInputFile) {
+        var input = document.getElementById(idInputFile);
+        var files = input.files;
+        var formData = new FormData();
+
+        for (var i = 0; i != files.length; i++) {
+            formData.append("files", files[i]);
+        }
+
+        $.ajax({
+            url: "UploadCV",
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function (data) {
+                @*UPLOAD SUCCESS*@
+            }
+        })
+    }
+
+    function chooseCV(obj) {
+        var file = $(obj).val();
+        if (file != "") {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            $("#imageCV").fadeIn("fast").attr('src', tmppath);
+        } else {
+            $("#imageCV").fadeIn("fast").attr('src', "");
+        }
+
+    }
+
+    $('#email').keyup(function () {
+        var email = $('#email').val();
+        var check = regexEmail(email);
+        if (check == true) {
+            $('#error_email').replaceWith("<span id='error_email' style='color: green; font-size: 13px;'>Looks good</span>");
+        }
+    })
+</script>

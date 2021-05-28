@@ -130,7 +130,8 @@
                 contentType: 'application/json; charset=utf8',
             }).done(function (data) {
                 if (data == true) {
-                    alert("login success");
+                    sessionStorage.setItem('inforlogin', username);
+                    window.location.href = "@Url.Action("index", "EmployeePage")";
                 } else {
                     alert("username or password incorrect !!");
                 }

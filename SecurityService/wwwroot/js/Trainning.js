@@ -118,6 +118,7 @@ function icon_delete_trainning(a) {
 }
 function icon_edit_trainning(a) {
     clear_label_trainning();
+    $("#select_duration option:selected").removeAttr("selected");
     var id = $(a).attr('data_id_edit_trainning');
     $('#div_btn_edit_trainning').css('display', 'block');
     $('#div_btn_save_trainning').css('display', 'none');

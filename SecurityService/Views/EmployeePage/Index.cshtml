@@ -277,7 +277,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var username = sessionStorage.getItem('inforlogin');
+    if (username == null) {
+        window.location.href = "@Url.Action("index","login")";
+    }
     if (username != "") {
+        $('#Information').css('display', 'block');
         $.ajax({
             type: 'get',
             url: 'http://localhost:54396/api/employees/getUsername/' + username,
@@ -300,6 +304,7 @@
             }
         })
     }
+
     PageNumber();
     var TAKE = 3;
     Skip(TAKE, 1);

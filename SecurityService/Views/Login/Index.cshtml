@@ -119,6 +119,10 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    var username = sessionStorage.getItem('inforlogin');
+    if (username != null) {
+        window.location.href = "@Url.Action("index", "EmployeePage")";
+    }
     $('#submit').click(function () {
         var username = $('#username').val();
         var pass = $('#password').val();

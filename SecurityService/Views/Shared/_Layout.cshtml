@@ -212,15 +212,13 @@
     <script src="~/js/ShowAboutUs.js" asp-append-version="true"></script>
     <script src="~/js/ShowEmployee.js" asp-append-version="true"></script>
 
-
-
 </body>
 </html>
 <script>
     $.ajax({
         type: 'get',
         //using publish host
-        url: 'http://localhost:8085/api/about_us_employee',
+        url: 'http://localhost:54396/api/about_us_employee',
         dataType: 'json',
         contentType: "application/json; charset=utf8",
         success: function (data) {

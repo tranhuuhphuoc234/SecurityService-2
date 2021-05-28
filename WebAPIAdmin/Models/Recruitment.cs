@@ -30,6 +30,8 @@ namespace WebAPIAdmin.Models
         public string email { get; set; }
         [Column("address", TypeName = "varchar")]
         public string address { get; set; }
+        [Column("cv", TypeName = "varchar")]
+        public string cv { get; set; }
         [Column("achivement", TypeName = "varchar")]
         public string achivement { get; set; }
         [Column("introduce_yourself", TypeName = "varchar")]

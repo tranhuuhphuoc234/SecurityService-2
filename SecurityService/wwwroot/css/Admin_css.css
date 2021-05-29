@@ -559,3 +559,18 @@ label {
 #my_table_orderdetail #table_orderdetail tr td {
     width: 14%;
 }
+.left_task {
+    float:left;
+    width:30%;
+    height:100%;
+}
+.right_task {
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+.tb_task {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width:100%;
+}

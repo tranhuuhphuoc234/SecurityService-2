@@ -1,4 +1,16 @@
-﻿
+﻿function clear_form_order() {
+    $('#email_client').val("");
+    $('#phone_client').val("");
+    $('#name_client').val("");
+    document.getElementById('Choose_Employee').selected = "true";
+    document.getElementById('Choose_Speciality').selected = "true";
+    document.getElementById('Choose_Service').selected = "true";
+}
+function clear_label_orders() {
+    $('#select_service-error').css('display', 'none');
+    $('#select_speciality-error').css('display', 'none');
+    $('#select_employee-error').css('display', 'none');
+}
 $('#Check_service').click(function () {
     $('#span_Check_service').css('background', 'black');
     $('#span_orders').css('background', '#dddddd');
@@ -8,7 +20,8 @@ $('#Check_service').click(function () {
     $('#display_content_Transaction_history').css('display', 'none');
     $('#display_content_Comment').css('display', 'none');
     $('#display_ordrers').css('display', 'none');
-
+    clear_form_order();
+    clear_label_orders();
 })
 
 $('#Orders').click(function () {
@@ -20,6 +33,8 @@ $('#Orders').click(function () {
     $('#display_content_Transaction_history').css('display', 'none');
     $('#display_content_Comment').css('display', 'none');
     $('#display_ordrers').css('display', 'block');
+    clear_form_order();
+    clear_label_orders();
 
 })
 
@@ -27,12 +42,13 @@ $('#Transaction_history').click(function () {
     $('#span_Transaction_History').css('background', 'black');
     $('#span_comment').css('background', '#dddddd');
     $('#span_orders').css('background', '#dddddd');
-
     $('#span_Check_service').css('background', '#dddddd');
     $('#display_content_Transaction_history').css('display', 'block');
     $('#display_content_Check_service').css('display', 'none');
     $('#display_content_Comment').css('display', 'none');
     $('#display_ordrers').css('display', 'none');
+    clear_form_order();
+    clear_label_orders();
 
 })
 
@@ -45,7 +61,8 @@ $('#Comment').click(function () {
     $('#display_content_Transaction_history').css('display', 'none');
     $('#display_content_Check_service').css('display', 'none');
     $('#display_ordrers').css('display', 'none');
-
+    clear_form_order();
+    clear_label_orders();
 })
 
 function load_data_client() {
@@ -206,7 +223,7 @@ function accpet_client(a) {
         dataType: 'json',
         contentType: "application/json, charset=utf8",
         success: function (data) {
-            var select_service = "<select id='select_service' name='select_service'><option value='Choose_Service'>Choose Service</option>"
+            var select_service = "<select id='select_service' name='select_service'><option id='Choose_Service' value='Choose_Service'>Choose Service</option>"
             $.each(data, function (i, item) {
                 select_service += "<option  value='" + item.id + "'>" + item.name + "</option>"
             })
@@ -218,7 +235,7 @@ function accpet_client(a) {
                 dataType: 'json',
                 contentType: "application/json, charset=utf8",
                 success: function (data) {
-                    var select_speciality = "<select onchange='get_id_speciality(this);' id='select_speciality' name='select_speciality'><option value='Choose_Speciality'>Choose Speciality</option>"
+                    var select_speciality = "<select onchange='get_id_speciality(this);' id='select_speciality' name='select_speciality'><option id='Choose_Speciality' value='Choose_Speciality'>Choose Speciality</option>"
                     $.each(data, function (i, item) {
                         select_speciality += "<option  value='" + item.id + "'>" + item.name + "</option>"
                     })
@@ -267,7 +284,7 @@ function get_id_speciality(a) {
         dataType: 'json',
         contentType: "application/json, charset=utf8",
         success: function (data) {
-            var select_employee = "<select id='select_employee' name='select_employee'><option value='Choose_Employee'>Choose Employee</option>"
+            var select_employee = "<select id='select_employee' name='select_employee'><option id='Choose_Employee' value='Choose_Employee'>Choose Employee</option>"
             $.each(data, function (i, item) {
                 select_employee += "<option value='" + item.id + "'>" + item.name + "</option>"
             })
@@ -292,6 +309,7 @@ function save_orders() {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
+    alert(id_employee);
     $('#form_orders').validate({
         ignore: [],
         rules: {
@@ -333,6 +351,7 @@ function save_orders() {
                         infor_orderdetail.service = id_service;
                         infor_orderdetail.employee = id_employee;
                         var q_od = JSON.stringify(infor_orderdetail);
+                        alert(infor_orderdetail);
                         $.ajax({
                             type: 'Post',
                             url: 'http://localhost:44383/api/orderdetails',
@@ -355,6 +374,9 @@ function save_orders() {
                                             success: function (data) {
                                                 alert("Order Success");
                                                 load_data_client();
+                                                load_data_orderdetail();
+                                                clear_form_order();
+                                                clear_label_orders();
                                             }, error: function (data) {
                                                 alert("Erorr");
                                             }

@@ -130,7 +130,6 @@
         </div>
     </div>
 </div>
-
 @*View_Employee*@
 <div class="container" id="view_table_employee" style="display:none;">
     <div class="content_search">
@@ -169,7 +168,6 @@
         </div>
     </div>
 </div>
-
 @*content_feedback*@
 <div class="container" id="content_feedback" style="display:none;">
     <div class="manage_form"><h1>Manage Feedback</h1></div>
@@ -200,7 +198,6 @@
         </div>
     </div>
 </div>
-
 @*content_about_us*@
 <div class="container" id="content_about_us" style="display:none;">
     <div class="my_col_left_aboutus">
@@ -357,7 +354,7 @@
         <div style="height:86%;">
             <ul id="ul_lient_management">
                 <li id="Check_service"><span id="span_Check_service">Check Service</span></li>
-                <li id="Transaction_history"><span id="span_Transaction_History">Transaction History</span></li>
+                @*<li id="Transaction_history"><span id="span_Transaction_History">Transaction History</span></li>*@
                 <li id="Comment"><span id="span_comment">Recruitment</span></li>
                 <li id="Orders"><span id="span_orders">Orders</span></li>
             </ul>
@@ -390,7 +387,7 @@
             </div>
         </div>
 
-        <div class="display_content_client" id="display_content_Transaction_history" style="background:#dddddd;">
+@*        <div class="display_content_client" id="display_content_Transaction_history" style="background:#dddddd;">
             <div style="height:15%;">
                 <div style="height:33%;"></div>
                 <div style="height:67%;">
@@ -414,7 +411,7 @@
                 </div>
             </div>
         </div>
-
+*@
         <div class="display_content_client" id="display_content_Comment" style="background:#dddddd;">
             <div style="height:15%;">
                 <div style="height:33%;"></div>
@@ -510,11 +507,11 @@
                                 <div style="width:750px;height:100%">
                                     <div class="title_table">
                                         <div class="title_table_orderdetail" style="width:150px;">Name Client</div>
-                                        <div class="title_table_orderdetail" style="width: 150px;;">Phone Client</div>
-                                        <div class="title_table_orderdetail" style="width: 150px;;">Name Employee</div>
-                                        <div class="title_table_orderdetail" style="width: 100px;;">Date</div>
-                                        <div class="title_table_orderdetail" style="width: 100px;;">Total</div>
-                                        <div class="title_table_orderdetail" style="width: 100px;;">Action</div>
+                                        <div class="title_table_orderdetail" style="width: 150px;">Phone Client</div>
+                                        <div class="title_table_orderdetail" style="width: 150px;">Name Employee</div>
+                                        <div class="title_table_orderdetail" style="width: 100px;">Date</div>
+                                        <div class="title_table_orderdetail" style="width: 100px;">Total</div>
+                                        <div class="title_table_orderdetail" style="width: 100px;">Action</div>
                                     </div>
                                     <div class="content_table" style="height:83%;width:750px;">
                                         <table id="my_table_orderdetail">
@@ -813,6 +810,65 @@
         </div>
     </div>
 </div>
+@*content_task*@
+<div class="container" id="content_task" style="display:none;">
+    <div style="float: left; width: 15%; height: 100%;"></div>
+    <div class="left_task">
+        <div style="height:10%;"></div>
+        <div class="tb_task">
+            <div class="my_label">Name</div>
+            <input type="text" id="name_task" name="name_task" />
+        </div>
+        <div class="tb_task">
+            <div class="my_label">Star Day</div>
+            <input type="date" id="star_day" name="name_task" />
+        </div>
+        <div class="tb_task">
+            <div class="my_label">End Day</div>
+            <input type="date" id="end_day" name="end_day" />
+        </div>
+        <div class="tb_task">
+            <div class="my_label">Location</div>
+            <textarea id="location" style="width: 393px; height: 172px;">
+`           </textarea>
+        </div>
+        <div class="tb_task">
+            <label style="color:black;font-size:18px;margin:0;">Status</label>
+            <input type="checkbox" style="width:20%;" />
+        </div>
+        <div class="tb_task">
+            <button class="btn_save">Send</button>
+        </div>
+
+    </div>
+    <div style="float: left; width: 10%; height: 100%;"></div>
+    <div class="right_task">
+        <div style="height:10%;"></div>
+        <div class="tb_task">
+            <div class="my_label">Request Client</div>
+            <select id="select_request">
+            </select>
+        </div>
+        <div class="tb_task">
+            <div class="my_label">Name Team</div>
+            <select id="select_team">
+            </select>
+        </div>
+        <div class="tb_task">
+
+        </div>
+
+        <div class="tb_task">
+            <div class="my_label">Description</div>
+            <textarea id="description_task" style="width: 393px; height: 233px;">
+
+`           </textarea>
+        </div>
+        
+    </div>
+    <div style="float: left; width: 15%; height: 100%;"></div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 </script>

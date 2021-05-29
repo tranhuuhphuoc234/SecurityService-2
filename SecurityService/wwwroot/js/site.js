@@ -66,13 +66,14 @@ var swiper3 = new Swiper('.swiper-container3', {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
     },
-    // Responsive breakpoints
+    // Responsive breakpoints.
+
     breakpoints: {
-        // when window width is <= 480px
+        // when window width is <= 480px.
         480: {
             slidesPerView: 1,
         },
-        // when window width is <= 640px
+        // when window width is <= 640px.
         768: {
             slidesPerView: 2,
 
@@ -86,12 +87,12 @@ var swiper3 = new Swiper('.swiper-container3', {
 });
 
 
-// search function
+// search function.
 
 $(document).ready(function () {
     var myNav = document.getElementById("myNav");
     var searchAround = document.getElementById("searchAround");
-    
+
     $('#search').click(function () {
         $('.myNav-item').addClass('hide-item');
         $('.search-form').addClass('active');
@@ -115,7 +116,8 @@ $(document).ready(function () {
 
     })
 })
-//pagination
+//pagination.
+
 $(document).ready(function () {
     var pageItem = $(".pagination li").not(".prev,.next");
     var prev = $(".pagination li.prev");
@@ -137,7 +139,7 @@ $(document).ready(function () {
 
 
 
-// navigation sticky
+// navigation sticky.
 
 window.onscroll = function () { myFunction() };
 
@@ -155,7 +157,7 @@ function myFunction() {
 };
 
 
-//hamberger menu
+//hamberger menu.
 
 $(document).ready(function () {
     var myNav_list = document.getElementById('myNav-list');
@@ -177,8 +179,10 @@ $(document).ready(function () {
     })
 })
 
-// employee page
+// employee page.
+// Get the element with id="defaultOpen" and click on it.
 
+//document.getElementById("defaultOpen").click();
 function openPage(pageName, elmnt) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -194,23 +198,67 @@ function openPage(pageName, elmnt) {
 }
 //
 
-// Get the element with id="defaultOpen" and click on it
-//document.getElementById("defaultOpen").click();
+
 // fade in when sroll down
 
-/*$(window).on("load", function () {
-    $(window).scroll(function () {
-        var windowBottom = $(this).scrollTop() + $(this).innerHeight();
-        $(".fade").each(function () {
-            *//* Check the location of each desired element *//*
-            var objectBottom = $(this).offset().top + $(this).outerHeight();
+//$(window).on("load", function () {
+//    $(window).scroll(function () {
+//        var windowBottom = $(this).scrollTop() + $(this).innerHeight();
+//        $(".fade").each(function () {
+//            *//* Check the location of each desired element *//*
+//var objectBottom = $(this).offset().top + $(this).outerHeight();
 
-            *//* If the element is completely within bounds of the window, fade it in *//*
-            if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+//*//* If the element is completely within bounds of the window, fade it in *//*
+//if (objectBottom < windowBottom) { //object comes into view (scrolling down)
 
-                if ($(this).css("opacity") == 0) { $(this).fadeTo(100, 1, "linear"); }
+//    if ($(this).css("opacity") == 0) { $(this).fadeTo(100, 1, "linear"); }
+//}
+//});
+//}).scroll(); //invoke scroll-handler on page-load
+//});
+
+//counting number.
+    $('.count').each(function () {
+        $(this).prop('Counter', 0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 5000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
             }
         });
-    }).scroll(); //invoke scroll-handler on page-load
-});*/
+    });
 
+//modal form task
+// Get the modal.
+
+var modal = document.getElementById("myModalTask");
+var search = document.getElementById("searchBox_span");
+
+// Get the button that opens the modal.
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+
+btn.onclick = function () {
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+    search.style.zIndex = "0";
+
+}
+
+// When the user clicks anywhere outside of the modal, close it.
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        document.body.style.removeProperty("overflow");
+        search.style.zIndex = "1";
+
+    }
+}

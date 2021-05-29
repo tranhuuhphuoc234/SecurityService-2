@@ -426,6 +426,7 @@ header .menu-btn {
 /*
     carerr page
 */
+
 .inputBox-2 {
     position: relative;
     margin: 0 0 50px 0;
@@ -682,7 +683,7 @@ header .menu-btn {
 }
 
 .service-title h1 {
-    font-size: 50px;
+    font-size: 70px;
     letter-spacing: 2px;
     color: white;
     font-weight: 300;
@@ -770,45 +771,45 @@ header .menu-btn {
 }
 
 .service-item:hover .service-item-background {
-    animation: zoom 10s linear infinite;
+    animation: zoom 15s linear infinite;
 }
 
 .service-item:hover .service-item-background-1 {
-    animation: zoom 10s linear infinite;
+    animation: zoom 15s linear infinite;
 }
 
 .service-item:hover .service-item-background-2 {
-    animation: zoom 10s linear infinite;
+    animation: zoom 15s linear infinite;
 }
 
 .service-item:hover .service-item-background-3 {
-    animation: zoom 10s linear infinite;
+    animation: zoom 15s linear infinite;
 }
 
 
 .service-item-background {
-    background: url("../img/security.jpeg");
+    background: url("../img/mannedguard1.jpeg");
     background-size: cover;
     background-position: center;
     height: 100%;
 }
 
 .service-item-background-1 {
-    background: url("../img/security1.jpeg");
+    background: url("../img/cctv.jpg");
     background-size: cover;
     background-position: center;
     height: 100%;
 }
 
 .service-item-background-2 {
-    background: url("../img/guard1.jpg");
+    background: url("../img/cashService.jpeg");
     background-size: cover;
     background-position: center;
     height: 100%;
 }
 
 .service-item-background-3 {
-    background: url("../img/guard1.jpg");
+    background: url("../img/recruitment.jpeg");
     background-size: cover;
     background-position: center;
     height: 100%;
@@ -975,8 +976,9 @@ header .menu-btn {
     .footer-content-top {
         display: flex !important;
         flex-direction: column !important;
+        grid-gap: 20px!important ;
     }
-
+   
     .region-detail {
         flex-direction: column !important;
     }
@@ -984,6 +986,18 @@ header .menu-btn {
     .region-map {
         margin: 0px !important;
         padding-top: 10px !important;
+    }
+    .achivement ul {
+        display: block !important;
+    }
+    .modalTask-content{
+        display:block!important ;
+    }
+    .modalTask-detail{
+        top:65%!important ;
+    }
+    .modalTask-content .formBox:nth-child(2) {
+        padding: 0px !important;
     }
 }
 
@@ -1032,6 +1046,8 @@ header .menu-btn {
     .login-form input {
         margin: 0 !important;
     }
+    
+
 }
 /*ccccccccccccccccccccontact ussssssssssssssssssssssssss*/
 .contact {
@@ -1155,7 +1171,7 @@ header .menu-btn {
 
 .formBox {
     position: relative;
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -1231,12 +1247,13 @@ header .menu-btn {
     cursor: pointer;
     background: linear-gradient(to right, rgba(92,93,95,0.8), rgba(92,93,95,1));
     border: none;
-    outline: none;
+    outline: none!important ;
     min-width: 150px;
     padding: 15px;
     color: #fff !important;
     border-radius: 25px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+   
 }
 
     .myBtn:hover {
@@ -1288,7 +1305,7 @@ header .menu-btn {
     }
 
     50% {
-        transform: scale(1.2);
+        transform: scale(1.1);
     }
 }
 
@@ -1341,7 +1358,7 @@ header .menu-btn {
     display: inline-grid;
     position: relative;
     grid-template-columns: auto auto auto auto;
-    grid-gap: 10px;
+    grid-gap: 50px;
     width: 100%;
     justify-content: space-between;
 }

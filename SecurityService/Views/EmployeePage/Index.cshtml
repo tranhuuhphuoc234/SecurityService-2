@@ -106,7 +106,7 @@
 
 <div class="container">
     <button class="tablink" onclick="openPage('Information', this)" id="defaultOpen"> Information </button>
-    <button class="tablink" onclick="openPage('Employee', this)"> Employee </button>
+    <button class="tablink" onclick="openPage('TaskManager', this)"> Task Manager </button>
     <div id="Information" class="tabcontent">
         <div class="user_info">
             <h2> User Profile </h2>
@@ -125,14 +125,6 @@
             <div class="user_info_content">
                 <div class="formBox">
                     <div class="formBox">
-                        @*<div class="inputBox-2 w50">
-                                <input type="text" value="Quoc Trung " disabled />
-                                <label> First name </label>
-                            </div>
-                            <div class="inputBox-2 w50">
-                                <input type="text" value="Nguyen" disabled />
-                                <label> Last name  </label>
-                            </div>*@
                         <div class="inputBox-2 w50">
                             <input type="text" value="20" id="age" disabled />
                             <label> Age  </label>
@@ -169,112 +161,8 @@
         </div>
     </div>
 
-    <div id="Employee" class="tabcontent">
-        <div class="searchBox">
-            <div class="input"></div>
-            <span><i class="bi bi-search"></i></span>
-            <input type="text" placeholder="Search.." name="search">
-            <button class="myBtn" type="submit"><i class="bi bi-search"></i></button>
-        </div>
-
-        <div class="director-content" id="listEmp">
-            @*<div class='card'>
-                <div class='imgText'>
-                    <div class='imgBx'>
-                        <img src='../img/IMG_1939.JPG' />
-                    </div>
-                    <h5> Nguyen Quoc Trung</h5>
-                    <p>  role  </p>
-
-                </div>
-
-            </div>
-            <div class='card'>
-                <div class='imgText'>
-                    <div class='imgBx'>
-                        <img src='../img/IMG_1939.JPG' />
-                    </div>
-                    <h5> Nguyen Quoc Trung</h5>
-                    <p>  role  </p>
-
-                </div>
-
-            </div>
-            <div class='card'>
-                <div class='imgText'>
-                    <div class='imgBx'>
-                        <img src='../img/IMG_1939.JPG' />
-                    </div>
-                    <h5> Nguyen Quoc Trung</h5>
-                    <p>  role  </p>
-
-                </div>
-
-            </div>
-            <div class='card'>
-                <div class='imgText'>
-                    <div class='imgBx'>
-                        <img src='../img/IMG_1939.JPG' />
-                    </div>
-                    <h5> Nguyen Quoc Trung</h5>
-                    <p>  role  </p>
-
-                </div>
-
-            </div>
-            <div class='card'>
-                <div class='imgText'>
-                    <div class='imgBx'>
-                        <img src='../img/IMG_1939.JPG' />
-                    </div>
-                    <h5> Nguyen Quoc Trung</h5>
-                    <p>  role  </p>
-
-                </div>
-
-            </div>
-            <div class='card'>
-                <div class='imgText'>
-                    <div class='imgBx'>
-                        <img src='../img/IMG_1939.JPG' />
-                    </div>
-                    <h5> Nguyen Quoc Trung</h5>
-                    <p>  role  </p>
-                    >
-                </div>
-
-            </div>*@
-        </div>
-        <ul class="pagination">
-            @*<li class="prev">
-                <a aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="active">
-                <a onclick="Skip(2,1)">1</a>
-            </li>
-            <li>
-                <a onclick="Skip(2, 2)">2</a>
-            </li>
-            <li>
-                <a>3</a>
-            </li>
-            <li>
-                <a>4</a>
-            </li>
-            <li>
-                <a>5</a>
-            </li>*@
-            <li class="next">
-                <a aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var username = sessionStorage.getItem('inforlogin');
     if (username == null) {
@@ -305,57 +193,4 @@
         })
     }
 
-    PageNumber();
-    var TAKE = 3;
-    Skip(TAKE, 1);
-    function PageNumber() {
-        $.ajax({
-            type: 'get',
-            url: 'http://localhost:54396/api/employees/CountEmployee',
-            contentType: 'application/json; charset=utf8',
-            dataType: 'json',
-            success: function (data) {
-                var countPage = data / TAKE;
-                countPage = Math.ceil(countPage);
-                for (var i = 1; i <= countPage; i++) {
-                    if (i == 1) {
-                        var rows = "<li>"
-                            + "<a onclick='Skip(" + TAKE + ", " + i + ")'>" + i + "</a>"
-                            + "</li>";
-                    } else {
-                        var rows = "<li>"
-                            + "<a onclick='Skip(" + TAKE + ", " + i + ")'>" + i + "</a>"
-                            + "</li>";
-                    }
-                    
-                    $('.pagination').append(rows);
-                }
-                
-            }
-        })
-    }
-    function Skip(row, page) {
-        $.ajax({
-            type: 'get',
-            url: 'http://localhost:54396/api/employees/getEmployeeSkip/' + row + "," + page,
-            contentType: 'application/json; charset=utf8',
-            dataType: 'json',
-            success: function (data) {
-                var rows = "<div class='director-content' id='listEmp'>";
-                $.each(data, function (index, value) {
-                    rows += "<div class='card'>"
-                        + "<div class='imgText'>"
-                        + "<div class='imgBx'>"
-                        + "<img src='../img/EmployeeImg/"+value.image+"' />"
-                        + "</div>"
-                        + "<h5>" + value.name + "</h5>"
-                        + "<p>" + value.role + "</p>"
-                        + "</div>"
-                        + "</div>";
-                });
-                rows += "</div>";
-                $('#listEmp').replaceWith(rows);
-            }
-        })
-    }
-</script>
+    <script>*@

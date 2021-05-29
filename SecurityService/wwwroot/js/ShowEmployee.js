@@ -3,6 +3,7 @@ var currentLocation = 0;
 var skip = 0;
 
 // lazy load employee
+
 $(document).ready(function () {
     //load swiper 
     const swiper = document.querySelector('.swiper-container3').swiper;
@@ -153,7 +154,5 @@ $(document).ready(function () {
             
         }
     })
-
-   
 })
 

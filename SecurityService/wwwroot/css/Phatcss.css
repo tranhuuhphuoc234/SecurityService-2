@@ -990,6 +990,9 @@ header .menu-btn {
     .achivement ul {
         display: block !important;
     }
+    .modalTask-title {
+        margin-bottom: 30px!important ;
+    }
     .modalTask-content{
         display:block!important ;
     }

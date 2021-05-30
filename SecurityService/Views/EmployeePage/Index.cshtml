@@ -102,17 +102,46 @@
             top: 0;
             fill: currentcolor;
         }
+
+    .task_card {
+        position: relative;
+        width: 350px;
+        background: #fff;
+        box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        display: inline-flex;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 15px;
+        letter-spacing: .2px;
+    }
+        .task_card h5 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .task_card span {
+            font-size: 15px;
+            font-weight: 300;
+        }
+    .task_card_header{
+        padding:5px;
+        border-bottom:1px solid #ddd;
+    }
+    .task_card_body{
+        padding:5px;
+    }
+    
 </style>
 
 <div class="container">
     <button class="tablink" onclick="openPage('Information', this)" id="defaultOpen"> Information </button>
-    <button class="tablink" onclick="openPage('TaskManager', this)"> My Task </button>
+    <button class="tablink" onclick="openPage('MyTask', this)"> My Task </button>
+
     <div id="Information" class="tabcontent">
         <div class="user_info">
             <h2> User Profile </h2>
             <div class="user_profile_content">
                 <div class="user_profile_avatar">
-                    <img src="../img/IMG_1939.JPG" id="avatar"/>
+                    <img src="../img/IMG_1939.JPG" id="avatar" />
                 </div>
                 <div class="user_profile_header">
                     <h4 id="name"> Nguyen Quoc Trung </h4><small style="padding:0px 10px 5px;" id="role"> hien role len day </small>
@@ -160,37 +189,138 @@
             </div>
         </div>
     </div>
+    <div id="MyTask" class="tabcontent">
+        <div class="director-content" id="listEmp">
+            <div class='task_card'>
+                <div class="task_card_header">
+                    <h5> Task Name </h5>
+                    <div class="task_card_address">
+                        <i class="bi bi-geo-alt"></i>
+                        <span> 22 phan lieem </span>
+                    </div>
+                </div>
+                <div class="task_card_body">
+                    <div class="task_card_text">
+                        <h5> Description :</h5>
+                        <span> Trung la` con ga`</span>
+                    </div>
+                    <div class="task_card_time">
+                        <h5> Time : </h5>
+                        <span> 8:00 Am &mdash; 17:00 Pm </span>
+                    </div>
+                    <div class="task_card_date">
+                        <h5> Date : </h5>
+                        <span> 12/09/2001 &mdash; 12/09/2021 </span>
+                    </div>
+                </div>
+            </div>
+            <div class='task_card'>
+                <div class="task_card_header">
+                    <h5> Task Name </h5>
+                    <div class="task_card_address">
+                        <i class="bi bi-geo-alt"></i>
+                        <span> 22 phan lieem </span>
+                    </div>
+                </div>
+                <div class="task_card_body">
+                    <div class="task_card_text">
+                        <h5> Description :</h5>
+                        <span> Trung la` con ga`</span>
+                    </div>
+                    <div class="task_card_time">
+                        <h5> Time : </h5>
+                        <span> 8:00 Am &mdash; 17:00 Pm </span>
+                    </div>
+                    <div class="task_card_date">
+                        <h5> Date : </h5>
+                        <span> 12/09/2001 &mdash; 12/09/2021 </span>
+                    </div>
+                </div>
+               
 
+            </div>
+            <div class='task_card'>
+                <div class="task_card_header">
+                    <h5> Task Name </h5>
+                    <div class="task_card_address">
+                        <i class="bi bi-geo-alt"></i>
+                        <span> 22 phan lieem </span>
+                    </div>
+                </div>
+                <div class="task_card_body">
+                    <div class="task_card_text">
+                        <h5> Description :</h5>
+                        <span> Trung la` con ga`</span>
+                    </div>
+                    <div class="task_card_time">
+                        <h5> Time : </h5>
+                        <span> 8:00 Am &mdash; 17:00 Pm </span>
+                    </div>
+                    <div class="task_card_date">
+                        <h5> Date : </h5>
+                        <span> 12/09/2001 &mdash; 12/09/2021 </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="pagination">
+            <li class="prev">
+                <a aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="active">
+                <a onclick="Skip(2,1)">1</a>
+            </li>
+            <li>
+                <a onclick="Skip(2, 2)">2</a>
+            </li>
+            <li>
+                <a>3</a>
+            </li>
+            <li>
+                <a>4</a>
+            </li>
+            <li>
+                <a>5</a>
+            </li>
+            <li class="next">
+                <a aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    var username = sessionStorage.getItem('inforlogin');
-    if (username == null) {
-        window.location.href = "@Url.Action("index","login")";
-    }
-    if (username != "") {
-        $('#Information').css('display', 'block');
-        $.ajax({
-            type: 'get',
-            url: 'http://localhost:54396/api/employees/getUsername/' + username,
-            contentType: 'application/json; charset=utf8',
-            dataType: 'json',
-            success: function (data) {
-                $.each(data, function (index, value) {
-                    var linkImg = '../img/EmployeeImg/' + value.image;
-                    $('#avatar').prop('src', linkImg);
-                    $('#name').html(value.name);
-                    $('#role').html(value.role);
-                    $('#about').html(value.aboutme);
-                    $('#weight').val(value.weight);
-                    $('#height').val(value.height);
-                    $('#email').val(value.email);
-                    $('#phone').val(value.phone);
-                    $('#achivement').val(value.achivement);
-                    $('#address').val(value.address);
-                });
-            }
-        })
-    }
+    <script>
+        var username = sessionStorage.getItem('inforlogin');
+        if (username == null) {
+            window.location.href = "@Url.Action("index","login")";
+        }
+        if (username != "") {
+            $('#Information').css('display', 'block');
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:54396/api/employees/getUsername/' + username,
+                contentType: 'application/json; charset=utf8',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        var linkImg = '../img/EmployeeImg/' + value.image;
+                        $('#avatar').prop('src', linkImg);
+                        $('#name').html(value.name);
+                        $('#role').html(value.role);
+                        $('#about').html(value.aboutme);
+                        $('#weight').val(value.weight);
+                        $('#height').val(value.height);
+                        $('#email').val(value.email);
+                        $('#phone').val(value.phone);
+                        $('#achivement').val(value.achivement);
+                        $('#address').val(value.address);
+                    });
+                }
+            })
+        }
 
-    <script>*@
+        <script>*@

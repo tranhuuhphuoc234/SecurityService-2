@@ -30,7 +30,7 @@
         padding: 14px 16px;
         font-size: 17px;
         outline: none !important;
-        width: 50%;
+        width: 33%;
     }
 
         .tablink:hover {
@@ -121,7 +121,7 @@
     .modalTask-detail {
         position: relative;
         background-color: #fefefe;
-        padding: 50px;
+        padding: 40px;
         border-radius: 10px;
         border: 1px solid #888;
         width: 80%;
@@ -129,6 +129,7 @@
         z-index: 1;
         left: 50%;
         transform: translate(-50%,-50%);
+        overflow: hidden;
     }
 
     .modalTask-content {
@@ -143,17 +144,106 @@
         background: linear-gradient(to right, rgba(92,93,95,0.8), rgba(92,93,95,1));
         color: #fff;
         border-radius: 0px 0px 10px 10px;
-        width: 100px;
+        width: 150px;
+        padding: 5px;
     }
 
     .modalTask-content .formBox:nth-child(2) {
         padding-left: 20px;
     }
+
+    .task_box_content {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .task_box {
+        position: relative;
+        width: 250px;
+        border: 1px solid;
+        padding: 40px 0 40px;
+        border-radius: 10px;
+        margin: 20px;
+        color: #fff;
+        background: linear-gradient(to right, rgba(92,93,95,0.8), rgba(92,93,95,1));
+    }
+
+    .task_box_number,
+    .task_box_title {
+        font-size: 20px;
+    }
+
+    .task_table_content {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+        .task_table_content table {
+            width: 100%;
+            background: #f5f5f7;
+            box-shadow: 3px 3px 9px #ddd;
+        }
+
+            .task_table_content table thead tr {
+                height: 40px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .task_table_content table tbody tr {
+                height: 80px;
+                border-bottom: 1px solid #ddd;
+            }
+
+    .started {
+        background: green;
+        color: #fff;
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 20px;
+    }
+
+    .done {
+        background: red;
+        color: #fff;
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 20px;
+    }
+
+    .progressing {
+        background: #b1ac03;
+        padding: 5px;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .modalTask-reject {
+        position: relative;
+        left: 1000px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 </style>
 
 <div class="container">
-    <button class="tablink" onclick="openPage('Information', this)" id="defaultOpen"> Information </button>
-    <button class="tablink" onclick="openPage('Employee', this)"> Employee Manager </button>
+    <div class="tablink-content">
+        <button class="tablink" onclick="openPage('Information', this)" id="defaultOpen"> Information </button>
+        <button class="tablink" onclick="openPage('Employee', this)"> Employee Management </button>
+        <button class="tablink" onclick="openPage('Task', this)"> Task Management </button>
+    </div>
+
     <div id="Information" class="tabcontent">
         <div class="user_info">
             <h2> User Profile </h2>
@@ -210,11 +300,11 @@
 
     <div id="Employee" class="tabcontent">
         <!-- The Modal -->
-        <div id="myModalTask" class="modalTask">
-            <!-- Modal content -->
+        <div class="modalTask" id="myModalTask-1">
+
             <div class="modalTask-detail">
                 <div class="modalTask-title">
-                    <h1> Task </h1>
+                    <h1> Giving Task </h1>
                 </div>
                 <div class="modalTask-content">
                     <div class="formBox">
@@ -277,7 +367,7 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                    <button class="myBtn" id="myBtn"><i class="bi bi-calendar-plus"></i> Add Task</button>
+                    <button class="myBtn openModal-1 "><i class="bi bi-calendar-plus"></i> Add Task</button>
                 </div>
 
             </div>
@@ -288,7 +378,7 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                    <button class="myBtn" id="myBtn"><i class="bi bi-calendar-plus"></i> Add Task</button>
+                    <button class="myBtn openModal-1 "><i class="bi bi-calendar-plus"></i> Add Task</button>
                 </div>
 
             </div>
@@ -299,7 +389,7 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                    <button class="myBtn" id="myBtn"><i class="bi bi-calendar-plus"></i> Add Task</button>
+                    <button class="myBtn openModal-1 "><i class="bi bi-calendar-plus"></i> Add Task</button>
                 </div>
 
             </div>
@@ -310,7 +400,7 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                    <button class="myBtn" id="myBtn"><i class="bi bi-calendar-plus"></i> Add Task</button>
+                    <button class="myBtn openModal-1 "><i class="bi bi-calendar-plus"></i> Add Task</button>
                 </div>
 
             </div>
@@ -321,7 +411,7 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                    <button class="myBtn" id="myBtn"><i class="bi bi-calendar-plus"></i> Add Task</button>
+                    <button class="myBtn openModal-1 "><i class="bi bi-calendar-plus"></i> Add Task</button>
                 </div>
 
             </div>
@@ -332,7 +422,7 @@
                     </div>
                     <h5> Nguyen Quoc Trung</h5>
                     <p>  role  </p>
-                    <button class="myBtn" id="myBtn"><i class="bi bi-calendar-plus"></i> Add Task</button>
+                    <button class="myBtn openModal-1 "><i class="bi bi-calendar-plus"></i> Add Task</button>
                 </div>
 
             </div>
@@ -364,6 +454,228 @@
                 </a>
             </li>
         </ul>
+    </div>
+    <div id="Task" class="tabcontent">
+        <!-- The Modal -->
+        <div class="modalTask" id="myModalTask-2">
+            <!-- Modal content -->
+            <div class="modalTask-detail">
+                <div class="modalTask-title">
+                    <h1> View Task </h1>
+                </div>
+                @*modal task accept*@
+                <div class="modalTask-accept">
+                    <div class="modalTask-content">
+                        <div class="formBox">
+                            <div class="inputBox-2 w100">
+                                <input type="text" />
+                                <label> Name Task </label>
+                            </div>
+
+                            <div class="inputBox-2 w50">
+                                <input type="time" />
+                                <label> Time From </label>
+                            </div>
+                            <div class="inputBox-2 w50">
+                                <input type="time" />
+                                <label> Time to </label>
+                            </div>
+                            <div class="inputBox-2 w50">
+                                <input type="date" />
+                                <label> Date From </label>
+                            </div>
+                            <div class="inputBox-2 w50">
+                                <input type="date" />
+                                <label> Date To </label>
+                            </div>
+                        </div>
+                        <div class="formBox">
+                            <div class="inputBox-2 w100">
+                                <textarea> </textarea>
+                                <label> Description  </label>
+                            </div>
+                            <div class="inputBox-2 w100">
+                                <textarea> 213123123 </textarea>
+                                <label> Address </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modalTask-end">
+                        <button class="myBtn"> Submit <i class="bi bi-check2-circle"></i> </button>
+                        <button class="myBtn" id="reject"> Reject <i class="bi bi-calendar-x"></i></button>
+                    </div>
+
+                </div>
+                @*modal task reject*@
+                <div class="modalTask-reject" style="display:none;">
+                    <div class="modalTask-content">
+                        <div class="formBox">
+                            <div class="inputBox-2 w100">
+                                <input type="text" />
+                                <label> Name Task </label>
+                            </div>
+                            <div class="inputBox-2 w100">
+                                <textarea> </textarea>
+                                <label> Reason   </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modalTask-end">
+                        <button class="myBtn" id="back"> <i class="bi bi-arrow-left"></i> Back </button>
+                        <button class="myBtn">  Reject <i class="bi bi-calendar-x"></i> </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="task_box_content">
+            <div class="task_box">
+                <div class="task_box_title"> Total Task</div>
+                <span class="task_box_number"> 5 </span>
+            </div>
+            <div class="task_box">
+                <div class="task_box_title"> Task Progrossing</div>
+                <span class="task_box_number"> 5 </span>
+            </div>
+            <div class="task_box">
+                <div class="task_box_title"> Task Done</div>
+                <span class="task_box_number"> 5 </span>
+            </div>
+        </div>
+        @*task table*@
+        <h1> Task Started Table </h1>
+        <div class="task_table_content">
+            <table>
+                <thead>
+                    <tr>
+                        <th> No.</th>
+                        <th>Task Name</th>
+                        <th> Status </th>
+                        <th> Action </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Cash Service</td>
+                        <td> <span class="started">started</span></td>
+                        <td>
+                            <button class="myBtn openModal-2"><i class="bi bi-info-circle"></i> view</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td> Manned Guarding </td>
+                        <td> <span class="started">started</span></td>
+                        <td>
+                            <button class="myBtn openModal-2"><i class="bi bi-info-circle"></i> view</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td> Training </td>
+                        <td> <span class="started">started</span></td>
+                        <td>
+                            <button class="myBtn openModal-2"><i class="bi bi-info-circle"></i> view</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td> Training </td>
+                        <td> <span class="started">started</span></td>
+                        <td>
+                            <button class="myBtn openModal-2"><i class="bi bi-info-circle"></i> view</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @*task with employee table*@
+        <h1> Task Progressing Table </h1>
+        <div class="task_table_content">
+            <table>
+                <thead>
+                    <tr>
+                        <th> No.</th>
+                        <th>Task Name</th>
+                        <th>Employee Name  </th>
+                        <th> Status </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Cash Service</td>
+                        <td> Nguyen Quoc trung</td>
+                        <td> <span class="progressing"> progressing </span> </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td> Manned Guarding </td>
+                        <td> Ha Dang Khoa</td>
+                        <td> <span class="progressing"> progressing </span> </td>
+
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td> Training </td>
+                        <td> Tran Huu Phuoc</td>
+                        <td> <span class="progressing"> progressing </span> </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td> Training </td>
+                        <td> Ly Hung Phat </td>
+                        <td> <span class="progressing"> progressing </span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @*task with employee table*@
+        <h1> Task Done Table </h1>
+        <div class="task_table_content">
+            <table>
+                <thead>
+                    <tr>
+                        <th> No.</th>
+                        <th>Task Name</th>
+                        <th>Employee Name  </th>
+                        <th> Status </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Cash Service</td>
+                        <td> Nguyen Quoc trung</td>
+                        <td> <span class="done">Done</span> </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td> Manned Guarding </td>
+                        <td> Ha Dang Khoa</td>
+                        <td> <span class="done">Done</span> </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td> Training </td>
+                        <td> Tran Huu Phuoc</td>
+                        <td> <span class="done">Done</span> </td>
+
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td> Training </td>
+                        <td> Ly Hung Phat </td>
+                        <td> <span class="done">Done</span> </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

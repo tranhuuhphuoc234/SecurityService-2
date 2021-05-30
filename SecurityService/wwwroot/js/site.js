@@ -218,26 +218,30 @@ function openPage(pageName, elmnt) {
 //});
 
 //counting number.
-    $('.count').each(function () {
-        $(this).prop('Counter', 0).animate({
-            Counter: $(this).text()
-        }, {
-            duration: 5000,
-            easing: 'swing',
-            step: function (now) {
-                $(this).text(Math.ceil(now));
-            }
-        });
+$('.count').each(function () {
+    $(this).prop('Counter', 0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 5000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
     });
+});
 
 //modal form task
-// Get the modal.
 
-var modal = document.getElementById("myModalTask");
+
 var search = document.getElementById("searchBox_span");
 
 // Get the button that opens the modal.
-var btn = document.getElementById("myBtn");
+
+var modal1 = document.getElementById("myModalTask-1");
+var modalTaskAccept = document.querySelector('.modalTask-accept');
+var modalTaskReject = document.querySelector('.modalTask-reject');
+var modal2 = document.getElementById("myModalTask-2");
+var swiperContainer = document.querySelector('.swiper-container2');
 
 // Get the <span> element that closes the modal
 
@@ -245,20 +249,47 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
 
-btn.onclick = function () {
-    modal.style.display = "block";
-    document.body.style.overflow = "hidden";
-    search.style.zIndex = "0";
+$(document).ready(function () {
+    $('.openModal-1').click(function () {
+        modal1.style.display = "block";
+        document.body.style.overflow = "hidden";
+        search.style.zIndex = "0";
+        swiperContainer.style.zIndex = "0";
+    }),
+        $('.openModal-2').click(function () {
+            modal2.style.display = "block";
+            document.body.style.overflow = "hidden";
+            search.style.zIndex = "0";
+            swiperContainer.style.zIndex = "0";
+        })
+    $('#reject').click(function () {
+        modalTaskAccept.style.display = "none";
+        modalTaskReject.style.display = "block";
+        modalTaskReject.style.left = "0";
+        modalTaskReject.style.transition ="left 2s"
+    })
+    $('#back').click(function () {
+        modalTaskReject.style.display = "none";
+        modalTaskAccept.style.display = "block";
 
-}
+    })
+})
+
 
 // When the user clicks anywhere outside of the modal, close it.
 
 window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == modal1) {
+        modal1.style.display = "none";
         document.body.style.removeProperty("overflow");
         search.style.zIndex = "1";
-
+        swiperContainer.style.zIndex = "1";
+    }
+    if (event.target == modal2) {
+        modal2.style.display = "none";
+        document.body.style.removeProperty("overflow");
+        search.style.zIndex = "1";
+        swiperContainer.style.zIndex = "1";
     }
 }
+

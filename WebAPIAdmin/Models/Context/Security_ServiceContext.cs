@@ -27,6 +27,8 @@ namespace WebAPIAdmin.Models.Context
         public DbSet<speciality> specialities { get; set; }
         public DbSet<trainning> trainnings { get; set; }
         public DbSet<Recruitment> Recruitments { get; set; }
+        public DbSet<team> teams { get; set; }
+        public DbSet<task> tasks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,5 +37,7 @@ namespace WebAPIAdmin.Models.Context
         }
 
         public DbSet<WebAPIAdmin.Models.Recruitment> Recruitment { get; set; }
+
+        public DbSet<WebAPIAdmin.Models.team> team { get; set; }
     }
 }

@@ -815,58 +815,125 @@
     <div style="float: left; width: 15%; height: 100%;"></div>
     <div class="left_task">
         <div style="height:10%;"></div>
+       
+        <form id="form_task">
+            <div class="tb_task">
+                <div class="my_label">Name</div>
+                <input type="text" id="name_task" name="name_task" />
+            </div>
+            <div class="tb_task">
+                <div class="my_label">Star Day</div>
+                <input type="date" id="star_day" name="star_day" />
+            </div>
+            <div class="tb_task">
+                <div class="my_label">End Day</div>
+                <input type="date" id="end_day" name="end_day" />
+            </div>
+            <div class="tb_task">
+                <div class="my_label">Location</div>
+                <textarea id="location" style="width: 393px; height: 172px;">
+           </textarea>
+            </div>
+            <div class="tb_task">
+                <label style="color:black;font-size:18px;margin:0;">Status</label>
+                <input id="status_task" type="checkbox" style="width:20%;" />
+            </div>
+        </form>
+       
         <div class="tb_task">
-            <div class="my_label">Name</div>
-            <input type="text" id="name_task" name="name_task" />
-        </div>
-        <div class="tb_task">
-            <div class="my_label">Star Day</div>
-            <input type="date" id="star_day" name="name_task" />
-        </div>
-        <div class="tb_task">
-            <div class="my_label">End Day</div>
-            <input type="date" id="end_day" name="end_day" />
-        </div>
-        <div class="tb_task">
-            <div class="my_label">Location</div>
-            <textarea id="location" style="width: 393px; height: 172px;">
-`           </textarea>
-        </div>
-        <div class="tb_task">
-            <label style="color:black;font-size:18px;margin:0;">Status</label>
-            <input type="checkbox" style="width:20%;" />
-        </div>
-        <div class="tb_task">
-            <button class="btn_save">Send</button>
+            <button class="btn_save" onclick="onclick_send_task();">Send</button>
         </div>
 
     </div>
     <div style="float: left; width: 10%; height: 100%;"></div>
     <div class="right_task">
         <div style="height:10%;"></div>
-        <div class="tb_task">
-            <div class="my_label">Request Client</div>
-            <select id="select_request">
-            </select>
-        </div>
-        <div class="tb_task">
-            <div class="my_label">Name Team</div>
-            <select id="select_team">
-            </select>
-        </div>
-        <div class="tb_task">
+        <form id="form_task1">
+            <div class="tb_task">
+                <div class="my_label">Request Name Service</div>
+                <select id="select_request">
+                </select>
+            </div>
+            <div class="tb_task">
+                <div class="my_label">Name Team</div>
+                <select id="select_team">
+                </select>
+            </div>
+            <div class="tb_task">
 
-        </div>
+            </div>
+            <div class="tb_task">
+                <div class="my_label">Description</div>
+                <textarea id="description_task" style="width: 393px; height: 233px;">
+          </textarea>
+            </div>
+        </form>
 
-        <div class="tb_task">
-            <div class="my_label">Description</div>
-            <textarea id="description_task" style="width: 393px; height: 233px;">
-
-`           </textarea>
-        </div>
-        
     </div>
     <div style="float: left; width: 15%; height: 100%;"></div>
+</div>
+@*content_team*@
+<div class="container" id="content_team" style="display:none;">
+    <div class="my_col_left_region" style="height:100%;">
+        <div style="height:10%;"></div>
+        <div style="height:85%;">
+            <form id="form_team">
+                <div class="tb_task">
+                    <div class="my_label">Name Team</div>
+                    <input type="text" name="name_team" id="name_team" />
+                </div>
+                <div class="tb_task">
+                    <div class="my_label">Name Region</div>
+                    <select id="select_regions_team">
+                    </select>
+                </div>
+                <div class="tb_task">
+                    <div class="my_label">Department</div>
+                    <select id="select_departments">
+                    </select>
+                </div>
+                <div class="tb_task">
+                    <div class="my_label">Service</div>
+                    <select id="select_services">
+                    </select>
+                </div>
+                <div class="tb_task">
+                    <label class="my_label">Status</label>
+                    <input type="checkbox" style="width:20%;" name="status_team" id="status_team" />
+                </div>
+            </form>
+            <div class="div_btn">
+                <button type="button" onclick="onclick_save_team();" class="btn_save">Save</button>
+            </div>
+
+        </div>
+        </div>
+    <div class="my_col_right_region">
+        <div class="general_search">
+            <div style="height:33%;"></div>
+            <div style="height:67%;">
+                <label class="label_search">Search</label>
+                <input type="text" style="width:30%;margin-right:10px;" placeholder="Name All" id="search_team" />
+            </div>
+        </div>
+        <div class="general_table">
+            <div class="table_region" style=" height: 570px;">
+                <div class="title_table">
+                    <div class="title_table_team">Name Team</div>
+                    <div class="title_table_team">Department</div>
+                    <div class="title_table_team">Name Leader</div>
+                    <div class="title_table_team">Name Service</div>
+                    <div class="title_table_team">Active</div>
+                </div>
+                <div class="content_table">
+                    <table id="my_table_team" class="content_table_team">
+                        <tbody id="table_team">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

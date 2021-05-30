@@ -2,9 +2,9 @@
     $('#email_client').val("");
     $('#phone_client').val("");
     $('#name_client').val("");
-    document.getElementById('Choose_Employee').selected = "true";
-    document.getElementById('Choose_Speciality').selected = "true";
-    document.getElementById('Choose_Service').selected = "true";
+    $('#select_speciality').find('option').remove();
+    $('#select_employee').find('option').remove();
+    $('#select_service').find('option').remove();
 }
 function clear_label_orders() {
     $('#select_service-error').css('display', 'none');

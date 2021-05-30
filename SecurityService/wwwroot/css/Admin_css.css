@@ -559,10 +559,21 @@ label {
 #my_table_orderdetail #table_orderdetail tr td {
     width: 14%;
 }
+#my_table_team #table_team tr td {
+    width: 20%;
+}
+
+.title_table_team {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 2%;
+}
+
 .left_task {
-    float:left;
-    width:30%;
-    height:100%;
+    float: left;
+    width: 30%;
+    height: 100%;
 }
 .right_task {
     float: left;
@@ -573,4 +584,33 @@ label {
     margin-top: 10px;
     margin-bottom: 10px;
     width:100%;
+}
+
+input[type="date"]::-webkit-datetime-edit, input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-clear-button {
+    color: #fff;
+    position: relative;
+}
+
+input[type="date"]::-webkit-datetime-edit-year-field {
+    position: absolute !important;
+    border-left: 1px solid #8c8c8c;
+    padding: 2px;
+    color: #000;
+    left: 56px;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field {
+    position: absolute !important;
+    border-left: 1px solid #8c8c8c;
+    padding: 2px;
+    color: #000;
+    left: 26px;
+}
+
+
+input[type="date"]::-webkit-datetime-edit-day-field {
+    position: absolute !important;
+    color: #000;
+    padding: 2px;
+    left: 4px;
 }

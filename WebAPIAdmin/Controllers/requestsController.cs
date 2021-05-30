@@ -28,10 +28,13 @@ namespace WebAPIAdmin.Controllers
             var q = (from re in _context.requests
                      join cl in _context.clients
                      on re.client equals cl.id
+                     join s in _context.services
+                     on re.service equals s.id
                      where re.status == true
                      select new Models.View.requestView
                      {
                          id = re.id,
+                         name_service=s.name,
                          service = re.service,
                          message = re.message,
                          client = re.client,

@@ -8,7 +8,7 @@ namespace WebAPIAdmin.Models.View
     public class requestView
     {
         public int id { get; set; }
-        public string service { get; set; }
+        public int service { get; set; }
         public string message { get; set; }
         public int client { get; set; }
         public bool status { get; set; }
@@ -18,6 +18,6 @@ namespace WebAPIAdmin.Models.View
         public string client_address { get; set; }
         public int employee { get; set; }
         public bool client_status { get; set; }
-
+        public string name_service { get; set; }
     }
 }

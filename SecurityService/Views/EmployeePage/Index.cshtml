@@ -306,25 +306,45 @@
             success: function (data) {
                 $.each(data, function (index, value) {
                     load_task(value.id, 'Open');
+                    var linkImg = '../img/EmployeeImg/' + value.image;
+                    $('#avatar').prop('src', linkImg);
+                    $('#name').html(value.name);
+                    $('#role').html(value.role);
+                    $('#about').html(value.aboutme);
+                    $('#weight').val(value.weight);
+                    $('#height').val(value.height);
+                    $('#email').val(value.email);
+                    $('#phone').val(value.phone);
+                    $('#achivement').val(value.achivement);
+                    $('#address').val(value.address);
                 });
             }
         })
     }
-    function load_task(id_employee, task_status){
+    function load_task(id_employee, task_status) {
+        var sd = "";
+        var edd = "";
         $.ajax({
             type: 'get',
             url: 'http://localhost:54396/api/task_employee/getTaskByEmployee/' + id_employee + "," + task_status,
             contentType: 'application/json; charset=utf8',
             dataType: 'json',
             success: function (data) {
+                
                 var rows = "<div class='director-content' id='listTask'>";
                 $.each(data, function (index, value) {
+                    sd += value.start_day;
+                    var start_day = sd.split('T');
+
+                    edd += value.end_day;
+                    var end_day = edd.split('T');
+
                     rows += "<div class='task_card'>"
                         + "<div class='task_card_header'>"
                             +"<h5>"+value.task_name+"</h5>"
                         + "<div class='task_card_address'>"
                         + "<i class='bi bi-geo-alt'></i>"
-                            +"<span>"+value.address+"</span>"
+                        + "<span>" + value.location + "</span>"
                             +"</div>"
                             +"</div>"
                         + "<div class='task_card_body'>"
@@ -338,7 +358,7 @@
                             +"</div>"
                         + "<div class='task_card_date'>"
                             + "<h5> Date : </h5>"
-                        + "<span> " + value.start_day + " &mdash; " + value.end_time +" </span>"
+                        + "<span> " + start_day[0] + " &mdash; " + end_day[0] +" </span>"
                             + "</div>"
                             + "</div>"
                             + "</div>";

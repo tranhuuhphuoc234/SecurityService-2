@@ -132,6 +132,20 @@
         overflow: hidden;
     }
 
+    .modalTask-viewTask-employee {
+        position: relative;
+        background-color: #fefefe;
+        padding: 40px;
+        border-radius: 10px;
+        border: 1px solid #888;
+        width: 80%;
+        top: 50%;
+        z-index: 1;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        overflow: hidden;
+    }
+
     .modalTask-content {
         display: inline-flex;
         justify-content: center;
@@ -326,7 +340,7 @@
                             <input type="time" id="end_time_send" />
                             <label> Time to </label>
                         </div>
-                        <input type="hidden" id="id_employee_send"/>
+                        <input type="hidden" id="id_employee_send" />
                         <div class="inputBox-2 w50">
                             <input type="date" id="start_day_send" />
                             <label> Date From </label>
@@ -353,7 +367,23 @@
                 </div>
 
                 <div class="modalTask-end">
-                    <input class="myBtn" type="button" id="send_task" value="Send"/>
+                    <input class="myBtn" type="button" id="send_task" value="Send" />
+                </div>
+            </div>
+
+            @*View-task*@
+            <div class="modalTask-viewTask-employee">
+                <div class="modalTask-title">
+                    <h1> View Task Of Employee</h1>
+                </div>
+                <div class="modalTask-content">
+                    <div class="formBox">
+                        
+                    </div>
+                </div>
+
+                <div class="modalTask-end">
+                    <input class="myBtn" type="button" id="send_task" value="Back" />
                 </div>
             </div>
 
@@ -530,7 +560,7 @@
                     </div>
                     <div class="modalTask-end">
                         <button class="myBtn" id="back"> <i class="bi bi-arrow-left"></i> Back </button>
-                        <button class="myBtn"> Send Reject <i class="bi bi-calendar-x"></i> </button>
+                        <button class="myBtn" id="send_reject"> Send Reject <i class="bi bi-calendar-x"></i> </button>
                     </div>
 
                 </div>
@@ -539,15 +569,15 @@
         <div class="task_box_content">
             <div class="task_box">
                 <div class="task_box_title"> Total Task</div>
-                <span class="task_box_number"> 5 </span>
+                <span class="task_box_number" id="total_task"> 5 </span>
             </div>
             <div class="task_box">
                 <div class="task_box_title"> Task Progrossing</div>
-                <span class="task_box_number"> 5 </span>
+                <span class="task_box_number" id="total_task_inprogress"> 5 </span>
             </div>
             <div class="task_box">
                 <div class="task_box_title"> Task Done</div>
-                <span class="task_box_number"> 5 </span>
+                <span class="task_box_number" id="total_task_done"> 5 </span>
             </div>
         </div>
         @*task table*@
@@ -630,12 +660,15 @@
             dataType: 'json',
             success: function (data) {
                 $.each(data, function (index, value) {
+                    IdTeam = value.id_team;
                     getEmployeeByTeam(value.id_team);
                     load_task_of_admin(value.id_team);
                     load_task_inprogress(value.id_team);
                     load_task_done(value.id_team);
                     load_cb_main_task(value.id_team, "InProgress");
-
+                    count_total_task(value.id_team);
+                    count_total_task_inprogress(value.id_team);
+                    count_total_task_done(value.id_team);
                     var linkImg = '../img/EmployeeImg/' + value.image;
                     $('#avatar').prop('src', linkImg);
                     $('#name').html(value.name);
@@ -759,7 +792,6 @@
     function ViewTask(obj) {
         var modal = $(obj).attr('data-model');
         if (modal == 'modal1') {
-            alert($(obj).attr('data-id'));
             modal1.style.display = "block";
             document.body.style.overflow = "hidden";
             search.style.zIndex = "0";
@@ -810,7 +842,48 @@
             }
         })
     }
+    $('#send_reject').click(function (data) {
+        var idtask = $('#idTask_reject').val();
+        var reason = $('#reason_reject').val();
+        if (reason != "") {
+            var rj = new Object();
+            rj.id_task = idtask;
+            rj.reason = reason;
+            rj.status = true;
 
+            var q = JSON.stringify(rj);
+            $.ajax({
+                type: 'post',
+                url: 'http://localhost:54396/api/reason_reject',
+                data: q,
+                contentType: 'application/json; charset=utf8',
+                dataType: 'json',
+                success: function (data) {
+                    UpdateTaskStatus(idtask);
+                    alert("Send reject success");
+                    load_task_of_admin(IdTeam);
+                    $('#back').click();
+                    $('#reason_reject').val("");
+                    modal2.style.display = "none";
+                    document.body.style.removeProperty("overflow");
+                    search.style.zIndex = "1";
+                }
+            })
+        } else {
+            alert("Please enter reason");
+        }
+    })
+    function UpdateTaskStatus(idtask) {
+        $.ajax({
+            type: 'put',
+            url: 'http://localhost:54396/api/tasks/UpdateStatusReject/' + idtask,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+
+            }
+        })
+    } 
     function getEmployeeByTeam(team) {
         IdTeam = team;
             $.ajax({
@@ -828,7 +901,7 @@
                             + "</div>"
                             + "<h5>"+value.name+"</h5>"
                             + "<p>  "+value.role+"  </p>"
-                            + "<button class='myBtn openModal-1' onclick='ViewTask(this)' data-model='modal1' data-id='"+value.id+"'><i class='bi bi-calendar-plus'></i> Add Task</button>"
+                            + "<button class='myBtn openModal-1' onclick='ViewTask(this)' data-model='modal1' data-id='"+value.id+"' style='min-width: 100px;'><i class='bi bi-calendar-plus'></i> Add Task</button>"
                             + "</div>"
                             + "</div>";
                     });
@@ -838,7 +911,8 @@
             })
         }
 
-        function load_task_of_admin(team) {
+    function load_task_of_admin(team) {
+        
             $.ajax({
                 type: 'get',
                 url: 'http://localhost:54396/api/tasks/getTaskOpenByTeam/' + team,
@@ -863,8 +937,10 @@
                                 + "</td>"
                                 + "</tr>";
                             count++;
+                            count++;
                         });
-                        rows += "</tbody>"
+                        rows += "</tbody>";
+                        
                         $('#taskOfAdmin').replaceWith(rows);
                     }
 
@@ -934,6 +1010,40 @@
                 $('#taskDone').replaceWith(rows);
             }
         });
+    }
+
+    function count_total_task(team) {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/tasks/CountTotalTask/' + team,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                $('#total_task').html(data);
+            }
+        })
+    }
+    function count_total_task_inprogress(team) {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/tasks/CountTotalTaskInprogress/' + team,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                $('#total_task_inprogress').html(data);
+            }
+        })
+    }
+    function count_total_task_done(team) {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/tasks/CountTotalTaskDone/' + team,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                $('#total_task_done').html(data);
+            }
+        })
     }
     $('#claim').click(function (data) {
         var idtask = $('#idTask_started').val();

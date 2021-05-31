@@ -31,6 +31,7 @@ namespace WebAPIUser.Models.Context
         public DbSet<task> tasks { get; set; }
         public DbSet<task_status> task_Statuses { get; set; }
         public DbSet<task_employee> task_Employees { get; set; }
+        public DbSet<reason_reject> reason_Rejects { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

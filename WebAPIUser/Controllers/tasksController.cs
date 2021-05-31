@@ -168,5 +168,32 @@ namespace WebAPIUser.Controllers
                       select new Models.View.taskView { id = task.id, name = task.name, start_day = task.start_day, end_day = task.end_day, location = task.location, description = task.description, request = task.request, task_status = task.task_status, team = task.team, status_name = st.name }).ToListAsync();
             return await re;
         }
+        [HttpPut("UpdateStatusReject/{id}")]
+        public async Task<IActionResult> UpdateStatusReject(int id)
+        {
+            var q = _context.tasks.Where(d => d.id == id).FirstOrDefault();
+            q.task_status = 4;
+            _context.SaveChanges();
+            return NoContent();
+        }
+        [HttpGet("CountTotalTask/{team}")]
+        public async Task<ActionResult<int>> CountTotalTask(int team)
+        {
+            var q = _context.tasks.Where(d => d.team == team).Count();
+            return q;
+        }
+        [HttpGet("CountTotalTaskInprogress/{team}")]
+        public async Task<ActionResult<int>> CountTotalTaskInprogress(int team)
+        {
+            var q = _context.tasks.Where(d => d.team == team && d.task_status == 2).Count();
+            return q;
+        }
+        [HttpGet("CountTotalTaskdone/{team}")]
+        public async Task<ActionResult<int>> CountTotalTaskdone(int team)
+        {
+            var q = _context.tasks.Where(d => d.team == team && d.task_status == 3).Count();
+            return q;
+        }
+
     }
 }

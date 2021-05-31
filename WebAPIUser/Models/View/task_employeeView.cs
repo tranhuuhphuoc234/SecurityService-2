@@ -28,5 +28,7 @@ namespace WebAPIUser.Models.View
         public DateTime end_day { get; set; }
 
         public string name_status { get; set; }
+
+        public string location { get; set; }
     }
 }

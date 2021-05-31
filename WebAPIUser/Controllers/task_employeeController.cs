@@ -110,8 +110,9 @@ namespace WebAPIUser.Controllers
             var re = (from te in _context.task_Employees
                       join st in _context.task_Statuses
                       on te.task_status equals st.id
+                      join ta in _context.tasks on te.task_main equals ta.id
                       where te.employee == employee && st.name == status
-                      select new Models.View.task_employeeView { id = te.id, task_main = te.task_main, task_name = te.task_name, employee = te.employee, description = te.description, start_time = te.start_time, end_time = te.end_time, start_day = te.start_day, end_day = te.end_day, name_status = st.name, task_status = te.task_status }).ToListAsync();
+                      select new Models.View.task_employeeView { id = te.id, task_main = te.task_main, task_name = te.task_name, employee = te.employee, description = te.description, start_time = te.start_time, end_time = te.end_time, start_day = te.start_day, end_day = te.end_day, name_status = st.name, task_status = te.task_status, location = ta.location }).ToListAsync();
             return await re;
         }
     }

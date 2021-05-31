@@ -144,14 +144,17 @@ $(document).ready(function () {
 window.onscroll = function () { myFunction() };
 
 var header = document.getElementById("myNav");
+var btnScrollTop = document.querySelector(".btnScrollTop")
 
 var sticky = header.offsetTop;
 
 function myFunction() {
     if (window.pageYOffset > sticky) {
         header.classList.add("sticky");
+        btnScrollTop.style.display = "block";
     } else {
         header.classList.remove("sticky");
+        btnScrollTop.style.display = "none";
 
     }
 };
@@ -218,6 +221,7 @@ function openPage(pageName, elmnt) {
 //});
 
 //counting number.
+
 $('.count').each(function () {
     $(this).prop('Counter', 0).animate({
         Counter: $(this).text()
@@ -230,7 +234,10 @@ $('.count').each(function () {
     });
 });
 
-//modal form task
+//scroll top button
+$('#scrollTop').click(function () {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+});
 
 
 

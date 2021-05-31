@@ -423,8 +423,25 @@ header .menu-btn {
         background-size: cover;
         background-position-x: center;
     }
+
+.btnScrollTop {
+    position: relative;
+    left: 95%;
+    height: 50px;
+    display: none;
+}
+    .btnScrollTop button {
+        position: relative;
+        width: 50px;
+        height: 100%;
+        border: none;
+        outline:none!important ;
+    }
+    .btnScrollTop button:hover{
+       opacity: 0.5;
+    }
 /*
-    carerr page
+    career page
 */
 
 .inputBox-2 {

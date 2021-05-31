@@ -385,7 +385,7 @@
                 <li id="Check_service"><span id="span_Check_service">Check Service</span></li>
                 @*<li id="Transaction_history"><span id="span_Transaction_History">Transaction History</span></li>*@
                 <li id="Comment"><span id="span_comment">Recruitment</span></li>
-                <li id="Orders"><span id="span_orders">Orders</span></li>
+                @*<li id="Orders"><span id="span_orders">Orders</span></li>*@
             </ul>
         </div>
 
@@ -469,7 +469,7 @@
             </div>
         </div>
 
-        <div class="display_content_client" id="display_ordrers" style="background:#dddddd;">
+       @* <div class="display_content_client" id="display_ordrers" style="background:#dddddd;">
             <div style="height:5%;"></div>
             <div style="height:95%;">
                 <div style="width:100%; height:100%;">
@@ -556,7 +556,7 @@
                 </div>
 
             </div>
-        </div>
+        </div>*@
     </div>
 </div>
 @*content_service*@
@@ -844,6 +844,14 @@
         <div style="float: left; width: 15%; height: 100%;"></div>
         <div class="left_task">
             <form id="form_task">
+                <div class="tb_task" style="display:none;">
+                    <div class="my_label">Idrequest</div>
+                    <input type="text" id="id_request_task" name="id_request_task" />
+                </div>
+                <div class="tb_task" style="display:none;">
+                    <div class="my_label">Idservice</div>
+                    <input type="text" id="id_service_task" name="id_service_task" />
+                </div>
                 <div class="tb_task">
                     <div class="my_label">Name</div>
                     <input type="text" id="name_task" name="name_task" />
@@ -876,8 +884,17 @@
         <div class="right_task">
             <form id="form_task1">
                 <div class="tb_task">
-                    <div class="my_label">Request Name Service</div>
-                    <select id="select_request">
+                    <div class="my_label">Name Service</div>
+                    <input type="text" id="name_service_in_task" name="name_service_in_task" readonly />
+                </div>
+                <div class="tb_task">
+                    <div class="my_label">Choose Region</div>
+                    <select id="select_region_task">
+                    </select>
+                </div>
+                <div class="tb_task">
+                    <div class="my_label">Choose Department</div>
+                    <select id="select_department_task">
                     </select>
                 </div>
                 <div class="tb_task">
@@ -886,11 +903,8 @@
                     </select>
                 </div>
                 <div class="tb_task">
-
-                </div>
-                <div class="tb_task">
                     <div class="my_label">Description</div>
-                    <textarea id="description_task" style="width: 393px; height: 233px;">
+                    <textarea id="description_task" style="width: 393px; height: 117px;">
           </textarea>
                 </div>
             </form>
@@ -948,6 +962,10 @@
     <div class="my_col_left_region" style="height:100%;">
         <div style="height:10%;"></div>
         <div style="height:85%;">
+            <div class="my_text_box" style="display:none;">
+                <div class="my_label">Idteam</div>
+                <input type="text" name="id_teams" id="id_teams" />
+            </div>
             <form id="form_team">
                 <div class="tb_task">
                     <div class="my_label">Name Team</div>
@@ -973,8 +991,11 @@
                     <input type="checkbox" style="width:20%;" name="status_team" id="status_team" />
                 </div>
             </form>
-            <div class="div_btn">
+            <div class="div_btn" id="div_btn_save_team">
                 <button type="button" onclick="onclick_save_team();" class="btn_save">Save</button>
+            </div>
+            <div class="div_btn" id="div_btn_edit_team" style="display:none;">
+                <button type="button" class="btn_edit" id="btn_edit_roles">Edit</button>
             </div>
 
         </div>
@@ -991,8 +1012,8 @@
             <div class="table_region" style=" height: 570px;">
                 <div class="title_table">
                     <div class="title_table_team">Name Team</div>
-                    <div class="title_table_team">Department</div>
-                    <div class="title_table_team">Name Leader</div>
+                    <div class="title_table_team">Name Department</div>
+                    <div class="title_table_team">Name Role</div>
                     <div class="title_table_team">Name Service</div>
                     <div class="title_table_team">Active</div>
                 </div>

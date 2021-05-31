@@ -213,6 +213,7 @@
     }
 
     function click_content_team() {
+        load_table_team();
         clear_form_department();
         clear_table_region();
         clear_label_department();
@@ -286,6 +287,7 @@
         clear_label_orders();
     }
     function click_content_task() {
+        $('#sl_region').find('option').remove();
         load_table_task();
         load_sl_task_role();
         clear_form_department();
@@ -963,6 +965,12 @@
         $("#li_trainning").css('color', '#000000');
         $("#li_chart").css('background-color', '#000000');
         $("#li_chart").css('color', '#ffffff');
+        $("#li_role").css('background-color', '#000000');
+        $("#li_role").css('color', '#ffffff');
+        $("#li_grade").css('background-color', '#000000');
+        $("#li_grade").css('color', '#ffffff');
+        $("#li_speciality").css('background-color', '#000000');
+        $("#li_speciality").css('color', '#ffffff');
         $('#content_about_us').css('display', 'none');
         $('#content_feedback').css('display', 'none');
         $('#view_table_employee').css('display', 'none');

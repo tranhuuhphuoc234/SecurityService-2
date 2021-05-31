@@ -11,8 +11,9 @@ namespace SecurityService.Controllers
     public class MannedGuardingController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
+            ViewData["id"] = id;
             return View();
         }
     }

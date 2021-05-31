@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Manned Guarding";
     Layout = "_Layout";
+
 }
 <style>
     .container {
@@ -162,36 +163,36 @@
                 <h5>
                     Also known as security guards, security officers, security personnel.
                 </h5>
+
             </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="mannegduarding-content ">
-        <p>
-            <span style="color:blue;">Manned guarding is a highly effective way of eliminating criminal damage and theft</span>, making it one of the most proactive security measures that you can take against crime. It is a security service that involves placing security guards at your premises; this could be out of hours security only, or 24/7 security.
-        </p>
-        <p>
-            The manned guarding security service that Star Security Solutions offers is much more than a security presence at your premises. Our security guards are all trained to Security Industry Authority (SIA) standards and are fitted with body cameras for audible and CCTV footage, ensuring you have a professional security officer managing your property.
-        </p>
-        <h5>
-            Protect Your Business And Safety With Manned Guarding
-        </h5>
-        <p>
-            Manned guarding decreases the opportunity for theft and vandalism, can reduce your insurance costs and our security guards can raise the alarm should an arson attack, or similar, take place at your premises out of hours. It is a brilliant proactive solution to your security strategy, ensuring your assets are protected and your insurance cover is not compromised. We aim to prevent damage, disorder or theft and strive to protect individuals against assault or injury.
-        </p>
-        <h5>
-            What We Provides :
-        </h5>
-        <p>
-            guarding, fire squad, dog squad, bodyguards etc. for industries, banks, retail outlets, residential colonies, hotels and institutions
-        </p>
-        <a href="../Contact/Index" class="myBtn"> Contact Us </a>
-        <h3 style="padding:15px 0 10px"> If you need help ? Please call <i class="bi bi-telephone"></i>: 0901023456  </h3>
+<div class="container" id="content_service">
+    @*<div class="mannegduarding-content ">
+            <p>
+                <span style="color:blue;">Manned guarding is a highly effective way of eliminating criminal damage and theft</span>, making it one of the most proactive security measures that you can take against crime. It is a security service that involves placing security guards at your premises; this could be out of hours security only, or 24/7 security.
+            </p>
+            <p>
+                The manned guarding security service that Star Security Solutions offers is much more than a security presence at your premises. Our security guards are all trained to Security Industry Authority (SIA) standards and are fitted with body cameras for audible and CCTV footage, ensuring you have a professional security officer managing your property.
+            </p>
+            <h5>
+                Protect Your Business And Safety With Manned Guarding
+            </h5>
+            <p>
+                Manned guarding decreases the opportunity for theft and vandalism, can reduce your insurance costs and our security guards can raise the alarm should an arson attack, or similar, take place at your premises out of hours. It is a brilliant proactive solution to your security strategy, ensuring your assets are protected and your insurance cover is not compromised. We aim to prevent damage, disorder or theft and strive to protect individuals against assault or injury.
+            </p>
+            <h5>
+                What We Provides :
+            </h5>
+            <p>
+                guarding, fire squad, dog squad, bodyguards etc. for industries, banks, retail outlets, residential colonies, hotels and institutions
+            </p>
 
-    </div>
+
+        </div>*@
 </div>
-<!-- Swiper -->
+<div><a href="@Url.Action("../Home/Index")">content</a></div>
 <div class="swiper-container swiper-container3">
     <div class="swiper-wrapper " id="showing">
 
@@ -226,3 +227,29 @@
     </div>
 </div>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+    var id = @ViewData["id"];
+    $.ajax({
+        method: "Get",
+        url: 'http://localhost:44383/api/services/'+id,
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            JSON.stringify(data)
+            var infor_service = "<div class='container' id='content_service'>"
+                + "<div class='mannegduarding-content'>"
+                + data.description +
+                +"</div>"
+            +"</div>"
+            $('#content_service').replaceWith(infor_service);
+            alert(infor_service)
+        },
+        error: function () {
+            alert("error")
+        }
+    })
+</script>

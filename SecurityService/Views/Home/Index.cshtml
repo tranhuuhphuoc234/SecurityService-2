@@ -1,7 +1,12 @@
 @{
     ViewData["Title"] = "Home Page";
     Layout = "_layout";
+    
+    
 }
+<script>
+
+</script>
 <style>
     .container {
         padding: 40px 0 50px;
@@ -102,8 +107,8 @@
 </div>
 <div class="module-service">
     <div class="module-service-content">
-        <div class="service-item">
-            @*background image*@
+       <div class="service-item">
+            background image
             <div class="service-item-background">
                 <div style="position: relative;height: 100%;background: rgba(0,0,0,0.3);">
                     <h2> Manned Guarding </h2>
@@ -119,9 +124,9 @@
             </div>
         </div>
 
-        <div class="service-item">
+        <!--<div class="service-item">-->
             @*background image*@
-            <div class="service-item-background-1">
+            <!--<div class="service-item-background-1">
                 <div style="position: relative;height: 100%;background: rgba(0,0,0,0.3);">
                     <h2> Electronic Security System </h2>
                     <div class="service-item-title-background">
@@ -133,9 +138,9 @@
                 </div>
             </div>
         </div>
-        <div class="service-item">
+        <div class="service-item">-->
             @*background image*@
-            <div class="service-item-background-2">
+            <!--<div class="service-item-background-2">
                 <div style="position: relative;height: 100%;background: rgba(0,0,0,0.3);">
                     <h2> Cash Service </h2>
                     <div class="service-item-title-background">
@@ -148,9 +153,9 @@
 
             </div>
         </div>
-        <div class="service-item">
+        <div class="service-item">-->
             @*background image*@
-            <div class="service-item-background-3">
+            <!--<div class="service-item-background-3">
                 <div style="position: relative;height: 100%;background: rgba(0,0,0,0.3);">
                     <h2> Recruitment & Training </h2>
                     <div class="service-item-title-background">
@@ -161,8 +166,77 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 <script src="~/js/phuoc.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            method: "Get",
+            url: 'http://localhost:44383/api/services',
+            dataType: 'json',
+            contentType: "application/json, charset=utf8",
+            success: function (data) {
+                var div_service = "<div class='module-service-content'>"
+                $.each(data, function (i, item) {
+                    div_service += "<div class='service-item'>"
+                        + "<div class='service-item-background-1'>"
+                        + "<div style='position: relative;height: 100%;background: rgba(0,0,0,0.3);'>"
+                        + "<h2>" + item.name + "</h2>"
+                        + "<div class='service-item-title-background'>"
+                        + "<div class='service-item-title'>"
+                        + "<p>" + item.name + "</p>"
+                        + "<a onclick='click_view_more(this);' id_service='"+item.id+"' class='myBtn'> View more <i class='bi bi-arrow-right'></i> </a>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                });
+                div_service += "</div>";
+                $('.module-service-content').replaceWith(div_service);
+                alert(div_service)
+            },
+            error: function () {
+                alert("error")
+            }
+        })
+    });
+    function click_view_more(a) {
+        var id = $(a).attr("id_service");
+        alert(id);
+        var url = '@Url.Action("Index","MannedGuarding", new {id="id"})';
+        url = url.Combine("id", id);
+        window.location.href = url;
+    }
+
+    $(document).ready(function myfunction() {
+        $.ajax({
+            method: "Get",
+            url: 'http://localhost:44383/api/services',
+            dataType: 'json',
+            contentType: "application/json, charset=utf8",
+            success: function (data) {
+                var link_service = "<div class='dropdown-content'>"
+                $.each(data, function (i, item) {
+                    link_service += "<a>" + item.name + "</a>"
+                });
+                link_service += "</div>";
+                $('.dropdown-content').replaceWith(link_service);
+                alert(link_service)
+            },
+            error: function () {
+                alert("error")
+            }
+        })
+    });
+   @* <div class="dropdown-content">
+        <a href="../MannedGuarding/Index">Manned guarding</a>
+        <a href="../CashService/Index">Cash Services</a>
+        <a href="../ElectronicSecurity/Index">Electronic security systems</a>
+        <a href="../Recruitment/index">Recruitment and training</a>
+    </div>*@
+</script>

@@ -43,5 +43,11 @@ namespace WebAPIUser.Models
         public bool status { get; set; }
 
         public string image { get; set; }
+
+        public string role_name { get; set; }
+
+        public int id_team { get; set; }
+
+        public string name_team { get; set; }
     }
 }

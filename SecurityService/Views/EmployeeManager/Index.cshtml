@@ -306,44 +306,54 @@
                 <div class="modalTask-content">
                     <div class="formBox">
                         <div class="inputBox-2 w50">
-                            <input type="text" />
+                            <input type="text" id="nametask_send" />
                             <label> Name Task </label>
                         </div>
                         <div class="inputBox-2 w50">
-                            <input type="text" />
-                            <label> Employee Name </label>
+                            <select id="task_main_send">
+                                <option value="value">Giet No</option>
+                                <option value="value">dap chet me no</option>
+                                <option value="value">suc no</option>
+                            </select>
+
+                            <label> Task Main </label>
                         </div>
                         <div class="inputBox-2 w50">
-                            <input type="time" />
+                            <input type="time" id="start_time_send" />
                             <label> Time From </label>
                         </div>
                         <div class="inputBox-2 w50">
-                            <input type="time" />
+                            <input type="time" id="end_time_send" />
                             <label> Time to </label>
                         </div>
+                        <input type="hidden" id="id_employee_send"/>
                         <div class="inputBox-2 w50">
-                            <input type="date" />
+                            <input type="date" id="start_day_send" />
                             <label> Date From </label>
                         </div>
                         <div class="inputBox-2 w50">
-                            <input type="date" />
+                            <input type="date" id="end_day_send" />
                             <label> Date To </label>
+                        </div>
+                        <div class="inputBox-2 w50">
+                            <input type="text" readonly id="employee_send" />
+                            <label> Employee Recive </label>
                         </div>
                     </div>
                     <div class="formBox">
                         <div class="inputBox-2 w100">
-                            <textarea> </textarea>
+                            <textarea id="description_send"> </textarea>
                             <label> Description  </label>
                         </div>
                         <div class="inputBox-2 w100">
-                            <textarea> 213123123 </textarea>
+                            <textarea id="address_send"></textarea>
                             <label> Address </label>
                         </div>
                     </div>
                 </div>
 
                 <div class="modalTask-end">
-                    <input class="myBtn" type="submit" />
+                    <input class="myBtn" type="button" id="send_task" value="Send"/>
                 </div>
             </div>
 
@@ -357,7 +367,7 @@
         </div>
 
         <div class="director-content" id="listEmp">
-            <div class='card'>
+            @*<div class='card'>
                 <div class='imgText'>
                     <div class='imgBx'>
                         <img src='../img/IMG_1939.JPG' />
@@ -366,7 +376,6 @@
                     <p>  role  </p>
                     <button class="myBtn openModal-1 "><i class="bi bi-calendar-plus"></i> Add Task</button>
                 </div>
-
             </div>
             <div class='card'>
                 <div class='imgText'>
@@ -422,7 +431,7 @@
                     <button class="myBtn openModal-1 "><i class="bi bi-calendar-plus"></i> Add Task</button>
                 </div>
 
-            </div>
+            </div>*@
         </div>
         <ul class="pagination">
             <li class="prev">
@@ -465,40 +474,40 @@
                     <div class="modalTask-content">
                         <div class="formBox">
                             <div class="inputBox-2 w100">
-                                <input type="text" />
+                                <input type="text" id="name_task" readonly />
                                 <label> Name Task </label>
                             </div>
-
+                            <input type="hidden" name="idTask" id="idTask_started" />
                             <div class="inputBox-2 w50">
-                                <input type="time" />
+                                <input type="time" id="time_start" readonly />
                                 <label> Time From </label>
                             </div>
                             <div class="inputBox-2 w50">
-                                <input type="time" />
+                                <input type="time" id="time_end" readonly />
                                 <label> Time to </label>
                             </div>
                             <div class="inputBox-2 w50">
-                                <input type="date" />
+                                <input type="date" id="stard_day" readonly />
                                 <label> Date From </label>
                             </div>
                             <div class="inputBox-2 w50">
-                                <input type="date" />
+                                <input type="date" id="end_day" readonly />
                                 <label> Date To </label>
                             </div>
                         </div>
                         <div class="formBox">
                             <div class="inputBox-2 w100">
-                                <textarea> </textarea>
+                                <textarea id="description" readonly> </textarea>
                                 <label> Description  </label>
                             </div>
                             <div class="inputBox-2 w100">
-                                <textarea> 213123123 </textarea>
+                                <textarea id="task_address" readonly></textarea>
                                 <label> Address </label>
                             </div>
                         </div>
                     </div>
                     <div class="modalTask-end">
-                        <button class="myBtn"> Submit <i class="bi bi-check2-circle"></i> </button>
+                        <button class="myBtn" id="claim"> Claim <i class="bi bi-check2-circle"></i> </button>
                         <button class="myBtn" id="reject"> Reject <i class="bi bi-calendar-x"></i></button>
                     </div>
 
@@ -508,11 +517,12 @@
                     <div class="modalTask-content">
                         <div class="formBox">
                             <div class="inputBox-2 w100">
-                                <input type="text" />
+                                <input type="text" id="nameTask_reject"/>
                                 <label> Name Task </label>
                             </div>
+                            <input type="hidden" name="idTask" id="idTask_reject"/>
                             <div class="inputBox-2 w100">
-                                <textarea> </textarea>
+                                <textarea id="reason_reject"> </textarea>
                                 <label> Reason   </label>
                             </div>
                         </div>
@@ -520,7 +530,7 @@
                     </div>
                     <div class="modalTask-end">
                         <button class="myBtn" id="back"> <i class="bi bi-arrow-left"></i> Back </button>
-                        <button class="myBtn">  Reject <i class="bi bi-calendar-x"></i> </button>
+                        <button class="myBtn"> Send Reject <i class="bi bi-calendar-x"></i> </button>
                     </div>
 
                 </div>
@@ -552,39 +562,8 @@
                         <th> Action </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Cash Service</td>
-                        <td> <span class="started">started</span></td>
-                        <td>
-                            <button class="myBtn openModal-2"><i class="bi bi-info-circle"></i> view</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td> Manned Guarding </td>
-                        <td> <span class="started">started</span></td>
-                        <td>
-                            <button class="myBtn openModal-2"><i class="bi bi-info-circle"></i> view</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td> Training </td>
-                        <td> <span class="started">started</span></td>
-                        <td>
-                            <button class="myBtn openModal-2"><i class="bi bi-info-circle"></i> view</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td> Training </td>
-                        <td> <span class="started">started</span></td>
-                        <td>
-                            <button class="myBtn openModal-2"><i class="bi bi-info-circle"></i> view</button>
-                        </td>
-                    </tr>
+                <tbody id="taskOfAdmin">
+                    @*render data here*@
                 </tbody>
             </table>
         </div>
@@ -601,32 +580,8 @@
 
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Cash Service</td>
-                        <td> Nguyen Quoc trung</td>
-                        <td> <span class="progressing"> progressing </span> </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td> Manned Guarding </td>
-                        <td> Ha Dang Khoa</td>
-                        <td> <span class="progressing"> progressing </span> </td>
-
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td> Training </td>
-                        <td> Tran Huu Phuoc</td>
-                        <td> <span class="progressing"> progressing </span> </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td> Training </td>
-                        <td> Ly Hung Phat </td>
-                        <td> <span class="progressing"> progressing </span> </td>
-                    </tr>
+                <tbody id="taskInProgress">
+                    @*render data here*@
                 </tbody>
             </table>
         </div>
@@ -643,70 +598,349 @@
 
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Cash Service</td>
-                        <td> Nguyen Quoc trung</td>
-                        <td> <span class="done">Done</span> </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td> Manned Guarding </td>
-                        <td> Ha Dang Khoa</td>
-                        <td> <span class="done">Done</span> </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td> Training </td>
-                        <td> Tran Huu Phuoc</td>
-                        <td> <span class="done">Done</span> </td>
-
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td> Training </td>
-                        <td> Ly Hung Phat </td>
-                        <td> <span class="done">Done</span> </td>
-
-                    </tr>
+                <tbody id="taskDone">
+                    @*render data here*@
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-@*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        var username = sessionStorage.getItem('inforlogin');
-        if (username == null) {
-            window.location.href = "@Url.Action("index","login")";
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    var modal1 = document.getElementById("myModalTask-1");
+    var modalTaskAccept = document.querySelector('.modalTask-accept');
+    var modalTaskReject = document.querySelector('.modalTask-reject');
+    var modal2 = document.getElementById("myModalTask-2");
+    var swiperContainer = document.querySelector('.swiper-container2');
+
+    var span = document.getElementsByClassName("close")[0];
+
+    var IdTeam = 0;
+    var username = sessionStorage.getItem('username');
+    if (username == null) {
+        window.location.href = "@Url.Action("index","login")";
+    }
+    if (username != "") {
+        $('#Information').css('display', 'block');
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/employees/getUsername/' + username,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (index, value) {
+                    getEmployeeByTeam(value.id_team);
+                    load_task_of_admin(value.id_team);
+                    load_task_inprogress(value.id_team);
+                    load_task_done(value.id_team);
+                    load_cb_main_task(value.id_team, "InProgress");
+
+                    var linkImg = '../img/EmployeeImg/' + value.image;
+                    $('#avatar').prop('src', linkImg);
+                    $('#name').html(value.name);
+                    $('#role').html(value.role);
+                    $('#about').html(value.aboutme);
+                    $('#weight').val(value.weight);
+                    $('#height').val(value.height);
+                    $('#email').val(value.email);
+                    $('#phone').val(value.phone);
+                    $('#achivement').val(value.achivement);
+                    $('#address').val(value.address);
+                });
+            }
+        })
+    }
+    $('#send_task').click(function (data) {
+        var name_task = $('#nametask_send').val();
+        var employee = $('#employee_send').val();
+        var start_time = $('#start_time_send').val();
+        var end_time = $('#end_time_send').val();
+        var start_day = $('#start_day_send').val();
+        var end_day = $('#end_day_send').val();
+        var description = $('#description_send').val();
+        var address = $('#address_send').val();
+
+        var id_employee = $('#id_employee_send').val();
+        var task_main = $('#task_main_send').val();
+        if (task_main == 'none') {
+            alert('Please choose main task');
+        } else {
+            if (name_task != "" && start_time != "" && end_time != "" && start_day != "" && end_day != "" && description != "" && address != "" && task_main != "none") {
+                var newT = new Object();
+                newT.task_main = task_main;
+                newT.employee = id_employee;
+                newT.task_name = name_task;
+                newT.description = description;
+                newT.start_time = start_time;
+                newT.end_time = end_time;
+                newT.task_status = 1;
+                newT.start_day = start_day;
+                newT.end_day = end_day;
+
+                var task_employee = JSON.stringify(newT);
+
+                $.ajax({
+                    type: 'post',
+                    url: 'http://localhost:54396/api/task_employee',
+                    data: task_employee,
+                    contentType: 'application/json; charset=utf8',
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("Send task success");
+                        $('#nametask_send').val("");
+                        $('#employee_send').val("");
+                        $('#start_time_send').val("");
+                        $('#end_time_send').val("");
+                        $('#task_main_send').val('none');
+                        $('#start_day_send').val("");
+                        $('#end_day_send').val("");
+                        $('#description_send').val("");
+                        $('#address_send').val("");
+                    }
+                })
+            } else {
+                alert("Please enter full information!!");
+            }
         }
-        if (username != "") {
-            $('#Information').css('display', 'block');
+        
+    })
+    var search = document.getElementById("searchBox_span");
+    function load_cb_main_task(team, status) {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/tasks/getTaskByTeamAndStatus/' + team + "," + status,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                var rows = "<select id='task_main_send'><option value='none'>Choose Task</option>";
+                $.each(data, function (index, value) {
+                    rows += "<option value='" + value.id + "'>" + value.name + "</option>";
+                });
+                rows += "</select>";
+                $('#task_main_send').replaceWith(rows);
+            }
+        })
+    }
+    // When the user clicks anywhere outside of the modal, close it.
+
+    window.onclick = function (event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+            document.body.style.removeProperty("overflow");
+            search.style.zIndex = "1";
+        }
+        if (event.target == modal2) {
+            modal2.style.display = "none";
+            document.body.style.removeProperty("overflow");
+            search.style.zIndex = "1";
+        }
+    }
+    function ViewTask(obj) {
+        var modal = $(obj).attr('data-model');
+        if (modal == 'modal1') {
+            alert($(obj).attr('data-id'));
+            modal1.style.display = "block";
+            document.body.style.overflow = "hidden";
+            search.style.zIndex = "0";
+            $('#claim').css('display', 'block');
+            $('#reject').css('display', 'block');
+            var id = $(obj).attr('data-id');
+            $('#id_employee_send').val(id);
+
+
+        } else if (modal == 'modal2') {
+            modal2.style.display = "block";
+            document.body.style.overflow = "hidden";
+            search.style.zIndex = "0";
+            $('#claim').css('display', 'block');
+            $('#reject').css('display', 'block');
+        } else if (modal == 'modal3') {
+            modal2.style.display = "block";
+            document.body.style.overflow = "hidden";
+            search.style.zIndex = "0";
+            $('#claim').css('display', 'none');
+            $('#reject').css('display', 'none');
+        }
+
+        var nameTask = $(obj).attr('data-nametask');
+        $('#name_task').val(nameTask);
+
+        var idtask = $(obj).attr('data-idtask');
+        $('#idTask_started').val(idtask);
+
+        var start_day = "";
+        var end_day = "";
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/tasks/' + idtask,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                start_day += data.start_day;
+                var b = start_day.split('T');
+                $('#stard_day').val(b[0].toString());
+
+                end_day += data.end_day;
+                var c = end_day.split('T');
+                $('#end_day').val(c[0].toString());
+
+                $('#description').val(data.description);
+                $('#task_address').val(data.location);
+            }
+        })
+    }
+
+    function getEmployeeByTeam(team) {
+        IdTeam = team;
             $.ajax({
                 type: 'get',
-                url: 'http://localhost:54396/api/employees/getUsername/' + username,
+                url: 'http://localhost:54396/api/employees/getMember/' + team,
                 contentType: 'application/json; charset=utf8',
                 dataType: 'json',
                 success: function (data) {
+                    var rows = "<div class='director-content' id='listEmp'>";
                     $.each(data, function (index, value) {
-                        var linkImg = '../img/EmployeeImg/' + value.image;
-                        $('#avatar').prop('src', linkImg);
-                        $('#name').html(value.name);
-                        $('#role').html(value.role);
-                        $('#about').html(value.aboutme);
-                        $('#weight').val(value.weight);
-                        $('#height').val(value.height);
-                        $('#email').val(value.email);
-                        $('#phone').val(value.phone);
-                        $('#achivement').val(value.achivement);
-                        $('#address').val(value.address);
+                        rows += "<div class='card'>"
+                            + "<div class='imgText'>"
+                            + "<div class='imgBx'>"
+                            + "<img src='../img/EmployeeImg/"+value.image+"' />"
+                            + "</div>"
+                            + "<h5>"+value.name+"</h5>"
+                            + "<p>  "+value.role+"  </p>"
+                            + "<button class='myBtn openModal-1' onclick='ViewTask(this)' data-model='modal1' data-id='"+value.id+"'><i class='bi bi-calendar-plus'></i> Add Task</button>"
+                            + "</div>"
+                            + "</div>";
                     });
+                    rows += "</div>"
+                    $('#listEmp').replaceWith(rows);
                 }
             })
         }
 
-        PageNumber();
+        function load_task_of_admin(team) {
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:54396/api/tasks/getTaskOpenByTeam/' + team,
+                contentType: 'application/json; charset=utf8',
+                dataType: 'json',
+                success: function (data) {
+                    if (data == "") {
+                        var rows = "<tbody id='taskOfAdmin'>";
+                        rows += "<td><span style='font-weight: bold;'>No Task</span></td>"
+                            + "</tbody>";
+                        $('#taskOfAdmin').replaceWith(rows);
+                    } else {
+                        var rows = "<tbody id='taskOfAdmin'>";
+                        var count = 1;
+                        $.each(data, function (index, value) {
+                            rows += "<tr>"
+                                + "<td>" + count + "</td>"
+                                + "<td>" + value.name + "</td>"
+                                + "<td> <span class='started'>" + value.status_name + "</span></td>"
+                                + "<td>"
+                                + "<button class='myBtn openModal-2' onclick='ViewTask(this);' data-model='modal2' data-idtask='" + value.id + "' data-nametask='" + value.name + "'><i class='bi bi-info-circle'></i> view</button>"
+                                + "</td>"
+                                + "</tr>";
+                            count++;
+                        });
+                        rows += "</tbody>"
+                        $('#taskOfAdmin').replaceWith(rows);
+                    }
+
+                }
+            })
+        }
+
+    function load_task_inprogress(team) {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/tasks/getTaskInProgressByTeam/' + team,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json'
+        }).done(function (data) {
+            if (data == "") {
+                var rows = "<tbody id='taskInProgress'>";
+                rows += "<td><span style='font-weight: bold;'>No Task</span></td>"
+                    + "</tbody>";
+                $('#taskInProgress').replaceWith(rows);
+            } else {
+                var rows = "<tbody id='taskInProgress'>";
+                var count = 1;
+                $.each(data, function (index, value) {
+                    rows += "<tr>"
+                        + "<td>" + count + "</td>"
+                        + "<td>" + value.name + "</td>"
+                        + "<td> <span class='progressing'>" + value.status_name + "</span></td>"
+                        + "<td>"
+                        + "<button class='myBtn openModal-2' onclick='ViewTask(this);' data-model='modal3' data-idtask='" + value.id + "' data-nametask='" + value.name + "'><i class='bi bi-info-circle'></i> view</button>"
+                        + "</td>"
+                        + "</tr>";
+                    count++;
+                });
+                rows += "</tbody>"
+                $('#taskInProgress').replaceWith(rows);
+            }
+        });
+    }
+
+    function load_task_done(team) {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/tasks/getTaskDoneByTeam/' + team,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json'
+        }).done(function (data) {
+            if (data == "") {
+                var rows = "<tbody id='taskDone'>";
+                rows += "<td><span style='font-weight: bold;'>No Task</span></td>"
+                    + "</tbody>";
+                $('#taskDone').replaceWith(rows);
+            } else {
+                var rows = "<tbody id='taskDone'>";
+                var count = 1;
+                $.each(data, function (index, value) {
+                    rows += "<tr>"
+                        + "<td>" + count + "</td>"
+                        + "<td>" + value.name + "</td>"
+                        + "<td> <span class='done'>" + value.status_name + "</span></td>"
+                        + "<td>"
+                        + "<button class='myBtn openModal-2' onclick='ViewTask(this);' data-idtask='" + value.id + "' data-nametask='" + value.name + "'><i class='bi bi-info-circle'></i> view</button>"
+                        + "</td>"
+                        + "</tr>";
+                    count++;
+                });
+                rows += "</tbody>"
+                $('#taskDone').replaceWith(rows);
+            }
+        });
+    }
+    $('#reject').click(function (data) {
+        var nametask = $('#name_task').val();
+        $('#nameTask_reject').val(nametask);
+
+        var idtask = $('#idTask_started').val();
+        $('#idTask_reject').val(idtask);
+
+        var reason = $('#reason').val();
+    })
+    $('#claim').click(function (data) {
+        var idtask = $('#idTask_started').val();
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/tasks/Claim/' + idtask,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                alert("Claim Success");
+                load_task_of_admin(IdTeam);
+                load_task_inprogress(IdTeam);
+                load_task_done(IdTeam);
+            }
+        })
+    })
+
+        @*PageNumber();
         var TAKE = 3;
         Skip(TAKE, 1);
         function PageNumber() {
@@ -758,5 +992,5 @@
                     $('#listEmp').replaceWith(rows);
                 }
             })
-        }
-    </script>*@
+        }*@
+</script>

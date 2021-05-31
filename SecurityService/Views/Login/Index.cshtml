@@ -118,11 +118,12 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-@*<script>
+<script>
     var username = sessionStorage.getItem('inforlogin');
     if (username != null) {
         window.location.href = "@Url.Action("index", "EmployeePage")";
     }
+
     $('#submit').click(function () {
         var username = $('#username').val();
         var pass = $('#password').val();
@@ -134,15 +135,72 @@
                 contentType: 'application/json; charset=utf8',
             }).done(function (data) {
                 if (data == true) {
-                    sessionStorage.setItem('inforlogin', username);
-                    window.location.href = "@Url.Action("index", "EmployeePage")";
+                    //check role
+                    $.ajax({
+                        type: 'get',
+                        url: 'http://localhost:54396/api/employees/getUsername/' + username,
+                        contentType: 'application/json; charset=utf8',
+                        dataType: 'json',
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                if (value.role_name == "Leader") {
+                                    sessionStorage.setItem('username', username);
+                                    sessionStorage.setItem('role', value.role_name);
+                                    window.location.href = "@Url.Action("index", "EmployeeManager")";
+                                }else {
+                                    sessionStorage.setItem('username', username);
+                                    sessionStorage.setItem('role', value.role_name);
+                                    window.location.href = "@Url.Action("index", "EmployeePage")";
+                                }
+                            });
+                        }
+                    })
                 } else {
-                    alert("username or password incorrect !!");
+                    $.ajax({
+                        type: 'get',
+                        url: 'http://localhost:54396/api/admins/login/' + username + "," + pass,
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf8',
+                    }).done(function (data) {
+                        if (data == true) {
+                            sessionStorage.setItem('username', username);
+                            sessionStorage.setItem('role', 'admin');
+                            window.location.href = "../Admin/Admin/All_infor";
+                        } else {
+                            alert("username or password incorrect !!");
+                        }
+                    });
                 }
             });
         } else {
             alert("Please enter full information");
         }
-
     })
-</script>*@
+
+    @*function checkRole()
+    {
+        var username = sessionStorage.getItem('username');
+        if (username != null) {
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:54396/api/employees/getUsername/' + username,
+                contentType: 'application/json; charset=utf8',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        if (value.name_role == "Leader") {
+                            sessionStorage.setItem('role', value.role_name);
+                            window.location.href = "@Url.Action("index", "EmployeeManager")";
+                        } else if (val.name_role == "Admin") {
+                            sessionStorage.setItem('role', value.role_name);
+                            windown.location.href = "@Url.Action("All_infor", "~/Areas/Admin/Admin")";
+                        } else {
+                            sessionStorage.setItem('role', value.role_name);
+                            window.location.href = "@Url.Action("index", "EmployeePage")";
+                        }
+                    });
+                }
+            })
+        }
+    }*@
+</script>

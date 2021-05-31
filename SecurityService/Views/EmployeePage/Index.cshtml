@@ -190,7 +190,7 @@
         </div>
     </div>
     <div id="MyTask" class="tabcontent">
-        <div class="director-content" id="listEmp">
+        <div class="director-content" id="listTask">
             <div class='task_card'>
                 <div class="task_card_header">
                     <h5> Task Name </h5>
@@ -292,6 +292,63 @@
         </ul>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var username = sessionStorage.getItem('username');
+    if (username == null) {
+        window.location.href = "@Url.Action("index","login")";
+    } else {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/employees/getUsername/' + username,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (index, value) {
+                    load_task(value.id, 'Open');
+                });
+            }
+        })
+    }
+    function load_task(id_employee, task_status){
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/task_employee/getTaskByEmployee/' + id_employee + "," + task_status,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                var rows = "<div class='director-content' id='listTask'>";
+                $.each(data, function (index, value) {
+                    rows += "<div class='task_card'>"
+                        + "<div class='task_card_header'>"
+                            +"<h5>"+value.task_name+"</h5>"
+                        + "<div class='task_card_address'>"
+                        + "<i class='bi bi-geo-alt'></i>"
+                            +"<span>"+value.address+"</span>"
+                            +"</div>"
+                            +"</div>"
+                        + "<div class='task_card_body'>"
+                        + "<div class='task_card_text'>"
+                            +"<h5> Description :</h5>"
+                            +"<span>"+value.description+"</span>"
+                            +"</div>"
+                        + "<div class='task_card_time'>"
+                            +"<h5> Time : </h5>"
+                        + "<span> " + value.start_time + " &mdash; " + value.end_time +" </span>"
+                            +"</div>"
+                        + "<div class='task_card_date'>"
+                            + "<h5> Date : </h5>"
+                        + "<span> " + value.start_day + " &mdash; " + value.end_time +" </span>"
+                            + "</div>"
+                            + "</div>"
+                            + "</div>";
+                });
+                rows += "</div>";
+                $('#listTask').replaceWith(rows);
+            }
+        })
+    }
+</script>
 @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var username = sessionStorage.getItem('inforlogin');

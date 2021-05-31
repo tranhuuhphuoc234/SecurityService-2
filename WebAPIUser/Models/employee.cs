@@ -70,7 +70,10 @@ namespace WebAPIUser.Models
         [Column("pwd",TypeName ="varchar")]
         [StringLength(500)]
         public string pwd { get; set; }
-        
+
+        [Column("id_team", TypeName = "int")]
+        public int id_team { get; set; }
+
         [Column("status",TypeName ="bit")]
         public bool status { get; set; }
     }

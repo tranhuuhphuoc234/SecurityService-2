@@ -12,6 +12,8 @@ namespace WebAPIAdmin.Models.View
         public int department { get; set; }
         public int service { get; set; }
         public bool status { get; set; }
-
+        public string name_department { get; set; }
+        public string name_service { get; set; }
+        public string name_region { get; set; }
     }
 }

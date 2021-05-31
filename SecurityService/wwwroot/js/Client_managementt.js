@@ -85,7 +85,7 @@ function load_data_client() {
                     + "<span onclick='send_client(this);' id='close" + item.id + "' data_id='" + item.id + "' data_send_client='" + item.client_email + "' data_name_client='" + item.client_name + "' data_name_service='" + item.service + "'><i class='fa fa-envelope'></i></span>"
                     + "</div>"
                     + "<div class='div_btn_client'>"
-                    + "<span onclick='accpet_client(this);' data_id_client='" + item.client + "'  data_accept_client='" + item.id + "' data_name_client='" + item.client_name + "' data_email_client='" + item.client_email + "' data_phone_client='" + item.client_phone + "'><i class='fa fa-check'></i></span>"
+                    + "<span onclick='accpet_client(this);' data_id_request='" + item.id + "' data_address_client='" + item.client_address + "' data_name_service='" + item.name_service + "' data_id_client='" + item.client + "' data_id_service='" + item.service + "'  data_accept_client='" + item.id + "' data_name_client='" + item.client_name + "' data_email_client='" + item.client_email + "' data_phone_client='" + item.client_phone + "'><i class='fa fa-check'></i></span>"
                     + "</div>"
                     + "<div class='div_btn_client'>"
                     + "<span  onclick='click_remove_client(this);' data_remove_client='" + item.id + "'><i class='fa fa-trash'></i></span>"
@@ -197,7 +197,25 @@ function click_remove_orderdetail(a) {
 }
 
 function accpet_client(a) {
-    var phone_client = $(a).attr('data_phone_client');
+    var name_service = $(a).attr('data_name_service');
+    var address_client = $(a).attr('data_address_client');
+    var idservice = $(a).attr('data_id_service');
+    var idrequest = $(a).attr('data_id_request');
+    $('#id_service_task').val(idservice);
+    $('#id_request_task').val(idrequest);
+    id_service_task
+    $('#location').val(address_client);
+    $('#name_service_in_task').val(name_service);
+    $('#content_task').css('display', 'block');
+    $("#li_task").css('background-color', '#ffffff');
+    $("#li_task").css('color', '#000000');
+    $("#li_client_management").css('background-color', '#000000');
+    $("#li_client_management").css('color', '#ffffff');
+    $('#content_client_management').css('display', 'none');
+    load_select_task_region();
+    load_table_task();
+    load_sl_task_role();
+    /*var phone_client = $(a).attr('data_phone_client');
     var email_client = $(a).attr('data_email_client');
     var id_request = $(a).attr('data_accept_client');
     var id_client = $(a).attr('data_id_client');
@@ -250,7 +268,7 @@ function accpet_client(a) {
         erorr: function (data) {
             alert("Erorr")
         }
-    })
+    })*/
 }
 
 function send_client(a) {

@@ -99,4 +99,11 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
+
+    $("#search_team ").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_team tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 }); 

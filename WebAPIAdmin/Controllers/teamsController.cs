@@ -23,9 +23,25 @@ namespace WebAPIAdmin.Controllers
 
         // GET: api/teams
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<team>>> Getteams()
+        public async Task<ActionResult<List<Models.View.teamView>>> Getteamss()
         {
-            return await _context.teams.ToListAsync();
+            var q = (from t in _context.teams
+                     join d in _context.departments
+                     on t.department equals d.id
+                     join r in _context.regions
+                     on d.region equals r.id
+                     join s in _context.services
+                     on t.service equals s.id
+                     select new Models.View.teamView
+                     {
+                         id = t.id,
+                         name = t.name,
+                         name_department = d.name,
+                         name_service = s.name,
+                         name_region = r.name,
+                         status=t.status
+                     }).ToList();
+            return q;
         }
 
         // GET: api/teams/5

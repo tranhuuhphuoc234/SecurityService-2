@@ -68,10 +68,14 @@ function onclick_send_task() {
         rules: {
             description_task: "required",
             select_request: { valueNotEquals: "Choose_Client" },
+            select_region_task: { valueNotEquals: "Choose_Region" },
+            select_department_task: { valueNotEquals: "Choose_Department" },
             select_team: { valueNotEquals: "Choose_Team" }
         },
         messages: {
             select_request: { valueNotEquals: "Please select an item!" },
+            select_region_task: { valueNotEquals: "Please select an item!" },
+            select_department_task: { valueNotEquals: "Please select an item!" },
             select_team: { valueNotEquals: "Please select an item!" }
         }
     });
@@ -84,7 +88,7 @@ function onclick_send_task() {
             var location = $('#location').val();
             var status_task = $("#status_task").prop("checked");
             var description_task = $('#description_task').val();
-            var id_request = $('#select_request option:selected').attr('id');
+            var id_request = $('#id_request_task').val();
             var id_team = $('#select_team option:selected').attr('id');
             if (status_task == true) {
                 infor_task.status = true;
@@ -100,6 +104,7 @@ function onclick_send_task() {
             infor_task.request = id_request;
             infor_task.team = id_team;
             var q = JSON.stringify(infor_task)
+            alert(q)
             $.ajax({
                 type: 'Post',
                 url: 'http://localhost:44383/api/tasks',
@@ -124,6 +129,7 @@ function onclick_send_task() {
 
 function clear_form_task() {
     $('#name_task').val("");
+    $('#name_service_in_task').val("");
     $('#status_task').prop("checked", false);
     $('#description_task').val("");
     $("input[type=date]").val("");
@@ -131,6 +137,8 @@ function clear_form_task() {
     $('#description_task').val("");
     $('#select_request').find('option').remove();
     $('#select_team').find('option').remove();
+    $('#select_region_task').find('option').remove();
+    $('#select_department_task').find('option').remove();
 }
 
 function clear_label_task() {
@@ -148,7 +156,7 @@ function load_sl_task_role() {
         dataType: 'json',
         contentType: "application/json, charset=utf8",
         success: function (data) {
-            var sl_region = "<select style='width: 95%;' onchange='get_idregion_task(this);' id='select_regions_team' name='select_regions_team'><option id='Choose_Region' value='Choose_Region'>Choose Region</option>"
+            var sl_region = "<select style='width: 95%;' onchange='get_idregion_task(this);' id='sl_region' name='sl_region'><option id='Choose_Region' value='Choose_Region'>Choose Region</option>"
             $.each(data, function (i, item) {
                 sl_region += "<option id='" + item.id + "'  value='" + item.id + "'>" + item.name + "</option>"
             })
@@ -161,6 +169,75 @@ function load_sl_task_role() {
     })
 }
 
+function load_select_task_region() {
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/regions',
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var select_region_task = "<select style='width: 67%;' onchange='send_idregion_task(this);' id='select_region_task' name='select_region_task'><option id='Choose_Region' value='Choose_Region'>Choose Region</option>"
+            $.each(data, function (i, item) {
+                select_region_task += "<option id='" + item.id + "'  value='" + item.id + "'>" + item.name + "</option>"
+            })
+            select_region_task += "</select>"
+            $('#select_region_task').replaceWith(select_region_task);
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+}
+
+function send_idregion_task(a) {
+    $('#select_team').find('option').remove();
+    $('#select_department_task').find('option').remove();
+    var id = a.value;
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/departments_addteam/' + id,
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var select_department_task = "<select style='width: 67%;' onchange='send_iddepartment_task(this);' id='select_department_task' name='select_department_task'><option id='Choose_Department' value='Choose_Department'>Choose Department</option>"
+            $.each(data, function (i, item) {
+                select_department_task += "<option id='" + item.id + "' value='" + item.id + "'>" + item.name + "</option>"
+            })
+            select_department_task += "</select>"
+            $('#select_department_task').replaceWith(select_department_task);
+
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+
+}
+function send_iddepartment_task(a) {
+    $('#select_team').find('option').remove();
+    var id_department = a.value;
+    var id_servive = $('#id_service_task').val();
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/teams_get_2id/' + id_department + "/" + id_servive,
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var select_team = "<select style='width: 67%;' id='select_team' name='select_team'><option id='Choose_Team' value='Choose_Team'>Choose Team</option>"
+            $.each(data, function (i, item) {
+                select_team += "<option id='" + item.id + "' value='" + item.id + "'>" + item.name + "</option>"
+            })
+            select_team += "</select>"
+            $('#select_team').replaceWith(select_team);
+
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+}
+
+//---------------------------------------------------
 function get_idregion_task(a) {
     $('#sl_department').find('option').remove();
     $('#sl_team').find('option').remove();

@@ -212,6 +212,10 @@
     }
 
     function click_content_team() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_task();
         clear_form_task();
         load_combobox_region();
@@ -281,6 +285,10 @@
         clear_label_orders();
     }
     function click_content_task() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -351,6 +359,10 @@
         clear_label_orders();
     }
     function click_content_employee() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -422,6 +434,10 @@
         clear_label_orders();
     }
     function click_view_employee() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -464,6 +480,10 @@
         clear_label_orders();
     }
     function click_content_feedback() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -534,6 +554,10 @@
         clear_label_orders();
     }
     function click_content_about_us() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -603,6 +627,10 @@
         clear_label_orders();
     }
     function click_content_Region() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -673,6 +701,10 @@
 
     }
     function click_content_Department() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -741,6 +773,10 @@
         clear_label_orders();
     }
     function click_content_service() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -811,6 +847,10 @@
         clear_label_orders();
     }
     function click_content_client_management() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -889,6 +929,10 @@
         clear_label_orders();
     }
     function click_content_trainning() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -953,6 +997,10 @@
         clear_label_orders();
     }
     function view_about_us() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -997,6 +1045,10 @@
         clear_label_orders();
     }
     function click_content_chart_employee() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -1067,6 +1119,10 @@
         clear_label_orders();
     }
     function click_content_role() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -1135,6 +1191,10 @@
         clear_label_orders();
     }
     function click_content_grade() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -1203,6 +1263,10 @@
         clear_label_orders();
     }
     function click_content_speciality() {
+        clear_form_department();
+        clear_table_region();
+        clear_label_department();
+        clear_form_region();
         clear_label_team();
         clear_form_team();
         clear_label_task();
@@ -1430,32 +1494,50 @@
 
 <script type="text/javascript">
     function btn_save_region() {
-        var infor_region = new Object();
-        var name_region = $("#name_region").val();
-        var status = $("#status_region").prop("checked");
-        infor_region.name = name_region;
-        if (status == true) {
-            infor_region.status = true;
-        } else {
-            infor_region.status = false;
-        }
-        var q = JSON.stringify(infor_region);
-        $.ajax({
-            type: 'Post',
-            url: 'http://localhost:44383/api/regions',
-            data:q,
-            contentType: "application/json; charset=utf8",
-            dataType: 'json',
-            success: function (data) {
-                alert("Success");
-                load_data_region();
-                clear_form_region();
+        $('#form_region').validate({
+            rules: {
+                name_region: "required",
             },
-            error: function (data) {
-                alert("Error");
-                clear_form_region();
+            messages: {
+                name_region: "Please enter field !",
             }
         });
+        if ($('#form_region').valid()) {
+            var infor_region = new Object();
+            var name_region = $("#name_region").val();
+            var status = $("#status_region").prop("checked");
+            infor_region.name = name_region;
+            if (status == true) {
+                infor_region.status = true;
+            } else {
+                infor_region.status = false;
+            }
+            var q = JSON.stringify(infor_region);
+            $.ajax({
+                type: 'Post',
+                url: 'http://localhost:44383/api/regions',
+                data: q,
+                contentType: "application/json; charset=utf8",
+                dataType: 'json',
+                success: function (data) {
+                    alert("Success");
+                    load_data_region();
+                    clear_form_region();
+                },
+                error: function (data) {
+                    alert("Error");
+                    clear_form_region();
+                }
+            });
+
+        }
+    }
+
+    function clear_label_region() {
+        $('#name_region-error').css('display', 'none');
+    }
+    function clear_label_department() {
+        $('#name_department-error').css('display', 'none');
     }
     function add_department() {
         var infor_department = new Object();
@@ -1524,7 +1606,7 @@
                         + "<div class='div_icon_delete'>"
                         + "<span><i class='fa fa-trash' onclick='detele_region(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
                         + "</div>"
-                        + "<div class='div_icon_edit'>"
+                        + "<div class='div_icon_edit' onclick='icon_edit_region(this);' data_id_edit_region='" + value.id + "'>"
                         + "<span><i class='fa fa-edit'></i></span>"
                         + "</div>"
                     "</td>"
@@ -1556,11 +1638,8 @@
                         + "<td class=''>" + value.detail + "</td>"
                         + "<td class=''>" + value.status + "</td>"
                         + "<td>"
-                        + "<div class='div_icon_delete'>"
+                        + "<div class='div_icon_delete' style='width:100%;'>"
                         + "<span><i class='fa fa-trash' onclick='detele_feedback(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
-                        + "</div>"
-                        + "<div class='div_icon_edit'>"
-                        + "<span><i class='fa fa-edit'></i></span>"
                         + "</div>"
                     "</td>"
                         + "</tr>";
@@ -1579,10 +1658,10 @@
             contentType: "application/json; charset=utf8",
             success: function (data) {
                 @* alert(JSON.stringify(data));*@
-                var rows = "<select id='combobox_department'><option value='none'>Choose Region</option>";
+                var rows = "<select id='combobox_department'><option value='Choose_Regionss' id='Choose_Region'>Choose Region</option>";
 
                 $.each(data, function (index, value) {
-                    rows += "<option value='" + value.id + "'>" + value.name + "</option>";
+                    rows += "<option value='" + value.id + "' id='" + value.id + "' data-value='" + value.name + "'>" + value.name + "</option>";
                 });
                 rows += "</select>";
                 $('#combobox_department').replaceWith(rows);
@@ -1610,7 +1689,7 @@
                         + "<div class='div_icon_delete'>"
                         + "<span><i class='fa fa-trash' onclick='detele_department(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
                         + "</div>"
-                        + "<div class='div_icon_edit'>"
+                        + "<div class='div_icon_edit' onclick='icon_edit_department(this);' data_id_edit_department='" + value.id + "' >"
                         + "<span><i class='fa fa-edit'></i></span>"
                         + "</div>"
                     "</td>"
@@ -1824,4 +1903,160 @@
         var phone = $('#input_phone').val();
         checkPhone(phone);
     })
+
+    function icon_edit_region(a) {
+        clear_label_region();
+        var id = $(a).attr('data_id_edit_region');
+        $('#div_btn_edit_region').css('display', 'block');
+        $('#btn_save_regions').css('display', 'none');
+        $.ajax({
+            type: "Get",
+            url: 'http://localhost:44383/api/regions/' + id,
+            dataType: 'json',
+            contentType: "application/json, charset=utf8",
+            success: function (data) {
+                JSON.stringify(data);
+                $('#id_region').val(data.id);
+                $('#name_region').val(data.name);
+                if (data.status == true) {
+                    $('#status_region').prop('checked', true);
+                } else {
+                    $('#status_region').prop('checked', false);
+                }
+            }, error: function (data) {
+                alert("Erorr");
+            }
+        });
+
+        $('#div_btn_edit_region').click(function () {
+            $('#form_region').validate({
+                rules: {
+                    name_region: "required",
+                },
+                messages: {
+                    name_region: "Please enter field !",
+                }
+            });
+            if ($('#form_region').valid()) {
+                var edit_region = new Object();
+                var name_region = $('#name_region').val();
+                var id_region = $('#id_region').val();
+                edit_region.id = id_region;
+                edit_region.name = name_region;
+                var status_region = $('#status_region').prop('checked');
+                if (status_region == true) {
+                    edit_region.status = true;
+                } else {
+                    edit_region.status = false;
+                }
+                var q = JSON.stringify(edit_region);
+                $.ajax({
+                    type: "Put",
+                    url: 'http://localhost:44383/api/regions/' + edit_region.id,
+                    data: q,
+                    dataType: 'json',
+                    contentType: "application/json, charset=utf8",
+                    success: function (data) {
+                        alert("Success");
+                        load_data_region();
+                        clear_form_region();
+                        $('#div_btn_edit_region').css('display', 'none');
+                        $('#btn_save_regions').css('display', 'block');
+                        $('#div_btn_edit_region').off('click');
+
+                    },
+                    erorr: function (data) {
+                        alert("Erorr")
+                        $('#div_btn_edit_region').css('display', 'none');
+                        $('#btn_save_regions').css('display', 'block');
+                    }
+                })
+            } else {
+
+            }
+        })
+    }
+
+    function icon_edit_department(a) {
+        clear_label_department();
+        var id = $(a).attr('data_id_edit_department');
+        $('#div_btn_edit_department').css('display', 'block');
+        $('#btn_save_departments').css('display', 'none');
+        $.ajax({
+            type: "Get",
+            url: 'http://localhost:44383/api/departments/' + id,
+            dataType: 'json',
+            contentType: "application/json, charset=utf8",
+            success: function (data) {
+                JSON.stringify(data);
+                $('#id_department').val(data.id);
+                $('#name_department').val(data.name);
+                $("#combobox_department option[data-value=" + JSON.stringify(data.region) + "]").attr("selected", "selected");
+                if (data.status == true) {
+                    $('#status_department').prop('checked', true);
+                } else {
+                    $('#status_department').prop('checked', false);
+                }
+            }, error: function (data) {
+                alert("Erorr");
+            }
+        });
+
+        $('#div_btn_edit_department').click(function () {
+            $.validator.addMethod("valueNotEquals", function (value, element, arg) {
+                return arg !== value;
+            }, "Value must not equal arg.");
+            $('#form_department').validate({
+                ignore: [],
+                rules: {
+                    name_department: "required",
+                    combobox_department: { valueNotEquals: "Choose_Regionss" }
+                },
+                messages: {
+                    name_department: "Please enter field !",
+                    combobox_department: { valueNotEquals: "Please enter field !" }
+                }
+            });
+            if ($('#form_department').valid()) {
+                var edit_department = new Object();
+                var name_region = $('#name_department').val();
+                var id_department = $('#id_department').val();
+                var id_region = $('#combobox_department option:selected').attr('id');
+                alert(id_region)
+                edit_department.id = id_department;
+                edit_department.name = name_region;
+                edit_department.region = id_region
+                var status_department = $('#status_department').prop('checked');
+                if (status_department == true) {
+                    edit_department.status = true;
+                } else {
+                    edit_department.status = false;
+                }
+                var q = JSON.stringify(edit_department);
+                $.ajax({
+                    type: "Put",
+                    url: 'http://localhost:44383/api/departments/' + edit_department.id,
+                    data: q,
+                    dataType: 'json',
+                    contentType: "application/json, charset=utf8",
+                    success: function (data) {
+                        alert("Success");
+                        load_data_departments();
+                        clear_form_department();
+                        $('#div_btn_edit_department').css('display', 'none');
+                        $('#btn_save_departments').css('display', 'block');
+                        $('#div_btn_edit_department').off('click');
+                    },
+                    erorr: function (data) {
+                        alert("Erorr")
+                        clear_form_department();
+                        $('#div_btn_edit_department').css('display', 'none');
+                        $('#btn_save_departments').css('display', 'block');
+                    }
+                })
+            } else {
+
+            }
+        })
+    }
 </script>

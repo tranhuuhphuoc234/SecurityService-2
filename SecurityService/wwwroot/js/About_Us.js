@@ -212,10 +212,17 @@ function icon_edit_about_us(a) {
                     alert("Success");
                     load_data_about_us();
                     clear_form_about_us();
+                    $('#div_btn_edit_about_us').css('display', 'none');
+                    $('#div_btn_save_about_us').css('display', 'block');
+                    $('#div_btn_save_about_us').css('float', 'left');
                     $('#div_btn_edit_about_us').off('click');
                 },
                 erorr: function (data) {
                     alert("Erorr")
+                    $('#div_btn_edit_about_us').css('display', 'none');
+                    $('#div_btn_save_about_us').css('display', 'block');
+                    $('#div_btn_save_about_us').css('float', 'left');
+
                 }
             })
         } else {

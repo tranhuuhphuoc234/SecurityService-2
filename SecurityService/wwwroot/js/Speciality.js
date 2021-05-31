@@ -143,10 +143,14 @@ function icon_edit_speciality(a) {
                     alert("Success");
                     load_data_speciality();
                     clear_form_speciality();
+                    $('#div_btn_edit_speciality').css('display', 'none');
+                    $('#div_btn_save_speciality').css('display', 'block');
                     $('#div_btn_edit_speciality').off('click');
                 },
                 erorr: function (data) {
                     alert("Erorr")
+                    $('#div_btn_edit_speciality').css('display', 'none');
+                    $('#div_btn_save_speciality').css('display', 'block');
                 }
             })
         } else {

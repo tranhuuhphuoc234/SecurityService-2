@@ -203,10 +203,14 @@ function icon_edit_trainning(a) {
                     alert("Success");
                     load_data_trainning();
                     clear_form_trainning();
+                    $('#div_btn_edit_trainning').css('display', 'none');
+                    $('#div_btn_save_trainning').css('display', 'block');
                     $('#div_btn_edit_trainning').off('click');
                 },
                 erorr: function (data) {
                     alert("Erorr")
+                    $('#div_btn_edit_trainning').css('display', 'none');
+                    $('#div_btn_save_trainning').css('display', 'block');
                 }
             })
         }

@@ -144,10 +144,14 @@ function icon_edit_grade(a) {
                     alert("Success");
                     load_data_grade();
                     clear_form_grade();
+                    $('#div_btn_edit_grade').css('display', 'none');
+                    $('#div_btn_save_grade').css('display', 'block');
                     $('#div_btn_edit_grade').off('click');
                 },
                 erorr: function (data) {
                     alert("Erorr")
+                    $('#div_btn_edit_grade').css('display', 'none');
+                    $('#div_btn_save_grade').css('display', 'block');
                 }
             })
         } else {

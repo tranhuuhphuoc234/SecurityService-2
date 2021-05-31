@@ -142,10 +142,14 @@ function icon_edit_role(a) {
                     alert("Success");
                     load_data_role();
                     clear_form_role();
+                    $('#div_btn_edit_role').css('display', 'none');
+                    $('#div_btn_save_role').css('display', 'block');
                     $('#div_btn_edit_role').off('click');
                 },
                 erorr: function (data) {
                     alert("Erorr")
+                    $('#div_btn_edit_role').css('display', 'none');
+                    $('#div_btn_save_role').css('display', 'block');
                 }
             })
         } else {

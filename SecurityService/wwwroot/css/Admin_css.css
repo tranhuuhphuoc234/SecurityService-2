@@ -165,8 +165,8 @@ h1 {
 
 /*input*/
 .my_text_box {
-    padding: 0px 0px 0px 0px;
-    margin-left: 0%;
+    padding: 5px 0px 5px 0px;
+    margin-left: 2%;
     margin-right: 0%;
 }
 
@@ -190,6 +190,8 @@ input {
 /* btn Save */
 .div_btn {
     margin-top: 10px;
+    margin-left: 10px;
+}
 }
 
 .btn_save:hover {
@@ -236,14 +238,14 @@ select {
 .title_table {
     height: 8%;
     width: 100%;
-    background-color: burlywood;
+    background-color: #afb09f;
     font-weight: bolder;
 }
 
 .title_employee {
     height: 8%;
     width: 2200px;
-    background-color: burlywood;
+    background-color: #afb09f;
     font-weight: bolder;
 }
 
@@ -354,7 +356,7 @@ select {
     width: 2200px;
 }
 
-#my_table tr:nth-child(even) {
+/*#my_table tr:nth-child(even) {
     background-color: #444444;
     color: #ffffff;
 }
@@ -367,7 +369,7 @@ select {
 #my_table_trainning tr:nth-child(even) {
     background-color: #444444;
     color: #ffffff;
-}
+}*/
 
 
 table {
@@ -381,7 +383,7 @@ table {
         text-align: center;
         padding: 15px;
         height: 15%;
-        border: 1px solid #ddd;
+        border: 1px solid #afb09f;
     }
 
     table tr td {
@@ -389,7 +391,7 @@ table {
         text-align: center;
         padding-top: 10px;
         padding-bottom: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid #afb09f;
     }
 
     table tr .td_hidden {
@@ -445,7 +447,7 @@ table {
 }
 
 .general_table {
-    height: 85%;
+    height: 80%;
 }
 
 .canvasjs-chart-credit {

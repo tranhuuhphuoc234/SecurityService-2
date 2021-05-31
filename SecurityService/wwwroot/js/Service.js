@@ -207,10 +207,14 @@ function icon_edit_service(a) {
                     alert("Success");
                     load_data_service();
                     clear_form_service();
+                    $('#div_btn_edit_service').css('display', 'none');
+                    $('#div_btn_save_service').css('display', 'block');
                     $('#div_btn_edit_service').off('click');
                 },
                 erorr: function (data) {
                     alert("Erorr")
+                    $('#div_btn_edit_service').css('display', 'none');
+                    $('#div_btn_save_service').css('display', 'block');
                 }
             })
         } else {

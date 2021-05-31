@@ -261,16 +261,25 @@
 @*content_region*@
 <div class="container" id="content_region" style="display:none;">
     <div class="my_col_left_region">
-        <div class="my_text_box">
-            <div class="my_label">Name Region</div>
-            <input type="text" name="name_region" id="name_region" />
+        <div class="my_text_box" style="display:none;">
+            <div class="my_label">Id</div>
+            <input type="text" name="id_region" id="id_region" />
         </div>
-        <div class="my_text_box">
-            <label class="my_label">Status</label>
-            <input type="checkbox" name="status_region" id="status_region" />
-        </div>
-        <div class="div_btn">
-            <button type="button" class="btn_save" onclick="btn_save_region();" id="btn_save_region">Save</button>
+        <form id="form_region">
+            <div class="my_text_box">
+                <div class="my_label">Name Region</div>
+                <input type="text" name="name_region" id="name_region" />
+            </div>
+            <div class="my_text_box">
+                <label class="my_label">Status</label>
+                <input type="checkbox" name="status_region" id="status_region" />
+            </div>
+            <div class="div_btn">
+                <button type="button" class="btn_save" onclick="btn_save_region();" id="btn_save_regions">Save</button>
+            </div>
+        </form>
+        <div class="div_btn" id="div_btn_edit_region" style="display:none;">
+            <button type="button" class="btn_edit" id="btn_edit_region">Edit</button>
         </div>
     </div>
     <div class="my_col_right_region">
@@ -302,24 +311,30 @@
 @*content_department*@
 <div class="container" id="content_department" style="display:none;">
     <div class="my_col_left_region">
-        <div class="my_text_box">
-            <div class="my_label">Name Department</div>
-            <input type="text" name="name_department" id="name_department" />
+        <div class="my_text_box" style="display:none;">
+            <div class="my_label">Id</div>
+            <input type="text" name="id_department" id="id_department" />
         </div>
-        <div class="my_text_box">
-            <div class="my_label">Name Region</div>
-            <select id="combobox_department">
-                <option value="Department" id="Choose_id_Region">Choose Region</option>
-                <option value="Department">Choose di</option>
-                <option value="Department">Choose khikhi</option>
-            </select>
-        </div>
-        <div class="my_text_box">
-            <label class="my_label">Status</label>
-            <input type="checkbox" name="status_department" id="status_department" />
-        </div>
+        <form id="form_department">
+            <div class="my_text_box">
+                <div class="my_label">Name Department</div>
+                <input type="text" name="name_department" id="name_department" />
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Name Region</div>
+                <select id="combobox_department">
+                </select>
+            </div>
+            <div class="my_text_box">
+                <label class="my_label">Status</label>
+                <input type="checkbox" name="status_department" id="status_department" />
+            </div>
+        </form>
         <div class="div_btn">
-            <button class="btn_save" onclick="add_department();" type="button">Save</button>
+            <button class="btn_save" onclick="add_department();" id="btn_save_departments" type="button">Save</button>
+        </div>
+        <div class="div_btn" id="div_btn_edit_department" style="display:none;">
+            <button type="button" class="btn_edit">Edit</button>
         </div>
     </div>
     <div class="my_col_right_region">
@@ -665,7 +680,6 @@
 @*content_role*@
 <div class="container" id="content_role" style="display:none;">
     <div class="my_col_left_region">
-
         <div class="my_text_box" style="display:none;">
             <div class="my_label">Id</div>
             <input type="text" name="id_role" id="id_role" />

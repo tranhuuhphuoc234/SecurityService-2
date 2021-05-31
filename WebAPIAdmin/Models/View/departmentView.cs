@@ -17,5 +17,6 @@ namespace WebAPIAdmin.Models
         public string name { get; set; }
 
         public bool status { get; set; }
+        public string name_region { get; set; }
     }
 }

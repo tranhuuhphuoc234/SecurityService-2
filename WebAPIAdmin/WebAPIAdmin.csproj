@@ -5,13 +5,43 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net5.0\WebAPIAdmin.AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="obj\project.assets.json" />
+    <Content Include="obj\WebAPIAdmin.csproj.nuget.dgspec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="obj\Debug\net5.0\WebAPIAdmin.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net5.0\WebAPIAdmin.assets.cache" />
+    <None Include="obj\Debug\net5.0\WebAPIAdmin.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\net5.0\WebAPIAdmin.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\project.nuget.cache" />
+    <None Include="obj\WebAPIAdmin.csproj.nuget.g.props" />
+    <None Include="obj\WebAPIAdmin.csproj.nuget.g.targets" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="obj\Debug\net5.0\ref\" />
   </ItemGroup>
 
 </Project>

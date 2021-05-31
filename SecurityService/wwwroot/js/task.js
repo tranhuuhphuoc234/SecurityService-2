@@ -141,3 +141,170 @@ function clear_label_task() {
     $('#select_team-error').css('display', 'none');
 }
 
+function load_sl_task_role() {
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/regions',
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var sl_region = "<select style='width: 95%;' onchange='get_idregion_task(this);' id='select_regions_team' name='select_regions_team'><option id='Choose_Region' value='Choose_Region'>Choose Region</option>"
+            $.each(data, function (i, item) {
+                sl_region += "<option id='" + item.id + "'  value='" + item.id + "'>" + item.name + "</option>"
+            })
+            sl_region += "</select>"
+            $('#sl_region').replaceWith(sl_region);
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+}
+
+function get_idregion_task(a) {
+    $('#sl_department').find('option').remove();
+    $('#sl_team').find('option').remove();
+
+    var id = a.value;
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/departments_addteam/' + id,
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var sl_department = "<select style='width: 95%;' onchange='get_iddepartment_task(this);' id='sl_department' name='sl_department'><option id='Choose_Department' value='Choose_Department'>Choose Department</option>"
+            $.each(data, function (i, item) {
+                sl_department += "<option id='" + item.id + "' value='" + item.id + "'>" + item.name + "</option>"
+            })
+            sl_department += "</select>"
+            $('#sl_department').replaceWith(sl_department);
+            
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/task_table_region/' + id,
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var table_task = "<tbody id='table_task'>"
+            $.each(data, function (i, item) {
+                table_task += "<tr>"
+                    + "<td>" + item.name_team + "</td>"
+                    + "<td>" + item.name_task + "</td>"
+                    + "<td>" + item.name_client + "</td>"
+                    + "<td>" + item.name_service + "</td>"
+                    + "<td>" + item.name_task_status + "</td>"
+                    + "</tr>"
+            });
+            table_task += "</tbody>";
+            $('#table_task').replaceWith(table_task);
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+}
+
+function get_iddepartment_task(a) {
+    $('#sl_team').find('option').remove();
+
+    var id = a.value;
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/teams_get_id_department/' + id,
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var sl_team = "<select style='width: 95%;' onchange='get_idteam_task(this);' id='sl_team' name='sl_team'><option id='Choose_Team' value='Choose_Team'>Choose Team</option>"
+            $.each(data, function (i, item) {
+                sl_team += "<option id='" + item.id + "' value='" + item.id + "'>" + item.name + "</option>"
+            })
+            sl_team += "</select>"
+            $('#sl_team').replaceWith(sl_team);
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/tasks_table_department/' + id,
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var table_task = "<tbody id='table_task'>"
+            $.each(data, function (i, item) {
+                table_task += "<tr>"
+                    + "<td>" + item.name_team + "</td>"
+                    + "<td>" + item.name_task + "</td>"
+                    + "<td>" + item.name_client + "</td>"
+                    + "<td>" + item.name_service + "</td>"
+                    + "<td>" + item.name_task_status + "</td>"
+                    + "</tr>"
+            });
+            table_task += "</tbody>";
+            $('#table_task').replaceWith(table_task);
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+}
+
+function get_idteam_task(a) {
+    var id = a.value;
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/tasks_table_team/' + id,
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var table_task = "<tbody id='table_task'>"
+            $.each(data, function (i, item) {
+                table_task += "<tr>"
+                    + "<td>" + item.name_team + "</td>"
+                    + "<td>" + item.name_task + "</td>"
+                    + "<td>" + item.name_client + "</td>"
+                    + "<td>" + item.name_service + "</td>"
+                    + "<td>" + item.name_task_status + "</td>"
+                    + "</tr>"
+            });
+            table_task += "</tbody>";
+            $('#table_task').replaceWith(table_task);
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+}
+function load_table_task() {
+    $.ajax({
+        type: "Get",
+        url: 'http://localhost:44383/api/tasks_table',
+        dataType: 'json',
+        contentType: "application/json, charset=utf8",
+        success: function (data) {
+            var table_task = "<tbody id='table_task'>"
+            $.each(data, function (i, item) {
+                table_task += "<tr>"
+                    + "<td>" + item.name_team + "</td>"
+                    + "<td>" + item.name_task + "</td>"
+                    + "<td>" + item.name_client + "</td>"
+                    + "<td>" + item.name_service + "</td>"
+                    + "<td>" + item.name_task_status + "</td>"
+                    + "</tr>"
+            });
+            table_task += "</tbody>";
+            $('#table_task').replaceWith(table_task);
+        },
+        erorr: function (data) {
+            alert("Erorr")
+        }
+    })
+}

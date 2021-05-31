@@ -92,4 +92,11 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
+
+    $("#search_task ").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#table_task tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 }); 

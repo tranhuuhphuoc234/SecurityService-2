@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace WebAPIAdmin.Models
+{
+    [Table("task_status")]
+    public class task_status
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id", TypeName = "int")]
+        public int id { get; set; }
+        [Column("name", TypeName = "varchar")]
+        public string name { get; set; }
+    }
+}

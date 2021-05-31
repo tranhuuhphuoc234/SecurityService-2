@@ -29,6 +29,7 @@ namespace WebAPIAdmin.Models.Context
         public DbSet<Recruitment> Recruitments { get; set; }
         public DbSet<team> teams { get; set; }
         public DbSet<task> tasks { get; set; }
+        public DbSet<task_status> task_Statuses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -167,5 +167,12 @@ namespace WebAPIAdmin.Controllers
 
             return NoContent();
         }
+        
+        [HttpGet("getDepartmentByRegion/{region}")]
+        public async Task<ActionResult<IEnumerable<department>>> getDepartmentByRegion(int region)
+        {
+            var s = _context.departments.Where(d => d.region == region).ToList();
+            return s;
+        }
     }
 }

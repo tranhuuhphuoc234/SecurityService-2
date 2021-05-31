@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/css/Admin_css.css" rel="stylesheet" />
+    <link href="~/css/Admin_csss.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
@@ -37,6 +37,7 @@
                 </ul>
             </div>
         </div>
+        
         @*Content_admin*@
         <div class="col_right">
             <div class="content_col_right">
@@ -52,7 +53,7 @@
     <script src="~/js/jquery.validate.min.js"></script>
     <script src="~/js/canvasjs.min.js"></script>
     <script src="~/js/About_Us.js"></script>
-    <script src="~/js/Client_management.js"></script>
+    <script src="~/js/Client_managementt.js"></script>
     <script src="~/js/Grade.js"></script>
     <script src="~/js/My_Search.js"></script>
     <script src="~/js/recruitment.js"></script>
@@ -74,7 +75,7 @@
                 data: [
                     {
                         // Change type to "doughnut", "line", "splineArea", etc.
-                        type: "line",
+                        type: "column",
                         dataPoints: [
                             { label: "security", y: 10 },
                             { label: "electrical repairs", y: 15 },
@@ -129,7 +130,7 @@
         $('#search_employee').val("");
     }
     function clear_form_employee() {
-        var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "username", "password", "status", "confirm", "image"];
+        var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "username", "password", "status", "confirm_employee", "image"];
         for (var i = 0; i < listProperty.length; i++) {
             var name = '#input_' + listProperty[i];
             $(name).val("");
@@ -482,6 +483,7 @@
         clear_label_orders();
     }
     function click_content_feedback() {
+        document.getElementById("btn_add_employee").disabled = false;
         clear_form_department();
         clear_table_region();
         clear_label_department();
@@ -1375,7 +1377,6 @@
     function detele_department(obj) {
         var row = $(obj).attr("data-row");
         var id = $(obj).attr('data-id');
-        alert(id);
         $.ajax({
             url: "http://localhost:44383/api/departments/" + id,
             type: "DELETE",
@@ -1383,6 +1384,24 @@
             success: function (data) {
                 alert('Delete Success');
                 $('#department_row_' + row).remove();
+            },
+            error: function () {
+                alert('Delete Fail');
+            }
+        })
+    }
+    function delete_emp(obj) {
+
+        var row = $(obj).attr("data-row");
+        var id = $(obj).attr('data-id');
+
+        $.ajax({
+            url: "http://localhost:44383/api/employees/" + id,
+            type: "DELETE",
+            contentType: "application/json",
+            success: function (data) {
+                alert('Delete Success');
+                $('#employee_row_' + row).remove();
             },
             error: function () {
                 alert('Delete Fail');
@@ -1404,7 +1423,7 @@
             if (phone.length == 10) {
                 var email = $('#input_email').val();
                 if (ValidateEmail(email) == true) {
-                    var department = $('#input_department').val();
+                    var id_team = $('#input_team').val();
                     var role = $('#input_role').val();
                     var grade = $('#input_grade').val();
                     var achivement = $('#input_achivement').val();
@@ -1413,12 +1432,12 @@
                     var aboutme = $('#input_aboutme').val();
                     var usrname = $('#input_username').val();
                     var pwd = $('#input_password').val();
-                    var confirm = $('#input_confirm').val();
+                    var confirm = $('#input_confirm_employee').val();
                     if (pwd == confirm) {
                         var employee_status = $('#employee_status').prop('checked');
                         var emp = new Object();
-                        var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality", "price", "aboutme", "usrname", "pwd", "status"];
-                        var listData = [name, age, weight, height, address, phone, email, department, role, grade, achivement, speciality, price, aboutme, usrname, pwd, employee_status];
+                        var listProperty = ["name", "age", "weight", "height", "address", "phone", "email", "role", "grade", "achivement", "speciality", "price", "aboutme", "usrname", "pwd", "status", "id_team"];
+                        var listData = [name, age, weight, height, address, phone, email, role, grade, achivement, speciality, price, aboutme, usrname, pwd, employee_status, id_team];
                         for (var i = 0; i < listData.length; i++) {
                             emp[listProperty[i]] = listData[i];
                         }
@@ -1450,6 +1469,10 @@
                                         UploadImgEmp(img, empid);
                                         @*  ADD EMPLOYEE SUCCESS   *@
                                         alert("Success");
+                                        $('#input_region').val('none');
+                                        document.getElementById("input_department").disabled = true;
+                                        document.getElementById("input_team").disabled = true;
+
                                         load_data_employee();
                                         clear_form_employee();
                                     }
@@ -1491,6 +1514,37 @@
 
             }
         })
+    }
+    function UpdateImageEmployee(img, idemp) {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/images/searchByEmp/' + idemp,
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (index, value) {
+                    var image = new Object();
+                    image.id = value.id;
+                    image.path = img;
+                    image.employee = idemp;
+                    var q = JSON.stringify(image);
+                    $.ajax({
+                        type: 'Put',
+                        url: 'http://localhost:44383/api/images/' + image.id,
+                        data: q,
+                        contentType: 'application/json; charset=utf8',
+                        dataType: 'json',
+                        success: function (data) {
+
+                        }, error: function (data) {
+                            alert("Update img error");
+                        }
+                    })
+                });
+                
+            }
+        })
+        
     }
 </script>
 
@@ -1580,14 +1634,13 @@
         load_data_departments();
         load_data_employee();
 
-        load_cb("department");
+        load_cb("region");
+        
         load_cb("grade");
         load_cb("role");
         load_cb("speciality");
 
     });
-
-
 
   @*try data*@
   function load_data_region () {
@@ -1704,6 +1757,7 @@
         })
     }
     function load_data_employee() {
+        
         $.ajax({
             type: 'get',
             url: 'http://localhost:44383/api/employees',
@@ -1723,7 +1777,7 @@
                         + "<td class='' style='width:200px'> " + value.phone + "</td>"
                         + "<td class='' style='width:250px'> " + value.email + "</td>"
                         + "<td class='' style='width:200px'> " + value.address + "</td>"
-                        + "<td class='' style='width:100px'> " + value.department + "</td>"
+                        + "<td class='' style='width:100px'> " + value.team + "</td>"
                         + "<td class='' style='width:100px'> " + value.role + "</td>"
                         + "<td class='' style='width:100px'> " + value.grade + "</td>"
                         + "<td class='' style='width:200px'> " + value.achivement + "</td>"
@@ -1734,10 +1788,10 @@
                         + "<td class='' style='width:70px'> " + value.status + "</td>"
                         + "<td style='width:100px'>"
                         + "<div class='div_icon_delete'>"
-                        + "<span><i class='fa fa-trash' onclick='detele_employee(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
+                        + "<span><i class='fa fa-trash' onclick='delete_emp(this);' data-row='" + row + "' data-id='" + value.id + "'></i></span>"
                         + "</div>"
                         + "<div class='div_icon_edit'>"
-                        + "<span><i class='fa fa-edit'></i></span>"
+                        + "<span><i class='fa fa-edit' onclick='edit_employee(this)' data-id='"+value.id+"'></i></span>"
                         + "</div>"
                     "</td>"
                         + "</tr>";
@@ -1766,6 +1820,26 @@
                     $(input).replaceWith(rows);
                 }
             })
+        }else if (name == 'region') {
+            var url = 'http://localhost:44383/api/' + name + 's';
+            $.ajax({
+                type: 'get',
+                url: url,
+                dataType: 'json',
+                contentType: "application/json; charset=utf8",
+                success: function (data) {
+                    var rows = "<select id='input_" + name + "' onchange='regionchange(this);'><option value=''>Choose " + name + "</option>"
+                    $.each(data, function (index, value) {
+                        rows += "<option value='" + value.id + "'>" + value.name + "</option>"
+                    });
+                    rows += "</select>";
+                    var input = '#input_' + name;
+                    $(input).replaceWith(rows);
+                    document.getElementById("input_department").disabled = true;
+                    document.getElementById("input_team").disabled = true;
+                }
+                
+            })
         } else {
             var url = 'http://localhost:44383/api/' + name + 's';
             $.ajax({
@@ -1786,8 +1860,43 @@
         }
 
     }
+    function load_cb_team(name) {
+        var url = 'http://localhost:44383/api/teams';
+        $.ajax({
+            type: 'get',
+            url: url,
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                var rows = "<select id='input_" + name + "'><option value=''>Choose " + name + "</option>"
+                $.each(data, function (index, value) {
+                    rows += "<option value='" + value.id + "'>" + value.name + "</option>"
+                });
+                rows += "</select>";
+                var input = '#input_' + name;
+                $(input).replaceWith(rows);
+            }
+        })
+    }
     function checkEmpty_employee() {
-        var list = ["name", "age", "weight", "height", "address", "phone", "email", "department", "role", "grade", "achivement", "speciality","price", "aboutme", "username", "password", "confirm", "image"];
+        var list = ["name", "age", "weight", "height", "address", "phone", "email", "team", "role", "grade", "achivement", "speciality","price", "aboutme", "username", "password", "confirm_employee", "image"];
+        for (var i = 0; i < list.length; i++) {
+            var error = "<span style='color: red;' id='error_" + list[i] + "'> *</span>";
+            var correct = "<span id='error_" + list[i] + "'></span>";
+            var name_input = '#input_' + list[i];
+            if ($(name_input).val() == "" || $(name_input).val() == "none") {
+                var content = "#error_" + list[i];
+                $(content).replaceWith(error);
+                count_error += 1;
+            } else {
+                var content = "#error_" + list[i];
+                $(content).replaceWith(correct);
+            }
+        }
+
+    }
+    function checkEmpty_employee2() {
+        var list = ["name", "age", "weight", "height", "address", "phone", "email", "team", "role", "grade", "achivement", "speciality", "price", "aboutme", "username", "password", "confirm_employee"];
         for (var i = 0; i < list.length; i++) {
             var error = "<span style='color: red;' id='error_" + list[i] + "'> *</span>";
             var correct = "<span id='error_" + list[i] + "'></span>";

@@ -22,10 +22,9 @@ namespace WebAPIUser.Controllers
         }
         // GET: api/services
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<service>>> Getservices(int skip)
+        public async Task<ActionResult<IEnumerable<service>>> Getservices()
         {
-            skip = skip>1?skip*9:1;
-            return await _context.services.Where(s=>s.status == true).OrderBy(s=>s.id).Skip(skip).Take(9).ToListAsync();
+            return await _context.services.ToListAsync();
         }
 
         /// search by name

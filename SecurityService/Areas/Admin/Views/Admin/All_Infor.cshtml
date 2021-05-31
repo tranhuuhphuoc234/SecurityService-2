@@ -54,11 +54,25 @@
                 <span id="error_address"></span>
             </div>
             <div class="my_text_box">
+                <div class="my_label">Region</div>
+                <select id="input_region">
+                    <option value="none">Choose Region</option>
+                </select>
+                <span id="error_region"></span>
+            </div>
+            <div class="my_text_box">
                 <div class="my_label">Department</div>
                 <select id="input_department">
                     <option value="none">Choose Department</option>
                 </select>
                 <span id="error_department"></span>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Team</div>
+                <select id="input_team">
+                    <option value="none">Choose Team</option>
+                </select>
+                <span id="error_team"></span>
             </div>
             <div class="my_text_box">
                 <div class="my_label">Role</div>
@@ -110,12 +124,12 @@
             </div>
             <div class="my_text_box">
                 <div class="my_label">Confirm Password</div>
-                <input type="password" name="cf_password" id="input_confirm" />
-                <span id="error_confirm"></span>
+                <input type="password" name="cf_password" id="input_confirm_employee" />
+                <span id="error_confirm_employee"></span>
             </div>
             <div class="my_text_box">
                 <div class="my_label">Image</div>
-                <input type="file" name="image" id="input_image" />
+                <input type="file" name="image" id="input_image" onchange="change_image(this);" />
                 <span id="error_image"></span>
             </div>
             <div class="my_text_box">
@@ -123,9 +137,9 @@
                 <input type="checkbox" name="status" id="employee_status" style="width: 15%;" />
             </div>
             <div class="my_text_box">
-                <button type="button" onclick="add_employee();" class="btn_save" style="">Save</button>
-                <button type="button" class="btn_edit" id="btn_edit">Edit</button>
-                <button type="button" onclick="click_view_employee();" class="btn_view">View</button>
+                <button type="button" onclick="add_employee();" id="btn_add_employee" class="btn_save" style="">Save</button>
+                <button type="button" class="btn_edit" id="btn_edit_employee">Edit</button>
+                <button type="button" onclick="click_view_employee();" id="btn_view_employee" class="btn_view">View</button>
             </div>
         </div>
     </div>
@@ -995,4 +1009,236 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    var username = sessionStorage.getItem('username');
+    var role = sessionStorage.getItem('role');
+    if (username == null && role != 'admin') {
+        window.location.href = "@Url.Action("index", "ErrorPage")";
+    }
+    function regionchange(obj) {
+        var id_region = $(obj).val();
+        document.getElementById("input_department").disabled = false;
+        document.getElementById("input_team").disabled = true;
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/departments/getDepartmentByRegion/' + id_region,
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                var rows = "<select id='input_department' onchange='department_onchange(this);'><option value='none'>Choose Department</option>";
+                $.each(data, function (index, value) {
+                    rows += "<option value='" + value.id + "'>" + value.name + "</option>";
+                });
+                rows += "</select>";
+                $('#input_department').replaceWith(rows);
+                
+            }
+        })
+    }
+    function department_onchange(obj) {
+        var id_department = $(obj).val();
+        document.getElementById("input_team").disabled = false;
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/teams/getTeamByDepartment/' + id_department,
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                var rows = "<select id='input_team'><option value='none'>Choose Team</option>";
+                $.each(data, function (index, value) {
+                    rows += "<option value='" + value.id + "'>" + value.name + "</option>";
+                });
+                rows += "</select>";
+                $('#input_team').replaceWith(rows);
+            }
+        })
+    }
+    function edit_employee(obj) {
+        var id_employee = $(obj).attr('data-id');
+        click_content_employee();
+        document.getElementById("btn_add_employee").disabled = true;
+
+        document.getElementById("input_department").disabled = false;
+        document.getElementById("input_team").disabled = false;
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:44383/api/employees/' + id_employee,
+            dataType: 'json',
+            contentType: "application/json; charset=utf8",
+            success: function (data) {
+                
+                var id_department = data.id_department;
+                var id_team = data.team;
+                sessionStorage.setItem('image', data.image);
+                $.ajax({
+                    type: 'get',
+                    url: 'http://localhost:44383/api/departments/getDepartmentByRegion/' + data.id_region,
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf8",
+                    success: function (data) {
+                        var rows = "<select id='input_department' onchange='department_onchange(this);'><option value='none'>Choose Department</option>";
+                        $.each(data, function (index, value) {
+                            if (value.id == id_department) {
+                                rows += "<option value='" + value.id + "'selected>" + value.name + "</option>";
+                            }
+                            rows += "<option value='" + value.id + "'>" + value.name + "</option>";
+                        });
+                        rows += "</select>";
+                        $('#input_department').replaceWith(rows);
+                    }
+                })
+                $.ajax({
+                    type: 'get',
+                    url: 'http://localhost:44383/api/teams/getTeamByDepartment/' + id_department,
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf8",
+                    success: function (data) {
+                        var rows = "<select id='input_team'><option value='none'>Choose Team</option>";
+                        $.each(data, function (index, value) {
+                            if (value.id == id_team) {
+                                
+                                rows += "<option value='" + value.id + "' selected>" + value.name + "</option>";
+                            }
+                            rows += "<option value='" + value.id + "'>" + value.name + "</option>";
+                        });
+                        rows += "</select>";
+                        $('#input_team').replaceWith(rows);
+                    }, error: function (data) {
+                        alert("error");
+                    }
+                })
+                $('#input_role').val(data.id_role);
+                $('#input_confirm_employee').val(data.password);
+                sessionStorage.setItem('id_employee_edit', id_employee);
+                if (data.status == true) {
+                    $('#employee_status').prop('checked', true);
+                } else {
+                    $('#employee_status').prop('checked', false);
+                }
+                
+                var list1 = ["name", "age", "weight", "height", "address", "phone", "email", "region", "role", "grade", "achivement", "speciality", "price", "aboutme", "username", "password", "confirm"];
+                var list2 = ["name", "age", "weight", "height", "address", "phone", "email", "id_region", "id_role", "id_garde", "achivement", "id_speciality", "price", "aboutme", "usrname", "password", "confirm"];
+                
+                for (var i = 0; i < list1.length; i++) {
+                    var name = '#input_' + list1[i];
+                    $(name).val(data[list2[i]]);
+                }
+                
+            }
+        })
+    }
+    function change_image(obj) {
+        sessionStorage.removeItem('image');
+    }
+    $('#btn_edit_employee').click(function (data) {
+        if (sessionStorage.getItem('image') == null) {
+            var img = $('#input_image').val();
+            img = img.substring(img.lastIndexOf("\\") + 1, img.length);
+        } else {
+            var img = sessionStorage.getItem('image');
+        }
+        checkEmpty_employee2();
+        if (sessionStorage.getItem('image') == null && img == "") {
+            alert("Please choose image");
+        } else {
+            if (count_error == 0) {
+                var name = $('#input_name').val();
+                var age = $('#input_age').val();
+                var weight = $('#input_weight').val();
+                var height = $('#input_height').val();
+                var address = $('#input_address').val();
+                var phone = $('#input_phone').val();
+                if (phone.length == 10) {
+                    var email = $('#input_email').val();
+                    if (ValidateEmail(email) == true) {
+                        var id_team = $('#input_team').val();
+                        var role = $('#input_role').val();
+                        var grade = $('#input_grade').val();
+                        var achivement = $('#input_achivement').val();
+                        var speciality = $('#input_speciality').val();
+                        var price = $('#input_price').val();
+                        var aboutme = $('#input_aboutme').val();
+                        var usrname = $('#input_username').val();
+                        var pwd = $('#input_password').val();
+                        var confirm = $('#input_confirm_employee').val();
+                        var id_employee = sessionStorage.getItem('id_employee_edit');
+                        if (pwd == confirm) {
+                            var employee_status = $('#employee_status').prop('checked');
+                            var emp = new Object();
+                            var listProperty = ["id", "name", "age", "weight", "height", "phone", "email", "address", "role", "grade", "achivement", "speciality", "price", "aboutme", "usrname", "pwd", "status", "id_team"];
+                            var listData = [id_employee, name, age, weight, height, phone, email, address, role, grade, achivement, speciality, price, aboutme, usrname, pwd, employee_status, id_team];
+                            for (var i = 0; i < listData.length; i++) {
+                                emp[listProperty[i]] = listData[i];
+                            }
+                            var q = JSON.stringify(emp);
+                            $.ajax({
+                                type: 'Put',
+                                url: 'http://localhost:44383/api/employees/' + id_employee,
+                                data: q,
+                                contentType: "application/json; charset=utf8",
+                                dataType: 'json',
+                                success: function (data) {
+                                    @* UPLOAD IMG *@
+                                    if (sessionStorage.getItem('image') == null) {
+                                        var empid = id_employee;
+                                        var input = document.getElementById('input_image');
+                                        var files = input.files;
+                                        var formData = new FormData();
+
+                                        for (var i = 0; i != files.length; i++) {
+                                            formData.append("files", files[i]);
+                                        }
+
+                                        $.ajax({
+                                            url: "UploadImageEmp",
+                                            data: formData,
+                                            processData: false,
+                                            contentType: false,
+                                            type: "POST",
+                                            success: function (data) {
+                                                UpdateImageEmployee(img, id_employee);
+                                                @* ADD EMPLOYEE SUCCESS *@
+                                                alert("Update Success");
+                                                document.getElementById("btn_add_employee").disabled = false;
+                                                $('#input_region').val('none');
+                                                document.getElementById("input_department").disabled = true;
+                                                document.getElementById("input_team").disabled = true;
+
+                                                load_data_employee();
+                                                clear_form_employee();
+                                            }
+                                        })
+                                    } else {
+                                        alert("Update Success");
+                                        document.getElementById("btn_add_employee").disabled = false;
+                                        $('#input_region').val('none');
+                                        document.getElementById("input_department").disabled = true;
+                                        document.getElementById("input_team").disabled = true;
+
+                                        load_data_employee();
+                                        clear_form_employee();
+                                    }
+                                    
+                                },
+                                error: function (data) {
+                                    alert("Error");
+                                }
+                            });
+                        } else {
+                            var error_cf = "<span id='error_confirm' style='color: red; font-size: 13px'>Confirm incorrect!!</span>";
+                            $('#error_confirm').replaceWith(error_cf);
+                            setTimeout(function () {
+                                $('#error_confirm').replaceWith("<span id='error_confirm'></span>");
+                            }, 2000)
+                        }
+                    }
+                } else {
+                    $('#error_phone').replaceWith("<span id='error_phone' style='color:red; font-size: 13px;'>Phone is not a valid</span>");
+                }
+            } else {
+                alert("Please enter full information");
+                count_error = 0;
+            }
+        }
+        
+    })
 </script>

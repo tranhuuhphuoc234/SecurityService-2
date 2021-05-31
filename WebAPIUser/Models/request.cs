@@ -15,8 +15,8 @@ namespace WebAPIUser.Models
         [Column("id",TypeName ="int")]
         public int id { get; set; }
 
-        [Column("service", TypeName = "varchar")]
-        public string service { get; set; }
+        [Column("service", TypeName = "int")]
+        public int service { get; set; }
 
         [Column("message",TypeName ="varchar")]
         [StringLength(3000)]

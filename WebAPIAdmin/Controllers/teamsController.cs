@@ -104,5 +104,11 @@ namespace WebAPIAdmin.Controllers
         {
             return _context.teams.Any(e => e.id == id);
         }
+        [HttpGet("getTeamByDepartment/{department}")]
+        public async Task<ActionResult<IEnumerable<team>>> getTeamByDepartment(int department)
+        {
+            var q = _context.team.Where(d => d.department == department).ToList();
+            return q;
+        }
     }
 }

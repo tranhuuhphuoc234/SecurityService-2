@@ -28,26 +28,28 @@ namespace WebAPIAdmin.Controllers
         {
             var re= (from e in _context.employees
                      join s in _context.specialities on e.speciality equals s.id
-                     join d in _context.departments on e.department equals d.id
                      join g in _context.grades on e.grade equals g.id
                      join r in _context.roles on e.role equals r.id
+                     join img in _context.images on e.id equals img.employee
                      where e.status==true
-                     select new employeeView {id = e.id,name=e.name,age=e.age,weight=e.weight,height=e.height,email=e.email,phone=e.phone,address=e.address,grade=g.name,role=r.name,speciality=s.name,achivement=e.achivement,aboutme=e.aboutme,price=e.price,department=d.name,status=e.status, usrname = e.usrname }).ToListAsync();
+                     select new employeeView {id = e.id,name=e.name,age=e.age,weight=e.weight,height=e.height,email=e.email,phone=e.phone,address=e.address,grade=g.name,role=r.name,speciality=s.name,achivement=e.achivement,aboutme=e.aboutme,price=e.price,status=e.status, usrname = e.usrname, image = img.path }).ToListAsync();
             return await re;
         }
 
         // GET: api/employees/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<employee>> Getemployee(int id)
+        public async Task<ActionResult<employeeView>> Getemployee(int id)
         {
-            var employee = await _context.employees.FindAsync(id);
-
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            return employee;
+            var re = (from e in _context.employees
+                      join s in _context.specialities on e.speciality equals s.id
+                      join g in _context.grades on e.grade equals g.id
+                      join r in _context.roles on e.role equals r.id
+                      join img in _context.images on e.id equals img.employee
+                      join t in _context.team on e.id_team equals t.id
+                      join d in _context.departments on t.department equals d.id
+                      where e.status == true && e.id == id
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, aboutme = e.aboutme, price = e.price, status = e.status, usrname = e.usrname, image = img.path, id_department = t.department, id_role =e.role, id_garde = e.grade, id_speciality = e.speciality, id_region = d.region, team = e.id_team, password = e.pwd}).FirstOrDefault();
+            return re;
         }
 
         // PUT: api/employees/5
@@ -119,11 +121,10 @@ namespace WebAPIAdmin.Controllers
         {
             var re = (from e in _context.employees
                       join s in _context.specialities on e.speciality equals s.id
-                      join d in _context.departments on e.department equals d.id
                       join g in _context.grades on e.grade equals g.id
                       join r in _context.roles on e.role equals r.id
 
-                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, aboutme = e.aboutme, price = e.price, department = d.name, status = e.status }).Where(a=>a.name.Contains(name)).ToListAsync();
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, aboutme = e.aboutme, price = e.price, status = e.status }).Where(a=>a.name.Contains(name)).ToListAsync();
             return await re;
         }
         //search by phone
@@ -132,11 +133,10 @@ namespace WebAPIAdmin.Controllers
         {
             var re = (from e in _context.employees
                       join s in _context.specialities on e.speciality equals s.id
-                      join d in _context.departments on e.department equals d.id
                       join g in _context.grades on e.grade equals g.id
                       join r in _context.roles on e.role equals r.id
 
-                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, aboutme = e.aboutme, price = e.price, department = d.name, status = e.status }).Where(a => a.phone.Contains(phone)).ToListAsync();
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, grade = g.name, role = r.name, speciality = s.name, achivement = e.achivement, aboutme = e.aboutme, price = e.price, status = e.status }).Where(a => a.phone.Contains(phone)).ToListAsync();
             return await re;
         }
         //active  though id
@@ -188,6 +188,33 @@ namespace WebAPIAdmin.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmp(int id)
+        {
+            var employee = await _context.employees.FindAsync(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            _context.employees.Remove(employee);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpGet("getEmployeeById/{id}")]
+        public async Task<ActionResult<employeeView>> getEmployeeById(int id)
+        {
+            var re = (from e in _context.employees
+                      join img in _context.images on e.id equals img.employee
+                      join t in _context.team on e.id_team equals t.id
+                      join d in _context.departments on t.department equals d.id
+                      where e.id == id
+                      select new employeeView { id = e.id, name = e.name, age = e.age, weight = e.weight, height = e.height, email = e.email, phone = e.phone, address = e.address, achivement = e.achivement, aboutme = e.aboutme, price = e.price, status = e.status, usrname = e.usrname, image = img.path, id_department = t.department, id_role = e.role, id_garde = e.grade, id_speciality = e.speciality, id_region = d.region, team = e.id_team }).FirstOrDefault();
+            return re;
         }
     }
 }

@@ -40,9 +40,6 @@ namespace WebAPIAdmin.Models
         [StringLength(500)]
         public string address { get; set; }
 
-        [Column("department",TypeName ="int")]
-        public int department { get; set; }
-
         [Column("role",TypeName ="int")]
         public int role { get; set; }
 
@@ -73,5 +70,8 @@ namespace WebAPIAdmin.Models
         
         [Column("status",TypeName ="bit")]
         public bool status { get; set; }
+
+        [Column("id_team", TypeName = "int")]
+        public int id_team { get; set; }
     }
 }

@@ -703,7 +703,7 @@
                 alert("Please enter full information!!");
             }
         }
-        
+
     })
     var search = document.getElementById("searchBox_span");
     function load_cb_main_task(team, status) {
@@ -736,6 +736,26 @@
             search.style.zIndex = "1";
         }
     }
+    $('#reject').click(function () {
+        modalTaskAccept.style.display = "none";
+        modalTaskReject.style.display = "block";
+        modalTaskReject.style.left = "0";
+        modalTaskReject.style.transition = "left 2s";
+
+        var nametask = $('#name_task').val();
+        $('#nameTask_reject').val(nametask);
+
+        var idtask = $('#idTask_started').val();
+        $('#idTask_reject').val(idtask);
+
+        var reason = $('#reason').val();
+
+    })
+    $('#back').click(function () {
+        modalTaskReject.style.display = "none";
+        modalTaskAccept.style.display = "block";
+
+    })
     function ViewTask(obj) {
         var modal = $(obj).attr('data-model');
         if (modal == 'modal1') {
@@ -753,14 +773,14 @@
             modal2.style.display = "block";
             document.body.style.overflow = "hidden";
             search.style.zIndex = "0";
-            $('#claim').css('display', 'block');
-            $('#reject').css('display', 'block');
+            document.getElementById("claim").disabled = false;
+            document.getElementById("reject").disabled = false;
         } else if (modal == 'modal3') {
             modal2.style.display = "block";
             document.body.style.overflow = "hidden";
             search.style.zIndex = "0";
-            $('#claim').css('display', 'none');
-            $('#reject').css('display', 'none');
+            document.getElementById("claim").disabled = true;
+            document.getElementById("reject").disabled = true;
         }
 
         var nameTask = $(obj).attr('data-nametask');
@@ -915,15 +935,6 @@
             }
         });
     }
-    $('#reject').click(function (data) {
-        var nametask = $('#name_task').val();
-        $('#nameTask_reject').val(nametask);
-
-        var idtask = $('#idTask_started').val();
-        $('#idTask_reject').val(idtask);
-
-        var reason = $('#reason').val();
-    })
     $('#claim').click(function (data) {
         var idtask = $('#idTask_started').val();
         $.ajax({
@@ -936,6 +947,10 @@
                 load_task_of_admin(IdTeam);
                 load_task_inprogress(IdTeam);
                 load_task_done(IdTeam);
+
+                modal2.style.display = "none";
+                document.body.style.removeProperty("overflow");
+                search.style.zIndex = "1";
             }
         })
     })

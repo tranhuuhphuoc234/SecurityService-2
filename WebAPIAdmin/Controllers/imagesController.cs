@@ -111,5 +111,11 @@ namespace WebAPIAdmin.Controllers
         {
             return await _context.images.Where(a => a.employee == employee).ToListAsync();
         }
+        [HttpGet("searchByEmp/{employee}")]
+        public async Task<ActionResult<IEnumerable<image>>> searchByEmp(int employee)
+        {
+            return await _context.images.Where(a => a.employee == employee).ToListAsync();
+        }
+        
     }
 }

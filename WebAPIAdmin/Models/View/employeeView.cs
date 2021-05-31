@@ -29,13 +29,21 @@ namespace WebAPIAdmin.Models
       
         public string address { get; set; }
 
+        public int id_department { get; set; }
+
         public string department { get; set; }
 
+        public int id_role { get; set; }
+
         public string role { get; set; }
+
+        public int id_garde { get; set; }
 
         public string grade { get; set; }
 
         public string achivement { get; set; }
+
+        public int id_speciality { get; set; }
 
         public string speciality { get; set; }
 
@@ -49,5 +57,12 @@ namespace WebAPIAdmin.Models
         public string usrname { get; set; }
 
         public string password { get; set; }
+
+        public string image { get; set; }
+
+        public int team { get; set; }
+
+        public int id_region { get; set; }
+
     }
 }

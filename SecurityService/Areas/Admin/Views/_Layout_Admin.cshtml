@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <style>
+    </style>
     <div class="container_admin">
         @*Menu_admin*@
         <div class="col_left">
@@ -19,25 +22,53 @@
                 </div>
             </div>
             <div class="btn_menu">
-                <ul class="btn_menu_admin">
-                    <li id="li_employee" onclick="click_content_employee();">Empolyee</li>
-                    <li id="li_feedback" onclick="click_content_feedback();">Feedback</li>
-                    <li id="li_about_us" onclick="click_content_about_us();">About Us</li>
-                    <li id="li_region" onclick="click_content_Region();">Region</li>
-                    <li id="li_department" onclick="click_content_Department();">Department</li>
-                    <li id="li_client_management" onclick="click_content_client_management();">Client Management</li>
-                    <li id="li_service" onclick="click_content_service();">Service</li>
-                    <li id="li_trainning" onclick="click_content_trainning();">Trainning</li>
-                    <li id="li_chart" onclick="click_content_chart_employee();">Chart Employee</li>
-                    <li id="li_role" onclick="click_content_role();">Role</li>
-                    <li id="li_speciality" onclick="click_content_speciality();">Speciality</li>
-                    <li id="li_grade" onclick="click_content_grade();">Grade</li>
-                    <li id="li_task" onclick="click_content_task();">Task</li>
-                    <li id="li_team" onclick="click_content_team();">Team</li>
-                </ul>
+                @*1*@
+                <button class="dropdown-btn">
+                    Client Management
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a id="li_client_management" onclick="click_content_client_management();">Client Management</a>
+                </div>
+                @*2*@
+                <button class="dropdown-btn">
+                    Employee Management
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a id="li_employee" onclick="click_content_employee();">Empolyee</a>
+                    <a id="li_department" onclick="click_content_Department();">Department</a>
+                    <a id="li_role" onclick="click_content_role();">Role</a>
+                    <a id="li_speciality" onclick="click_content_speciality();">Speciality</a>
+                    <a id="li_grade" onclick="click_content_grade();">Grade</a>
+                    <a id="li_task" onclick="click_content_task();">Task</a>
+                    <a id="li_team" onclick="click_content_team();">Team</a>
+                </div>
+                @*3*@
+                <button class="dropdown-btn">
+                    Website management
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a id="li_feedback" onclick="click_content_feedback();">Feedback</a>
+                    <a id="li_about_us" onclick="click_content_about_us();">About Us</a>
+                    <a id="li_region" onclick="click_content_Region();">Region</a>
+                    <a id="li_service" onclick="click_content_service();">Service</a>
+                    <a id="li_trainning" onclick="click_content_trainning();">Trainning</a>
+                    <a id="li_team" onclick="click_content_team();">Team</a>
+                </div>
+                @*4*@
+                <button class="dropdown-btn">
+                    other
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a id="li_feedback" onclick="click_content_feedback();">Feedback</a>
+                    <a id="li_chart" onclick="click_content_chart_employee();">Chart Employee</a>
+                </div>
             </div>
         </div>
-        
+
         @*Content_admin*@
         <div class="col_right">
             <div class="content_col_right">
@@ -45,6 +76,7 @@
             </div>
         </div>
     </div>
+
     @*script*@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -64,8 +96,8 @@
     <script src="~/js/phuocc.js"></script>
     <script src="~/js/team.js"></script>
     <script src="~/js/task.js"></script>
-    <script type="text/javascript">
-        window.onload = function () {
+    <script src="~/js/trung.js"></script>
+    <script type="text/javascript">window.onload = function () {
             var chart = new CanvasJS.Chart("content_chart_employees", {
                 width: 1500,
                 height: 710,
@@ -89,10 +121,8 @@
                 ]
             });
             chart.render();
-        }
-    </script>
-    <script>
-        CKEDITOR.replace("where_aboutus", {
+        }</script>
+    <script>CKEDITOR.replace("where_aboutus", {
             height: 80,
             width: 600,
         });
@@ -111,8 +141,7 @@
         CKEDITOR.replace("description_service", {
             height: 150,
             width: 375,
-        });
-    </script>
+        });</script>
     @RenderSection("script_admin", required: false)
 </body>
 </html>
@@ -1549,10 +1578,10 @@
                         }
                     })
                 });
-                
+
             }
         })
-        
+
     }
 </script>
 
@@ -1643,7 +1672,7 @@
         load_data_employee();
 
         load_cb("region");
-        
+
         load_cb("grade");
         load_cb("role");
         load_cb("speciality");
@@ -1765,7 +1794,7 @@
         })
     }
     function load_data_employee() {
-        
+
         $.ajax({
             type: 'get',
             url: 'http://localhost:44383/api/employees',
@@ -1846,7 +1875,7 @@
                     document.getElementById("input_department").disabled = true;
                     document.getElementById("input_team").disabled = true;
                 }
-                
+
             })
         } else {
             var url = 'http://localhost:44383/api/' + name + 's';

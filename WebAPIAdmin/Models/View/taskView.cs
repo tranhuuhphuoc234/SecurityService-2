@@ -8,7 +8,7 @@ namespace WebAPIAdmin.Models.View
     public class taskView
     {
         public int id { get; set; }
-        public string name { get; set; }
+        public string name_task { get; set; }
         public DateTime start_day { get; set; }
         public DateTime end_day { get; set; }
         public string location { get; set; }

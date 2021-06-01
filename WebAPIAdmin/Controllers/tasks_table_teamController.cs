@@ -43,9 +43,9 @@ namespace WebAPIAdmin.Controllers
                      {
                          name_client = c.name,
                          name_service = se.name,
-                         name = t.name,
+                         name_task = t.name,
                          name_task_status = ta.name,
-                         name_team = t.name
+                         name_team = te.name
                      }).ToList();
             return q;
         }

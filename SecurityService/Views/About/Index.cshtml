@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "About Us";
     Layout = "_Layout";
+
 }
 <style>
     .container {
@@ -36,15 +37,22 @@
                 </p>
             </div>
         </div>
-        
+
     </div>
     <div class="about-content">
         <div class="history " style="padding:10px 0 10px;">
             <div class="history-title">
                 <h2> <i class="bi bi-clock-history"></i> History</h2>
             </div>
-            <div class="history-content fade ">
-             
+            <div class="history-content" style="padding: 0 40px 0 40px;">
+                @if (ViewData["aboutus"] != null)
+                {
+                    var list = (List<SecurityService.Models.View.aboutusView>)ViewData["aboutus"];
+                    foreach (var item in list)
+                    {
+                        @Html.Raw(item.where);
+                    }
+                }
             </div>
 
         </div>
@@ -54,24 +62,14 @@
             </div>
             <div class="chairman-content">
                 <img class="chairman" src="../img/man.png" />
-                <h3>Mr. N.Q.Trung, Founder and Group Chairman</h3>
-                <p> Mr.Trung is a first generation entrepreneur and the Founder of Star Security Services  </p>
-                <h3>Early Career</h3>
-                <p>
-                    A graduate of political science and law, Mr.Trung was a journalist specializing in crime and political reporting, who covered the Indo-Pak War of 1971. He authored ‘Janandolan’, recognized as the first authentic book on the Indian student movement led by the revolutionary Jai Prakash Narayan. Mr. Sinha’s desire to assist retired ex-servicemen after the war inspired him to create a security services company.
-                </p>
-                <h3>Recognition</h3>
-                <p>
-                    As a celebrated industry pioneer and spokesman, he represents the private security industry before government bodies. He served as advisor to the Ministry of Human Resource Development, Government of India (1999 to 2004).
-
-                    He is a renowned speaker on subjects pertaining to security, loss prevention, training, and disaster management issues and is a regular faculty at universities across India and the U.S.
-
-                    In recognition of his contribution, the Security Association of Singapore (SAS) honoured him with a Loss Prevention Promoter Award in 2006.
-                </p>
-                <h3>Associations</h3>
-                <p>
-                    Mr.Trung has also been a champion of industry issues and associations, holding various positions including that of the Regional Vice President, World Safety Organization (WSO) for South Asia (1989-1991); President, National Institute of Security Professionals of India (1990-1995); Area Governor, Association of Security Organization of India (1988- 2001); Chapter Chairman, ASIS for Indian Sub-Continent Chapter (1990-2000); Executive Chairman, International Institute of Security and Safety Management besides being Founder Chairman of the Central Association for the Private Security Industry of India (CAPSI) and the Security Skills Council of India (SSCI).
-                </p>
+                @if (ViewData["aboutus"] != null)
+                {
+                    var list = (List<SecurityService.Models.View.aboutusView>)ViewData["aboutus"];
+                    foreach (var item in list)
+                    {
+                        @Html.Raw(item.when);
+                    }
+                }
 
             </div>
         </div>
@@ -97,20 +95,20 @@
             $.each(data, function (index, value) {
                 var rows = "";
                 rows += "<div class='card'>"
-                +"<div class='imgText'>"
-                +"<div class='imgBx'>"
-                +"<img src='../img/"+value.img+"' />"
-                +"</div>"
-                +"<h5>"+value.name+"</h5>"
-                +"<p> Founder </p>"
-                +"</div>"
-                +"<ul class='contact-info'>"
-                +"<li><a href='#'><i class='bi bi-facebook' style='color:#3b5998'></i></a></li>"
-                +"<li><a href='#'><i class='bi bi-twitter' style='color: #1DA1F2;'></i></a></li>"
-                +"<li><a href='#'><i class='bi bi-instagram' style='color: #E1306C'></i></a></li>"
-                +"<li><a href='#'><i class='bi bi-linkedin' style='color:#2867B2'></i></a></li>"
-                +"</ul>"
-                +"</div>"
+                    + "<div class='imgText'>"
+                    + "<div class='imgBx'>"
+                    + "<img src='../img/" + value.img + "' />"
+                    + "</div>"
+                    + "<h5>" + value.name + "</h5>"
+                    + "<p> Founder </p>"
+                    + "</div>"
+                    + "<ul class='contact-info'>"
+                    + "<li><a href='#'><i class='bi bi-facebook' style='color:#3b5998'></i></a></li>"
+                    + "<li><a href='#'><i class='bi bi-twitter' style='color: #1DA1F2;'></i></a></li>"
+                    + "<li><a href='#'><i class='bi bi-instagram' style='color: #E1306C'></i></a></li>"
+                    + "<li><a href='#'><i class='bi bi-linkedin' style='color:#2867B2'></i></a></li>"
+                    + "</ul>"
+                    + "</div>"
                 $('.director-content').append(rows);
             });
         }

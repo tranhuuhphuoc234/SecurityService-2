@@ -81,5 +81,22 @@ namespace SecurityService.Areas.Admin.Controllers
             }
             return Json("success");
         }
+        public async Task<JsonResult> UploadImageService()
+        {
+            var a = "";
+            var dir = _env.ContentRootPath;
+            foreach (var formfile in Request.Form.Files)
+            {
+                a = formfile.FileName;
+            }
+            using (var fileStream = new FileStream(Path.Combine(dir + "/wwwroot/img/", a), FileMode.Create, FileAccess.Write))
+            {
+                foreach (var formfile in Request.Form.Files)
+                {
+                    formfile.CopyTo(fileStream);
+                }
+            }
+            return Json("success");
+        }
     }
 }

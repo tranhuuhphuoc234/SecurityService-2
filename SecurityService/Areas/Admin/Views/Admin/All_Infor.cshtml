@@ -561,9 +561,8 @@
 </div>
 @*content_service*@
 <div class="container" id="content_service" style="display:none;">
-
     <div class="my_col_left_region">
-        <form id="form_service">
+        <form id="form_service_2">
             <div class="my_text_box" style="display:none;">
                 <div class="my_label">Id</div>
                 <input type="text" name="id_service" id="id_service" />
@@ -577,8 +576,12 @@
                 <input type="text" name="price_service" id="price_service" />
             </div>
             <div class="my_text_box">
-                <div class="my_label">How</div>
+                <div class="my_label">Description</div>
                 <textarea id="description_service" name="description_service"></textarea>
+            </div>
+            <div class="my_text_box">
+                <div class="my_label">Image</div>
+                <input type="file" name="image_service" id="image_service" value="" />
             </div>
             <div class="my_text_box">
                 <label class="my_label">Status</label>
@@ -586,7 +589,7 @@
             </div>
         </form>
         <div class="div_btn" id="div_btn_save_service">
-            <button type="submit" id="btn_save_service" class="btn_save">Save</button>
+            <button type="button" id="btn_save_service_p" class="btn_save">Save</button>
         </div>
         <div class="div_btn" id="div_btn_edit_service" style="display:none;">
             <button type="button" class="btn_edit" id="btn_edit_service">Edit</button>
@@ -1030,11 +1033,11 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    var username = sessionStorage.getItem('username');
+    @*var username = sessionStorage.getItem('username');
     var role = sessionStorage.getItem('role');
     if (username == null && role != 'admin') {
         window.location.href = "@Url.Action("index", "ErrorPage")";
-    }
+    }*@
     function regionchange(obj) {
         var id_region = $(obj).val();
         document.getElementById("input_department").disabled = false;
@@ -1208,7 +1211,6 @@
                                         for (var i = 0; i != files.length; i++) {
                                             formData.append("files", files[i]);
                                         }
-
                                         $.ajax({
                                             url: "UploadImageEmp",
                                             data: formData,
@@ -1259,6 +1261,63 @@
                 alert("Please enter full information");
                 count_error = 0;
             }
+        }
+        
+    })
+    $('#btn_save_service_p').click(function (data) {
+        var infor_service = new Object();
+        var name_service = $('#name_service').val();
+        var price_service = $('#price_service').val();
+        var status = $("#status_service").prop("checked");
+        var description = CKEDITOR.instances['description_service'].getData();
+
+        var image = $('#image_service').val();
+        image = image.substring(image.lastIndexOf("\\") + 1, image.length);
+        if (name_service != "" && price_service != "" && description != "" && image != "") {
+            infor_service.price = price_service;
+            infor_service.description = description;
+            infor_service.name = name_service;
+            infor_service.image = image;
+            if (status == true) {
+                infor_service.status = true;
+            } else {
+                infor_service.status = false;
+            }
+            var q = JSON.stringify(infor_service);
+
+            $.ajax({
+                type: 'Post',
+                url: 'http://localhost:44383/api/services',
+                data: q,
+                contentType: "application/json; charset=utf8",
+                dataType: 'json',
+                success: function (data) {
+
+                    var input = document.getElementById('image_service');
+                    var files = input.files;
+                    var formData = new FormData();
+
+                    for (var i = 0; i != files.length; i++) {
+                        formData.append("files", files[i]);
+                    }
+                    $.ajax({
+                        url: "UploadImageService",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        type: "POST",
+                        success: function (data) {
+                            alert("Successssss");
+                            clear_form_service();
+                            load_data_service();
+                        }
+                    })
+
+                },
+                error: function (data) {
+                    clear_form_service();
+                }
+            });
         }
         
     })

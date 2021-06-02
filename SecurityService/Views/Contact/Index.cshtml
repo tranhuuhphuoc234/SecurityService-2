@@ -62,21 +62,22 @@
                     <span> Last Name</span>
                 </div>
                 <div class="inputBox w50">
-                    <input type="tel" name="" id="phone" required />
-                    <span>Phone No.</span>
-                </div>
-                <div class="inputBox w50">
                     <input type="email" name="" id="email" required />
                     <span> Email </span>
+                </div>
+                <div class="inputBox w50" >
+                    <input type="text" placeholder="" name="" id="verify_email" required style="max-width: 45%;"/>
+                    <button style="margin-left: 10px;" class="btn btn-danger" id="send_code">Send Code</button>
+                    <span style="font-size: 11px;">Email Confirmation code</span>
+                </div>
+                <div class="inputBox w50" >
+                    <input type="tel" name="" id="phone" required />
+                    <span>Phone No.</span>
                 </div>
                 <div class="textBox" style="width:100%; padding-bottom:20px;">
                     <label> Please choose service :</label>
                     <select class="selectBox" name="service" id="service">
-                        <option value="none"> Choose Service </option>
-                        <option value="Manned Guarding"> Manned Guarding </option>
-                        <option value="Cash Service"> Cash Service </option>
-                        <option value="Electronic Security"> Electronic Security </option>
-                        <option value="Recruitment & Training"> Recruitment & Training </option>
+                        @*render data here*@ 
                     </select>
                 </div>
                 <div class="inputBox w100">
@@ -84,7 +85,7 @@
                     <span> Message </span>
                 </div>
                 <div class="inputBox w100">
-                    <input class="myBtn" type="button" id="submit"/>
+                    <input class="myBtn" type="button" id="submit" value="Submit"/>
                 </div>
             </div>
         </div>
@@ -95,114 +96,169 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    load_cb_service();
+    $('#send_code').click(function () {
+        var code = sessionStorage.getItem('codeconfirm');
+        if (code != null) {
+            alert("Code sent to your email");
+        } else {
+            document.getElementById("send_code").disabled = true;
+            var email = $('#email').val();
+            if (email != "") {
+                $.ajax({
+                    type: 'post',
+                    url: "@Url.Action("Check_Mail")",
+                    data: { email: email }
+                }).done(function (data) {
+                    sessionStorage.setItem('codeconfirm', data);
+                    document.getElementById("send_code").disabled = false;
+                });
+            } else {
+                alert("Please enter email");
+            }
+
+         }
+
+    })
+    function load_cb_service() {
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:54396/api/services',
+            contentType: 'application/json; charset=utf8',
+            dataType: 'json',
+            success: function (data) {
+                var rows = "<select class='selectBox' name='service' id='service'>";
+                $.each(data, function (index, value) {
+                    rows += "<option value='"+value.id+"'> "+value.name+" </option>";
+                });
+                rows += "</select>";
+                $('#service').replaceWith(rows);
+            }
+        })
+    }
     $('#submit').click(function () {
         var firstname = $('#firstname').val();
         var lastname = $('#lastname').val();
         var phone = $('#phone').val();
         var message = $('#message').val();
         var email = $('#email').val();
-        
+        var verify_email = $('#verify_email').val();
         var service = $('#service').val();
-        if (firstname != "" && lastname != "" && phone != "" && message != "" && email != "" && service != "none") {
-            var idclient = 0;
-            var name = firstname + lastname;
-            $.ajax({
-                type: 'get',
-                url: 'http://localhost:54396/api/clients',
-                contentType: 'application/json; charset=utf8',
-                dataType: 'json',
-                success: function (data) {
-                    $.each(data, function(index, value) {
-                        if (value.email == email) {
-                            idclient = value.id;
-                        }
-                    });
-                    if (idclient == 0) {
-                        var client = new Object();
-                        client.name = firstname +" "+ lastname;
-                        client.phone = phone;
-                        client.email = email;
-                        client.employee = 2;
-                        client.address = null;
-                        client.status = true;
 
-                        var q = JSON.stringify(client);
-
-                        $.ajax({
-                            type: 'post',
-                            url: 'http://localhost:54396/api/clients',
-                            contentType: 'application/json; charset=utf8',
-                            dataType: 'json',
-                            data: q,
-                            success: function (data) {
-                                var id = parseInt(data.id);
-
-                                var request = new Object();
-                                request.service = service;
-                                request.message = message;
-                                request.client = id;
-                                request.status = true;
-
-                                var re = JSON.stringify(request);
-                                $.ajax({
-                                    type: 'post',
-                                    url: 'http://localhost:54396/api/requests',
-                                    contentType: 'application/json; charset=utf8',
-                                    dataType: 'json',
-                                    data: re,
-                                    success: function (data) {
-                                        send_mail(email, firstname, lastname, service, message);
-                                        alert("We will contact for you soon!!");
-                                        $('#firstname').val("");
-                                        $('#lastname').val("");
-                                        $('#email').val("");
-                                        $('#phone').val("");
-                                        $('#service').val("none");
-                                    }
-                                })
-                            }
-                        })
-                    } else {
-                        var request = new Object();
-                        request.service = service;
-                        request.message = message;
-                        request.client = idclient;
-                        request.status = true;
-
-                        var re = JSON.stringify(request);
-                        $.ajax({
-                            type: 'post',
-                            url: 'http://localhost:54396/api/requests',
-                            contentType: 'application/json; charset=utf8',
-                            dataType: 'json',
-                            data: re,
-                            success: function (data) {
-                                send_mail(email, firstname, lastname, service, message);
-                                alert("We will contact for you soon!!");
-                                $('#firstname').val("");
-                                $('#lastname').val("");
-                                $('#email').val("");
-                                $('#phone').val("");
-                                $('#message').val("");
-                                $('#service').val("none");
-                            }
-                        })
-                    }
-                }
-            })
-            
+        var codeconfirm = sessionStorage.getItem('codeconfirm');
+        if (verify_email != codeconfirm) {
+            alert("Code confirm incorrect !!");
+            $('#verify_email').val("");
         } else {
-            alert("Please enter full information");
+            if (firstname != "" && lastname != "" && phone != "" && message != "" && email != "" && service != "none" && verify_email != "") {
+                var idclient = 0;
+                var name = firstname + lastname;
+                $.ajax({
+                    type: 'get',
+                    url: 'http://localhost:54396/api/clients',
+                    contentType: 'application/json; charset=utf8',
+                    dataType: 'json',
+                    success: function (data) {
+                        $.each(data, function (index, value) {
+                            if (value.email == email) {
+                                idclient = value.id;
+                            }
+                        });
+                        //client == 0 => chưa có client => phải tạo client => call api post client
+                        if (idclient == 0) {
+                            var client = new Object();
+                            client.name = firstname + " " + lastname;
+                            client.phone = phone;
+                            client.email = email;
+                            client.address = null;
+                            client.status = false;
+
+                            var q = JSON.stringify(client);
+
+                            $.ajax({
+                                type: 'post',
+                                url: 'http://localhost:54396/api/clients',
+                                contentType: 'application/json; charset=utf8',
+                                dataType: 'json',
+                                data: q,
+                                success: function (data) {
+                                    // tạo client success => lấy id của client => tạo request. Nhưng trước khi tạo request phải xác thực email.
+                                    // Nên thông tin request sẽ được đưa lên SESSION =>
+                                    var id = parseInt(data.id);
+
+                                    var request = new Object();
+                                    request.service = service;
+                                    request.message = message;
+                                    request.client = id;
+                                    request.status = true;
+
+                                    var re = JSON.stringify(request);
+                                    $.ajax({
+                                        type: 'post',
+                                        url: 'http://localhost:54396/api/requests',
+                                        contentType: 'application/json; charset=utf8',
+                                        dataType: 'json',
+                                        data: re,
+                                        success: function (data) {
+                                            send_mail(email);
+                                            alert("We will contact for you soon!!");
+                                            sessionStorage.removeItem('codeconfirm');
+                                            $('#firstname').val("");
+                                            $('#lastname').val("");
+                                            $('#email').val("");
+                                            $('#phone').val("");
+                                            $('#service').val("none");
+                                            $('#verify_email').val("");
+                                        }
+                                    })
+                                }
+                            })
+                        } else {
+                            var request = new Object();
+                            request.service = service;
+                            request.message = message;
+                            request.client = idclient;
+                            request.status = true;
+
+                            var re = JSON.stringify(request);
+                            $.ajax({
+                                type: 'post',
+                                url: 'http://localhost:54396/api/requests',
+                                contentType: 'application/json; charset=utf8',
+                                dataType: 'json',
+                                data: re,
+                                success: function (data) {
+                                    send_mail(email);
+                                    alert("We will contact for you soon!!");
+                                    sessionStorage.removeItem('codeconfirm');
+                                    $('#firstname').val("");
+                                    $('#lastname').val("");
+                                    $('#email').val("");
+                                    $('#phone').val("");
+                                    $('#message').val("");
+                                    $('#service').val("none");
+                                    $('#verify_email').val("");
+                                }
+                            })
+                        }
+                    }
+                })
+
+            } else {
+                alert("Please enter full information");
+            }
         }
-        
+
+
+
     })
-    function send_mail(email, firstname, lastname,service, message) {
+    function send_mail(email) {
         $.ajax({
             method: 'post',
             url: '@Url.Action("Send_Mail")',
-            data: { email: email, firstname: firstname, lastname: lastname, service: service, message: message }
+            data: { email: email }
         }).done(function (data) {
-            
+
         });
     }
 </script>

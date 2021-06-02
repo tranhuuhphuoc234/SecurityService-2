@@ -39,16 +39,19 @@ $('#div_btn_save_service').click(function () {
             var price_service = $('#price_service').val();
             var status = $("#status_service").prop("checked");
             var description = CKEDITOR.instances['description_service'].getData();
-
+            var image = $('image_service').val();
+            image = image.substring(image.lastIndexOf("\\") + 1, image.length);
             infor_service.price = price_service;
             infor_service.description = description;
             infor_service.name = name_service;
+            infor_service.image_service = image;
             if (status == true) {
                 infor_service.status = true;
             } else {
                 infor_service.status = false;
             }
             var q = JSON.stringify(infor_service);
+
             $.ajax({
                 type: 'Post',
                 url: 'http://localhost:44383/api/services',
@@ -56,9 +59,27 @@ $('#div_btn_save_service').click(function () {
                 contentType: "application/json; charset=utf8",
                 dataType: 'json',
                 success: function (data) {
-                    alert("Success");
-                    clear_form_service();
-                    load_data_service();
+
+                    var input = document.getElementById('image_service');
+                    var files = input.files;
+                    var formData = new FormData();
+
+                    for (var i = 0; i != files.length; i++) {
+                        formData.append("files", files[i]);
+                    }
+                    $.ajax({
+                        url: "UploadImageService",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        type: "POST",
+                        success: function (data) {
+                            alert("Success");
+                            clear_form_service();
+                            load_data_service();
+                        }
+                    })
+                    
                 },
                 error: function (data) {
                     clear_form_service();
@@ -68,7 +89,7 @@ $('#div_btn_save_service').click(function () {
 
 
         }
-    })
+})
 function load_data_service() {
     $.ajax({
         method: "Get",
@@ -105,7 +126,6 @@ function load_data_service() {
 function icon_delete_service(a) {
     clear_label_service();
     var id = $(a).attr('data_id_delete_service');
-    alert(id);
     $.ajax({
         type: "Delete",
         url: 'http://localhost:44383/api/services/' + id,

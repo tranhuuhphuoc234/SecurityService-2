@@ -29,5 +29,8 @@ namespace WebAPIAdmin.Models
         [StringLength(5000)]
         public string description { get; set; }
 
+        [Column("image_service", TypeName = "varchar")]
+        public string image { get; set; }
+
     }
 }

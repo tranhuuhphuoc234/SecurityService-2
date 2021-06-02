@@ -37,8 +37,8 @@
                 <div class="myNav-header">
                     <ul>
                         <li class="star-logo">
-                            <a href="../Home/Index">
-                                <img src="../img/logoResize.png" style="width:30px;" />
+                            <a href="@Url.Action("index", "~/home")">
+                                <img src="@Url.Content("~/img/logoResize.png")" style="width:30px;" />
                             </a>
                         </li>
 
@@ -101,7 +101,7 @@
                     <div class="swiper-title">
                         <h1> Your safety is our responsibility </h1>
                         <p style="font-size:25px"> We are pleased to serve the safety of you and your family.</p>
-                        <a href="../about/index" class="myBtn"> Explore more  <i class="bi bi-arrow-right"></i></a>
+                        <a href="@Url.Action("index","about")" class="myBtn"> Explore more  <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     <div class="swiper-title">
                         <h1> Your safety is our responsibility </h1>
                         <p style="font-size:25px"> We are pleased to serve the safety of you and your family.</p>
-                        <a href="../about/index" class="myBtn"> Explore more  <i class="bi bi-arrow-right"></i></a>
+                        <a href="@Url.Action("index","about")" class="myBtn"> Explore more  <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                     <div class="swiper-title">
                         <h1> Your safety is our responsibility </h1>
                         <p style="font-size:25px"> We are pleased to serve the safety of you and your family.</p>
-                        <a href="../about/index" class="myBtn"> Explore more <i class="bi bi-arrow-right"></i></a>
+                        <a href="@Url.Action("index","about")" class="myBtn"> Explore more <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -243,5 +243,24 @@
             dmm();
         }
     })
+    $(document).ready(function myfunction() {
+        $.ajax({
+            method: "Get",
+            url: 'http://localhost:54396/api/services',
+            dataType: 'json',
+            contentType: "application/json, charset=utf8",
+            success: function (data) {
+                var link_service = "<dUrlv class='dropdown-content'>"
+                $.each(data, function (i, item) {
+                    link_service += "<a href='../Services/index?name=" + item.name + "'>" + item.name + "</a>"
+                });
+                link_service += "</div>";
+                $('.dropdown-content').replaceWith(link_service);
+            },
+            error: function () {
+                alert("error")
+            }
+        })
+    });
     
 </script>

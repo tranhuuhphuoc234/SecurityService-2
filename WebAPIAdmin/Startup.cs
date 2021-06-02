@@ -38,6 +38,7 @@ namespace WebAPIAdmin
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIAdmin", Version = "v1" });
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
             });
         }
 
@@ -60,6 +61,7 @@ namespace WebAPIAdmin
             {
                 endpoints.MapControllers();
             });
+            app.UseDeveloperExceptionPage();
         }
     }
 }

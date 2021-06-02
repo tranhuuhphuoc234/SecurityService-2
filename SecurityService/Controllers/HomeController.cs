@@ -21,6 +21,16 @@ namespace SecurityService.Controllers
         {
             return View();
         }
+        public IActionResult Chart()
+        {
+            List<Models.ModelChart> data = new List<ModelChart>();
+                data.Add(new ModelChart("Guard", 121));
+                data.Add(new ModelChart("Electronic Security", 67));
+                data.Add(new ModelChart("Cash Service", 70));
+                data.Add(new ModelChart("Manned Guarding", 56));
+            ViewBag.DataPoints = JsonConvert.SerializeObject(data);
+            return View();
+        }
         /*public async System.Threading.Tasks.Task<IActionResult> Index()
         {
             List<Models.About_us_employee> pro = new List<About_us_employee>();

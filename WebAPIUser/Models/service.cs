@@ -29,5 +29,9 @@ namespace WebAPIUser.Models
         [StringLength(5000)]
         public string description { get; set; }
 
+        [Column("image_service", TypeName = "varchar")]
+        [StringLength(5000)]
+        public string image_service { get; set; }
+
     }
 }

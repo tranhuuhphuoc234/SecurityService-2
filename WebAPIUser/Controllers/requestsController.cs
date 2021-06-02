@@ -66,8 +66,22 @@ namespace WebAPIUser.Controllers
         {
             return await _context.requests.Where(a => a.client == client).ToListAsync();
         }
-      
- 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Putcomment(int id, request request)
+        {
+            if (id != request.id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(request).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+
     }
 
 }

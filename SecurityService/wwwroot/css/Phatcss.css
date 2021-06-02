@@ -812,7 +812,7 @@ header .menu-btn {
 }
 
 .service-item-background-1 {
-    background: url("../img/cctv.jpg");
+    /*background: url("../img/cctv.jpg");*/
     background-size: cover;
     background-position: center;
     height: 100%;

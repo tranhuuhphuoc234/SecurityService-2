@@ -1,0 +1,630 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.container_admin {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 98%;
+    height: 100%;
+    margin-left: 2%;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
+.col_left {
+    position: absolute;
+    z-index: 1;
+    float: left;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #000000;
+    width: 20%;
+}
+
+.col_right {
+    position: absolute;
+    float: left;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #ffffff;
+    width: 100%;
+}
+
+.content_col_right {
+    width: 80%;
+    margin-left: 20%;
+    height: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+.logo_my_team {
+    height: 30%;
+}
+
+.image_my_team {
+    margin: 0 24% 0 24%;
+    height: 100%;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.my_logo {
+    width: 150px;
+    height: 150px;
+    margin-top: 15px;
+}
+
+.btn_menu {
+    height: 70%;
+}
+
+h3 {
+    margin: 0px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+li {
+    text-align: center;
+    transition: 0.3s;
+    padding: 12px 0px 12px 0px;
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 25px;
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+    padding-top: 20px;
+    text-align: center;
+}
+/*manage form*/
+.manage_form {
+    width: 98%;
+    height: 9%;
+}
+/*content form*/
+.content_form {
+    width: 98%;
+    height: 91%;
+}
+/*col_employee*/
+.my_col_left {
+    width: 40%;
+    height: 100%;
+    float: left;
+    margin-left: 10%;
+}
+
+.my_col_right {
+    width: 40%;
+    height: 100%;
+    float: left;
+    margin-left: 10%;
+}
+
+/*col_about_us*/
+.my_col_left_aboutus {
+    width: 60%;
+    height: 100%;
+    float: left;
+    overflow-y: scroll;
+}
+
+.my_col_right_aboutus {
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+
+/*my_col_left_region*/
+.my_col_left_region {
+    margin-left: 3%;
+    width: 37%;
+    height: 100%;
+    float: left;
+}
+
+.my_col_right_region {
+    width: 56%;
+    height: 100%;
+    float: left;
+}
+
+/*input*/
+.my_text_box {
+    padding: 5px 0px 5px 0px;
+    margin-left: 2%;
+    margin-right: 0%;
+}
+
+input {
+    width: 65%;
+    margin: 0px;
+    padding: 3px;
+    font-size: 15px;
+    border-radius: 2px 2px 2px 2px;
+    border: 1px solid;
+}
+
+.my_label {
+    font-size: 15px;
+    margin-bottom: 5px;
+    width: auto;
+    margin-left: 0px;
+    color: black;
+}
+
+/* btn Save */
+.div_btn {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+}
+
+.btn_save:hover {
+    border: 1px solid #73e378;
+    color: #73e378;
+}
+
+.btn_edit:hover {
+    border: 1px solid #f6ff04;
+    color: #f6ff04;
+}
+
+.btn_view:hover {
+    border: 1px solid #a3fffe;
+    color: #a3fffe;
+}
+
+.btn_delete:hover {
+    border: 1px solid #ff8686;
+    color: #ff8686;
+}
+
+.btn_search:hover {
+    border: 1px solid #fca3ff;
+    color: #fca3ff;
+}
+
+button {
+    padding: 10px 20px 10px 20px;
+    border: 1px solid black;
+    margin-right: 20px;
+}
+/*combobox*/
+select {
+    width: 68%;
+    margin: 0px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 2px 2px 2px 2px;
+    border: 1px solid;
+}
+
+/*my_table*/
+.title_table {
+    height: 8%;
+    width: 100%;
+    background-color: #afb09f;
+    font-weight: bolder;
+}
+
+.title_employee {
+    height: 8%;
+    width: 2200px;
+    background-color: #afb09f;
+    font-weight: bolder;
+}
+
+.title_table_region {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_role {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_speciality {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_grade {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+
+.title_table_employee {
+    float: left;
+    width: 295px;
+    text-align: center;
+    margin-top: 14px;
+}
+
+.title_table_department {
+    float: left;
+    width: 25%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_achivement {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_service {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_trainning {
+    float: left;
+    width: 16.6%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_orderdetail {
+    float: left;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.title_table_about_us {
+    float: left;
+    width: 25%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.title_table_feedback {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.table_region {
+    width: 100%;
+    height: 100%;
+}
+
+.content_table_view {
+    height: 80%;
+    overflow-x: scroll;
+    width: 98%;
+}
+
+.content_table {
+    height: 92%;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+.content_table_employee {
+    height: 92%;
+    overflow-x: scroll;
+    width: 2200px;
+}
+
+/*#my_table tr:nth-child(even) {
+    background-color: #444444;
+    color: #ffffff;
+}
+
+#my_table_region tr:nth-child(even) {
+    background-color: #444444;
+    color: #ffffff;
+}
+
+#my_table_trainning tr:nth-child(even) {
+    background-color: #444444;
+    color: #ffffff;
+}*/
+
+
+table {
+    width: 100%;
+    padding: 10px;
+    border-collapse: collapse;
+}
+
+    table tr th {
+        min-width: 100px;
+        text-align: center;
+        padding: 15px;
+        height: 15%;
+        border: 1px solid #afb09f;
+    }
+
+    table tr td {
+        width: 295px;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid #afb09f;
+    }
+
+    table tr .td_hidden {
+        display: none;
+    }
+
+#my_table_trainning tbody tr td {
+    width: 16.6%;
+}
+
+#my_table_service tbody tr td {
+    width: 20%;
+}
+
+/*my_search*/
+.content_search {
+    text-align: center;
+    height: 20%;
+}
+
+.my_search {
+    height: 15%;
+    text-align: center;
+}
+
+.table_feedback {
+    height: 85%;
+    text-align: center;
+}
+
+.div_icon_delete {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+.div_icon_edit {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+.content_chart {
+    width: 98%;
+    height: 100%;
+    overflow-x: scroll;
+}
+
+.general_search {
+    width: 100%;
+    text-align: center;
+    height: 15%;
+}
+
+.general_table {
+    height: 80%;
+}
+
+.canvasjs-chart-credit {
+    display: none;
+}
+
+small {
+    font-style: initial;
+    color: red;
+    display: none;
+}
+
+label {
+    margin-left: 10px;
+    color: red;
+    font-size: 10px;
+}
+
+.div_ckeditor {
+    height: 40%;
+}
+
+#detail_trainning-error {
+    margin: 0px;
+}
+
+#description_service-error {
+    margin: 0px;
+}
+
+.label_search {
+    font-size: 20px;
+    color: black;
+    margin: 0;
+    margin-right: 10px;
+}
+
+/*ul_lient_management*/
+#ul_lient_management {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+    #ul_lient_management li {
+        float: left;
+        text-align: center;
+        transition: 0.3s;
+        color: #ffffff;
+        font-family: 'Lato', sans-serif;
+        font-size: 10px;
+    }
+
+#my_table_client #table_check_service tr td {
+    width: 20%;
+}
+
+#ul_lient_management li span {
+    display: block;
+    padding: 20px;
+    background-color: #dddddd;
+}
+
+.display_content_client {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.div_bottom {
+    width: 99%;
+    height: 88%;
+    border: 1px solid #dddddd;
+}
+
+.title_table_client {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.title_table_history {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+#my_table_history #table_history tr td {
+    width: 20%;
+}
+
+.div_btn_client {
+    width: 33%;
+    float: left;
+    text-align: center;
+}
+
+.title_table_recruitment {
+    float: left;
+    width: 12.5%;
+    text-align: center;
+    margin-top: 1%;
+}
+
+#my_table_recruitment #table_recruitment tr td {
+    width: 12.5%;
+}
+
+#my_table_orderdetail #table_orderdetail tr td {
+    width: 14%;
+}
+#my_table_team #table_team tr td {
+    width: 20%;
+}
+
+.title_table_team {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.left_task {
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+.right_task {
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+.tb_task {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width:100%;
+}
+
+input[type="date"]::-webkit-datetime-edit, input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-clear-button {
+    color: #fff;
+    position: relative;
+}
+
+input[type="date"]::-webkit-datetime-edit-year-field {
+    position: absolute !important;
+    border-left: 1px solid #8c8c8c;
+    padding: 2px;
+    color: #000;
+    left: 56px;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field {
+    position: absolute !important;
+    border-left: 1px solid #8c8c8c;
+    padding: 2px;
+    color: #000;
+    left: 26px;
+}
+
+
+input[type="date"]::-webkit-datetime-edit-day-field {
+    position: absolute !important;
+    color: #000;
+    padding: 2px;
+    left: 4px;
+}
+.search_task{
+    float:left;
+    width:20%;
+}
+
+.title_table_task {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 1.5%;
+    font-size: 10px;
+}

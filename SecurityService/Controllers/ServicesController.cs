@@ -1,22 +1,20 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SecurityService.Controllers
 {
-    public class AboutController : Controller
+    public class ServicesController : Controller
     {
-        // GET: /<controller>/
-        public async Task<IActionResult> Index()
+       
+        public async Task<IActionResult> Index(string name)
         {
-            List<Models.View.aboutusView> pro = new List<Models.View.aboutusView>();
+            Models.View.Service pro = new Models.View.Service();
             using (var client = new System.Net.Http.HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:54396/api/");
@@ -26,7 +24,7 @@ namespace SecurityService.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("about_us");
+                HttpResponseMessage Res = await client.GetAsync("services/getService/" + name);
 
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
@@ -35,11 +33,15 @@ namespace SecurityService.Controllers
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
 
                     //Deserializing the response recieved from web api and storing into the Employee list  
-                    pro = JsonConvert.DeserializeObject<List<Models.View.aboutusView>>(EmpResponse);
-                    ViewData["aboutus"] = pro;
+                    pro = JsonConvert.DeserializeObject<Models.View.Service>(EmpResponse);
+                    ViewData["service"] = pro;
                 }
                 return View();
             }
+        }
+        public IActionResult Show()
+        {
+            return View();
         }
     }
 }

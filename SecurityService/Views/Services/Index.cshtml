@@ -1,10 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
-    ViewData["Title"] = "Manned Guarding";
     Layout = "_Layout";
-
+    var item = (SecurityService.Models.View.Service)null;
+    @if (ViewData["service"] != null)
+    {
+        item = (SecurityService.Models.View.Service)ViewData["service"];
+    }
 }
 <style>
     .container {
@@ -22,7 +23,7 @@
     }
 
     .mannegduarding {
-        background: url(../img/mannedguard1.jpeg);
+        background: url(@Url.Content("~/img/mannedguard1.jpeg"));
         height: 50vh;
         background-size: cover;
         background-position: center;
@@ -151,48 +152,35 @@
 <div style="padding:10px;">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../Home/Index">Home</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Our Services</li>
-            <li class="breadcrumb-item active" aria-current="page"> Manned Guarding </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                @Html.Raw(item.name)
+            </li>
         </ol>
     </nav>
-    <div class="mannegduarding">
+    <div class="mannegduarding" style="background-image: url('@Url.Content("~/img/"+item.image)')">
         <div class="mannedguarding-title-background">
             <div class="mannedguardingg-title">
-                <h1> Manned Guarding </h1>
+                <h1>
+                    @Html.Raw(item.name)
+                </h1>
+
                 <h5>
                     Also known as security guards, security officers, security personnel.
+
                 </h5>
 
+
             </div>
+
         </div>
+
     </div>
 </div>
 <div class="container" id="content_service">
-    @*<div class="mannegduarding-content ">
-            <p>
-                <span style="color:blue;">Manned guarding is a highly effective way of eliminating criminal damage and theft</span>, making it one of the most proactive security measures that you can take against crime. It is a security service that involves placing security guards at your premises; this could be out of hours security only, or 24/7 security.
-            </p>
-            <p>
-                The manned guarding security service that Star Security Solutions offers is much more than a security presence at your premises. Our security guards are all trained to Security Industry Authority (SIA) standards and are fitted with body cameras for audible and CCTV footage, ensuring you have a professional security officer managing your property.
-            </p>
-            <h5>
-                Protect Your Business And Safety With Manned Guarding
-            </h5>
-            <p>
-                Manned guarding decreases the opportunity for theft and vandalism, can reduce your insurance costs and our security guards can raise the alarm should an arson attack, or similar, take place at your premises out of hours. It is a brilliant proactive solution to your security strategy, ensuring your assets are protected and your insurance cover is not compromised. We aim to prevent damage, disorder or theft and strive to protect individuals against assault or injury.
-            </p>
-            <h5>
-                What We Provides :
-            </h5>
-            <p>
-                guarding, fire squad, dog squad, bodyguards etc. for industries, banks, retail outlets, residential colonies, hotels and institutions
-            </p>
-
-
-        </div>*@
+    @Html.Raw(item.description)
 </div>
-<div><a href="@Url.Action("../Home/Index")">content</a></div>
 <div class="swiper-container swiper-container3">
     <div class="swiper-wrapper " id="showing">
 
@@ -215,41 +203,14 @@
 <div class="container">
     <div class="client-detail ">
         <ul>
-            <li><img src="../img/client1.png" /></li>
-            <li><img src="../img/client2.png" /></li>
-            <li><img src="../img/client3.png" /></li>
-            <li><img src="../img/client4.png" /></li>
-            <li><img src="../img/client5.png" /></li>
-            <li><img src="../img/client6.png" /></li>
-            <li><img src="../img/client7.png" /></li>
-            <li><img src="../img/client8.png" /></li>
+            <li><img src="@Url.Content("~/img/client1.png")" /></li>
+            <li><img src="@Url.Content("~/img/client2.png")" /></li>
+            <li><img src="@Url.Content("~/img/client3.png")" /></li>
+            <li><img src="@Url.Content("~/img/client4.png")" /></li>
+            <li><img src="@Url.Content("~/img/client5.png")" /></li>
+            <li><img src="@Url.Content("~/img/client6.png")" /></li>
+            <li><img src="@Url.Content("~/img/client7.png")" /></li>
+            <li><img src="@Url.Content("~/img/client8.png")" /></li>
         </ul>
     </div>
 </div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script>
-
-    var id = @ViewData["id"];
-    $.ajax({
-        method: "Get",
-        url: 'http://localhost:44383/api/services/'+id,
-        dataType: 'json',
-        contentType: "application/json, charset=utf8",
-        success: function (data) {
-            JSON.stringify(data)
-            var infor_service = "<div class='container' id='content_service'>"
-                + "<div class='mannegduarding-content'>"
-                + data.description +
-                +"</div>"
-            +"</div>"
-            $('#content_service').replaceWith(infor_service);
-            alert(infor_service)
-        },
-        error: function () {
-            alert("error")
-        }
-    })
-</script>
